@@ -1,0 +1,311 @@
+{
+    "header": {
+        "top": {
+            "p": "El tiempo de entrega se verá afectado debido al COVID-19. ¡Mantente a salvo!",
+            "sLanguage": "Seleccionar idioma"
+        },
+        "middle": {
+            "select": {
+                "pak": "Pakistán",
+                "cad": "Canadá",
+                "uk": "Reino Unido"
+            }
+        },
+        "bottom": {
+            "1": "INICIO",
+            "2": "COMEDOR",
+            "3": "SALÓN/SPA",
+            "4": "ENTRETENIMIENTO",
+            "5": "SERVICIOS EN CASA"
+        }
+    },
+    "hero": {
+        "heading": {
+            "1": "Obtén lo Mejor",
+            "2": "Ofertas",
+            "3": " ¡Cerca de Ti!"
+        },
+        "paragraph": "Explora las ofertas cercanas en el mapa y compra ofertas para disfrutar de comida de calidad con tu familia",
+        "bText": "Explorar",
+        "searchForm": {
+            "dinning": "Comedor",
+            "selectAll": "Seleccionar Todo",
+            "selectSubCtgry": "Seleccionar Subcategoría",
+            "city": "Lahore",
+            "destination": "Destino",
+            "placeHolder": "Buscar",
+            "button": "Buscar"
+        },
+        "details": {
+            "D1": [
+                "Comedor",
+                "Salón/Spa",
+                "Entretenimiento",
+                "Limpieza"
+            ],
+            "D2": [
+                {
+                    "h": "Descuentos increíbles de última hora",
+                    "p": "Obtén descuentos increíbles de última hora en tus categorías favoritas de comida, belleza, escapadas y más."
+                },
+                {
+                    "h": "Ahorra",
+                    "p": "Ahorra dinero con nuestras ofertas y promociones"
+                },
+                {
+                    "h": "Pagos seguros",
+                    "p": "Métodos de pago seguros durante todo el proceso de compra para mantener tus datos seguros."
+                }
+            ]
+        }
+    },
+    "deals": {
+        "heading": ["Cerca", "Ofertas"],
+        "paragraph": "Explora las ofertas cercanas en el mapa y compra ofertas para disfrutar de comida de calidad con tu familia",
+        "bText": "Ver en el mapa",
+            "items": [
+                {
+                    "id": "1a",
+                    "image": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/048e/9d98/14baed5c8ba185d8ac2ac942a3f0c037?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OHa3NnIbYx8Kd34LoEg0IS-nyxFbDC0Zs84Q37TrxJcbUIehGK2hgMBYlN6irJC~fK9lrgY5rd4b4Ysw0mTIQx1ZcDhPZfOofSHh8wz-ITYWvBD1Bn8Na6599L0JrckPLEo-8tCfoOnVC7VVDMPbQPy9zA5flpM2rz1TpA0BNinnwVZI6KLOT34CUU6RrqX6sictB72rh1-EzA6wirhOiBzpExDdxn0k1w2RFsOTMJwRXxGk3V1oh-gZ1y3rG2zF8HxKSKTkwH7DtCYl3qus3v0EAaLxYRqJB5ySsaCkPGkaDV1tKHvxSC5NnxRGde6ZxsYTLfuA3hWuaVTC8b7P8g__"
+                },
+                {
+                    "id": "2ba",
+                    "image": "https://media.istockphoto.com/id/1191425335/photo/american-food-concept-grilled-pork-ribs-with-grilled-sauce-with-smoke-spices-and-rosemary.webp?a=1&b=1&s=612x612&w=0&k=20&c=OydMkBjJlxqFJ9gf08o95eGJam1xo90oT_gk-1ThaOc=",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "saleOff": 15,
+                    "price": 896.27,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/c030/529d/10249ab08c60795694cd15b7577130e2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dZjzj4wO-2u8SHE4niwPAT1xvdYuHxPzCEPzcdYMR62H-oqfyVaaosLSH2B27~r786Ot9a1mGpiiryM0YEMFMza5Nq0TLigL1efnCg86uuBDbYl~0YcjE5NN2PRfT6TmFtKXHh6CYBhFAmJ0ACyvPOd~jiYNuuxwDNEApYfwvPwj7RwzHICcyP7arwZ33A5kTqqBte8Yfrq~c6OEmzDFye7IrrUdNgO-n-E~KYV3obuRHLTUMuJGuRRuJlaSska6221VkYWJpp9sBWkecasRYcIRGpqifRuk6hWsOXozSjup247a16bAs~OpuXd8UHj5VFkGnQFCqrL0s6fXh73Qqw__"
+                },
+                {
+                    "id": "3c",
+                    "image": "https://media.istockphoto.com/id/1161996776/photo/stack-of-pancakes-with-maple-syrup-and-fresh-blueberries.webp?a=1&b=1&s=612x612&w=0&k=20&c=Ajrt63WSPTfF9I0dGX7xTUh98a1L7kOZHbEobi1_cEc=",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/eadb/b36f/e671035e79447446d147615c9062f750?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=a-627p-PZdDPcfiCwDpDqvOzLMDxOmkHG11FzRR0MyUUJA2jnbFMJspLqpvbPDRD5fckhq1jBbWG86WHYCJb2kiRueq~VzSZ-xwcpZ0yqcnm6ilwCa005qxq680LIiI0Ty05HVwN7unyiMy3eXez2OvYvDFT3WMqa5bRhEe7Jw6BVUkS~noWHJsELGOlxVyIBz48QHNZCmQKN4wqhj-5zc59tMGRxX0gCfJpba6ruXoPw7xHztp3-nSFPloACNbSgzKR-jENcS9cZfqM8pS5QYpN23UJNRe0CwkT75PKtX2uMvHbh8cOiPXVgx0gJV-~gd3EfX0wIkRdwRKapgsKaQ__"
+                },
+                {
+                    "id": "4d",
+                    "image": "https://images.unsplash.com/photo-1618547748616-3f574909dc3e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/048e/9d98/14baed5c8ba185d8ac2ac942a3f0c037?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OHa3NnIbYx8Kd34LoEg0IS-nyxFbDC0Zs84Q37TrxJcbUIehGK2hgMBYlN6irJC~fK9lrgY5rd4b4Ysw0mTIQx1ZcDhPZfOofSHh8wz-ITYWvBD1Bn8Na6599L0JrckPLEo-8tCfoOnVC7VVDMPbQPy9zA5flpM2rz1TpA0BNinnwVZI6KLOT34CUU6RrqX6sictB72rh1-EzA6wirhOiBzpExDdxn0k1w2RFsOTMJwRXxGk3V1oh-gZ1y3rG2zF8HxKSKTkwH7DtCYl3qus3v0EAaLxYRqJB5ySsaCkPGkaDV1tKHvxSC5NnxRGde6ZxsYTLfuA3hWuaVTC8b7P8g__"
+                },
+                {
+                    "id": "5e",
+                    "image": "https://images.unsplash.com/photo-1625467163651-fc5b647bcc8b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRlbGljaW91cyUyMGZvb2R8ZW58MHx8MHx8fDA%3D",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/c030/529d/10249ab08c60795694cd15b7577130e2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dZjzj4wO-2u8SHE4niwPAT1xvdYuHxPzCEPzcdYMR62H-oqfyVaaosLSH2B27~r786Ot9a1mGpiiryM0YEMFMza5Nq0TLigL1efnCg86uuBDbYl~0YcjE5NN2PRfT6TmFtKXHh6CYBhFAmJ0ACyvPOd~jiYNuuxwDNEApYfwvPwj7RwzHICcyP7arwZ33A5kTqqBte8Yfrq~c6OEmzDFye7IrrUdNgO-n-E~KYV3obuRHLTUMuJGuRRuJlaSska6221VkYWJpp9sBWkecasRYcIRGpqifRuk6hWsOXozSjup247a16bAs~OpuXd8UHj5VFkGnQFCqrL0s6fXh73Qqw__"
+                },
+                {
+                    "id": "6a",
+                    "image": "https://media.istockphoto.com/id/857927726/photo/pasta-with-meat-tomato-sauce-and-vegetables.webp?a=1&b=1&s=612x612&w=0&k=20&c=_NS5Zj-sbBX-0_eypSv1Z_3dQ61Swta9z5zo8zYIkWY=    ",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/eadb/b36f/e671035e79447446d147615c9062f750?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=a-627p-PZdDPcfiCwDpDqvOzLMDxOmkHG11FzRR0MyUUJA2jnbFMJspLqpvbPDRD5fckhq1jBbWG86WHYCJb2kiRueq~VzSZ-xwcpZ0yqcnm6ilwCa005qxq680LIiI0Ty05HVwN7unyiMy3eXez2OvYvDFT3WMqa5bRhEe7Jw6BVUkS~noWHJsELGOlxVyIBz48QHNZCmQKN4wqhj-5zc59tMGRxX0gCfJpba6ruXoPw7xHztp3-nSFPloACNbSgzKR-jENcS9cZfqM8pS5QYpN23UJNRe0CwkT75PKtX2uMvHbh8cOiPXVgx0gJV-~gd3EfX0wIkRdwRKapgsKaQ__"
+                }
+            ]
+        },
+    "dealsOfDay": {
+        "heading": ["Ofertas del", "Día"],
+        "paragraph": "Encuentra las ofertas del día aquí y ahorra dinero con promociones y descuentos en todo.",
+        "bText": "Ver en el mapa",
+            "items": [
+                {
+                    "id": "1a",
+                    "image": "https://www.shutterstock.com/image-photo/fried-salmon-steak-cooked-green-600nw-2489026949.jpg",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "saleOff": 15,
+                    "price": 896.27,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/048e/9d98/14baed5c8ba185d8ac2ac942a3f0c037?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OHa3NnIbYx8Kd34LoEg0IS-nyxFbDC0Zs84Q37TrxJcbUIehGK2hgMBYlN6irJC~fK9lrgY5rd4b4Ysw0mTIQx1ZcDhPZfOofSHh8wz-ITYWvBD1Bn8Na6599L0JrckPLEo-8tCfoOnVC7VVDMPbQPy9zA5flpM2rz1TpA0BNinnwVZI6KLOT34CUU6RrqX6sictB72rh1-EzA6wirhOiBzpExDdxn0k1w2RFsOTMJwRXxGk3V1oh-gZ1y3rG2zF8HxKSKTkwH7DtCYl3qus3v0EAaLxYRqJB5ySsaCkPGkaDV1tKHvxSC5NnxRGde6ZxsYTLfuA3hWuaVTC8b7P8g__"
+                },
+                {
+                    "id": "2ba",
+                    "image": "https://media.istockphoto.com/id/1191425335/photo/american-food-concept-grilled-pork-ribs-with-grilled-sauce-with-smoke-spices-and-rosemary.webp?a=1&b=1&s=612x612&w=0&k=20&c=OydMkBjJlxqFJ9gf08o95eGJam1xo90oT_gk-1ThaOc=",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/c030/529d/10249ab08c60795694cd15b7577130e2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dZjzj4wO-2u8SHE4niwPAT1xvdYuHxPzCEPzcdYMR62H-oqfyVaaosLSH2B27~r786Ot9a1mGpiiryM0YEMFMza5Nq0TLigL1efnCg86uuBDbYl~0YcjE5NN2PRfT6TmFtKXHh6CYBhFAmJ0ACyvPOd~jiYNuuxwDNEApYfwvPwj7RwzHICcyP7arwZ33A5kTqqBte8Yfrq~c6OEmzDFye7IrrUdNgO-n-E~KYV3obuRHLTUMuJGuRRuJlaSska6221VkYWJpp9sBWkecasRYcIRGpqifRuk6hWsOXozSjup247a16bAs~OpuXd8UHj5VFkGnQFCqrL0s6fXh73Qqw__"
+                },
+                {
+                    "id": "3c",
+                    "image": "https://media.istockphoto.com/id/1161996776/photo/stack-of-pancakes-with-maple-syrup-and-fresh-blueberries.webp?a=1&b=1&s=612x612&w=0&k=20&c=Ajrt63WSPTfF9I0dGX7xTUh98a1L7kOZHbEobi1_cEc=",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "saleOff": 15,
+                    "price": 896.27,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/eadb/b36f/e671035e79447446d147615c9062f750?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=a-627p-PZdDPcfiCwDpDqvOzLMDxOmkHG11FzRR0MyUUJA2jnbFMJspLqpvbPDRD5fckhq1jBbWG86WHYCJb2kiRueq~VzSZ-xwcpZ0yqcnm6ilwCa005qxq680LIiI0Ty05HVwN7unyiMy3eXez2OvYvDFT3WMqa5bRhEe7Jw6BVUkS~noWHJsELGOlxVyIBz48QHNZCmQKN4wqhj-5zc59tMGRxX0gCfJpba6ruXoPw7xHztp3-nSFPloACNbSgzKR-jENcS9cZfqM8pS5QYpN23UJNRe0CwkT75PKtX2uMvHbh8cOiPXVgx0gJV-~gd3EfX0wIkRdwRKapgsKaQ__"
+                },
+                {
+                    "id": "4d",
+                    "image": "https://images.unsplash.com/photo-1618547748616-3f574909dc3e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGVsaWNpb3VzJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/048e/9d98/14baed5c8ba185d8ac2ac942a3f0c037?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=OHa3NnIbYx8Kd34LoEg0IS-nyxFbDC0Zs84Q37TrxJcbUIehGK2hgMBYlN6irJC~fK9lrgY5rd4b4Ysw0mTIQx1ZcDhPZfOofSHh8wz-ITYWvBD1Bn8Na6599L0JrckPLEo-8tCfoOnVC7VVDMPbQPy9zA5flpM2rz1TpA0BNinnwVZI6KLOT34CUU6RrqX6sictB72rh1-EzA6wirhOiBzpExDdxn0k1w2RFsOTMJwRXxGk3V1oh-gZ1y3rG2zF8HxKSKTkwH7DtCYl3qus3v0EAaLxYRqJB5ySsaCkPGkaDV1tKHvxSC5NnxRGde6ZxsYTLfuA3hWuaVTC8b7P8g__"
+                },
+                {
+                    "id": "5e",
+                    "image": "https://images.unsplash.com/photo-1625467163651-fc5b647bcc8b?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRlbGljaW91cyUyMGZvb2R8ZW58MHx8MHx8fDA%3D",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/c030/529d/10249ab08c60795694cd15b7577130e2?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dZjzj4wO-2u8SHE4niwPAT1xvdYuHxPzCEPzcdYMR62H-oqfyVaaosLSH2B27~r786Ot9a1mGpiiryM0YEMFMza5Nq0TLigL1efnCg86uuBDbYl~0YcjE5NN2PRfT6TmFtKXHh6CYBhFAmJ0ACyvPOd~jiYNuuxwDNEApYfwvPwj7RwzHICcyP7arwZ33A5kTqqBte8Yfrq~c6OEmzDFye7IrrUdNgO-n-E~KYV3obuRHLTUMuJGuRRuJlaSska6221VkYWJpp9sBWkecasRYcIRGpqifRuk6hWsOXozSjup247a16bAs~OpuXd8UHj5VFkGnQFCqrL0s6fXh73Qqw__"
+                },
+                {
+                    "id": "6a",
+                    "image": "https://media.istockphoto.com/id/857927726/photo/pasta-with-meat-tomato-sauce-and-vegetables.webp?a=1&b=1&s=612x612&w=0&k=20&c=_NS5Zj-sbBX-0_eypSv1Z_3dQ61Swta9z5zo8zYIkWY=    ",
+                    "rating": 4,
+                    "title": "Papas Cargadas en Aloo Cart",
+                    "price": 896.27,
+                    "saleOff": 15,
+                    "location": [
+                        {"country": "Pakistán", "city": "Lahore"},
+                        {"country": "Washington D.C.", "city": "Southwest"},
+                        {"country": "Nueva York", "city": "East Village"},
+                        {"country": "Nueva York", "city": "Lower East Side"},
+                        {"country": "Midtown East", "city": "Nueva York"},
+                        {"country": "Washington D.C.", "city": "Southwest"}
+                    ],
+                    "userImg": "https://s3-alpha-sig.figma.com/img/eadb/b36f/e671035e79447446d147615c9062f750?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=a-627p-PZdDPcfiCwDpDqvOzLMDxOmkHG11FzRR0MyUUJA2jnbFMJspLqpvbPDRD5fckhq1jBbWG86WHYCJb2kiRueq~VzSZ-xwcpZ0yqcnm6ilwCa005qxq680LIiI0Ty05HVwN7unyiMy3eXez2OvYvDFT3WMqa5bRhEe7Jw6BVUkS~noWHJsELGOlxVyIBz48QHNZCmQKN4wqhj-5zc59tMGRxX0gCfJpba6ruXoPw7xHztp3-nSFPloACNbSgzKR-jENcS9cZfqM8pS5QYpN23UJNRe0CwkT75PKtX2uMvHbh8cOiPXVgx0gJV-~gd3EfX0wIkRdwRKapgsKaQ__"
+                }
+            ]
+        
+    },
+    "appBanner": {
+        "mobile": {
+            "heading": ["Descarga nuestra app para obtener ofertas increíbles", "Ofertas"],
+            "paragraph": "Obtén nuevas ofertas todos los días. Las mejores ofertas tienen las mejores promociones y las compartimos contigo. Para aprovechar las ofertas, encuentra nuestra app en la tienda de aplicaciones"
+        },
+        "infoServices": [
+            ["75,000+", "Ofertas"],
+            ["6,000+", "Comercios"],
+            ["2 Millones", "Usuarios Activos"],
+            ["1.3 Millones", "Descargas de la App"]
+        ],
+        "inquiries": {
+            "paragraph": "Para consultas y más información",
+            "bText": "Ponte en contacto"
+        }
+    },
+    "footer": {
+        "top": {
+            "tDeal": {
+              "heading": "Ofertas Destacadas",
+              "paragraph": "Top Deals es un sitio de comercio electrónico que conecta a las empresas con los clientes al ofrecer ofertas con descuento, cupones de servicio o promociones especiales. Top Deals ofrece una plataforma completa de comercio electrónico para que los propietarios de negocios y los clientes ahorren mucho dinero."
+            },
+            "oCompany": {
+              "heading": "Nuestra Empresa",
+              "list": ["Acerca de Nosotros", "Privacidad y Política", "Contáctanos", "Preguntas Frecuentes", "Términos y Condiciones"]
+            },
+            "payment": "Nuestros Socios de Pago"
+        },
+        "bottom": "Shop.co © 2025-2029. Todos los derechos reservados"
+    }
+}

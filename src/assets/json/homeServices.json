@@ -1,0 +1,93 @@
+[
+    {
+      "id": "1c",
+      "title": "Deep Kitchen Cleaning",
+      "image": "https://www.dirtblastercleaningservices.com/wp-content/uploads/2021/05/Deep-Cleaning-Services-Pune.jpg",
+      "price": 120.00,
+      "sale": 15,
+      "rating": 4.8,
+      "category": "Cleaning Services"
+    },
+    {
+      "id": "2c",
+      "title": "Furniture Assembly Service",
+      "image": "https://media.istockphoto.com/id/1067496776/photo/top-view-of-drill-tool-and-another-equipment-on-wood-table-furniture-assembly-improvement-or.jpg?s=612x612&w=0&k=20&c=pW5vu2TK9yaOvqLG8jktB59DRIvVdr6eAVnI72RwPPI=",
+      "price": 85.00,
+      "sale": 10,
+      "rating": 4.6,
+      "category": "Home Improvement"
+    },
+    {
+      "id": "3c",
+      "title": "Plumbing Repair",
+      "image": "https://media.istockphoto.com/id/1339613829/photo/plumber-at-work-in-a-bathroom-plumbing-repair-service-assemble-and-install-concept.jpg?s=612x612&w=0&k=20&c=lQREIzjwRM3ApTkRzTnbIA_BCRCy_ER-e51tofKsaP0=",
+      "price": 150.00,
+      "sale": 20,
+      "rating": 4.7,
+      "category": "Maintenance & Repair"
+    },
+    {
+      "id": "4c",
+      "title": "Window Cleaning",
+      "image": "https://www.shutterstock.com/image-vector/squeegee-cleaning-glass-against-blue-260nw-1939025368.jpg",
+      "price": 60.00,
+      "sale": 12,
+      "rating": 4.5,
+      "category": "Cleaning Services"
+    },
+    {
+      "id": "5c",
+      "title": "Interior Painting",
+      "image": "https://media.istockphoto.com/id/468842398/photo/painting-walls-of-an-empty-room.jpg?s=612x612&w=0&k=20&c=K9H6RinxINrynw-CWjqA1Q73NNypx-SauSN1ePepb4M=",
+      "price": 200.00,
+      "sale": 18,
+      "rating": 4.9,
+      "category": "Home Improvement"
+    },
+    {
+      "id": "6c",
+      "title": "Appliance Repair",
+      "image": "https://media.istockphoto.com/id/175191018/photo/home-appliance-repair.jpg?s=612x612&w=0&k=20&c=dhM6l2cn_KhISg_ysNnGCsejlKhfw1dRgpUfvq2-WL0=",
+      "price": 90.00,
+      "sale": 10,
+      "rating": 4.4,
+      "category": "Maintenance & Repair"
+    },
+    {
+      "id": "7c",
+      "title": "Carpet Cleaning",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS23QT172GKFeUvMojWapJPJskjaIJX6K8eig&s",
+      "price": 75.00,
+      "sale": 15,
+      "rating": 4.6,
+      "category": "Cleaning Services"
+    },
+    {
+      "id": "8c",
+      "title": "Roof Repair Service",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBbdgUe-YmHRWH0-8ImjkD1c9UE1Gqm0KoIg&s",
+      "price": 300.00,
+      "sale": 25,
+      "rating": 4.8,
+      "category": "Maintenance & Repair"
+    },
+    {
+      "id": "9c",
+      "title": "Landscaping Service",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSttdDUK8EBFVI2hdlziJEDj6bWgyD5Ag-KQQ&s",
+      "price": 250.00,
+      "sale": 20,
+      "rating": 4.7,
+      "category": "Home Improvement"
+    },
+    {
+      "id": "10c",
+      "title": "Bathroom Cleaning",
+      "image": "https://www.shutterstock.com/image-photo/various-cleaning-items-supplies-bucket-600nw-1933754300.jpg",
+      "price": 50.00,
+      "sale": 8,
+      "rating": 4.5,
+      "category": "Cleaning Services"
+    }
+  ]
+  

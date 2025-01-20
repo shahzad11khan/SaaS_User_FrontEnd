@@ -1,0 +1,93 @@
+[
+    {
+      "id": "1ac",
+      "title": "Moisturizing Hair Mask",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxzwjLGvF_47koKoP1L_Q5YsqYOiDp1ZojZg&s",
+      "price": 25.99,
+      "sale": 15,
+      "rating": 4.5,
+      "category": "Hair"
+    },
+    {
+      "id": "2ac",
+      "title": "Facial Cleansing Foam",
+      "image": "https://img.freepik.com/free-photo/cosmetics-composition-with-serum-bottles_23-2148549119.jpg",
+      "price": 19.99,
+      "sale": 10,
+      "rating": 4.2,
+      "category": "Skin"
+    },
+    {
+      "id": "3ac",
+      "title": "Cuticle Oil Treatment",
+      "image": "https://images.herzindagi.info/image/2022/Jul/nail-care-products.jpg",
+      "price": 12.50,
+      "sale": 5,
+      "rating": 4.8,
+      "category": "Nail"
+    },
+    {
+      "id": "4ac",
+      "title": "Hair Styling Gel",
+      "image": "https://png.pngtree.com/thumb_back/fw800/background/20241210/pngtree-hair-care-products-and-blonde-hair-extension-image_16735295.jpg",
+      "price": 14.75,
+      "sale": 20,
+      "rating": 4.1,
+      "category": "Hair"
+    },
+    {
+      "id": "5ac",
+      "title": "Anti-Aging Face Serum",
+      "image": "https://img.freepik.com/premium-photo/skin-care-products-pink-background-beauty-products-spa-ai-generated_848885-19.jpg",
+      "price": 35.00,
+      "sale": 25,
+      "rating": 4.7,
+      "category": "Skin"
+    },
+    {
+      "id": "6ac",
+      "title": "Nail Strengthening Polish",
+      "image": "https://www.instyle.com/thmb/1WpcJdkchLE8w8F6df9OOkfAifA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/BBB-Lead-Nails-787f5e5b59e64d6dade42280ebf87243.jpg",
+      "price": 8.99,
+      "sale": 12,
+      "rating": 4.6,
+      "category": "Nail"
+    },
+    {
+      "id": "7ac",
+      "title": "Volumizing Hair Spray",
+      "image": "https://plus.unsplash.com/premium_photo-1661574850460-448628d28a7f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGFpciUyMHByb2R1Y3R8ZW58MHx8MHx8fDA%3D",
+      "price": 18.30,
+      "sale": 8,
+      "rating": 4.3,
+      "category": "Hair"
+    },
+    {
+      "id": "8ac",
+      "title": "Hydrating Face Mask",
+      "image": "https://www.theluxeinsider.com/wp-content/uploads/2023/05/drunk-elephant-skincare.jpg",
+      "price": 22.00,
+      "sale": 18,
+      "rating": 4.4,
+      "category": "Skin"
+    },
+    {
+      "id": "9ac",
+      "title": "Manicure Kit",
+      "image": "https://nailcompany.com/cdn/shop/articles/KlUnESp027nlLgmiUyWPqO8KRf0qZ23V1644956419.jpg?v=1645809783",
+      "price": 15.49,
+      "sale": 10,
+      "rating": 4.5,
+      "category": "Nail"
+    },
+    {
+      "id": "10ac",
+      "title": "Hair Conditioner",
+      "image": "https://i.insider.com/63d04925def14100198e1fb2?width=700",
+      "price": 17.99,
+      "sale": 10,
+      "rating": 4.0,
+      "category": "Hair"
+    }
+  ]
+  

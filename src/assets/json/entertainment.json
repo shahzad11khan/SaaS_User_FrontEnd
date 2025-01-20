@@ -1,0 +1,93 @@
+[
+    {
+      "id": "1b",
+      "title": "The Last of Us Part II",
+      "image": "https://upload.wikimedia.org/wikipedia/ur/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg",
+      "price": 59.99,
+      "sale": 10,
+      "rating": 4.8,
+      "category": "Video Games"
+    },
+    {
+      "id": "2b",
+      "title": "Spider-Man: No Way Home",
+      "image": "https://upload.wikimedia.org/wikipedia/en/e/e0/The_Amazing_Spider-Man_%28film%29_poster.jpg",
+      "price": 24.99,
+      "sale": 15,
+      "rating": 4.7,
+      "category": "Movies"
+    },
+    {
+      "id": "3b",
+      "title": "Abbey Road - The Beatles",
+      "image": "https://c.files.bbci.co.uk/1260/production/_108240740_beatles-abbeyroad-index-reuters-applecorps.jpg",
+      "price": 19.99,
+      "sale": 5,
+      "rating": 4.9,
+      "category": "Music"
+    },
+    {
+      "id": "4b",
+      "title": "Cyberpunk 2077",
+      "image": "https://wallpapercat.com/w/full/0/c/2/2652-3840x2160-desktop-4k-cyberpunk-2077-wallpaper.jpg",
+      "price": 49.99,
+      "sale": 20,
+      "rating": 3.5,
+      "category": "Video Games"
+    },
+    {
+      "id": "5b",
+      "title": "Inception",
+      "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
+      "price": 14.99,
+      "sale": 10,
+      "rating": 4.8,
+      "category": "Movies"
+    },
+    {
+      "id": "6b",
+      "title": "The Dark Side of the Moon - Pink Floyd",
+      "image": "https://img.freepik.com/free-photo/dark-fantasy-scene_23-2151136113.jpg",
+      "price": 22.50,
+      "sale": 12,
+      "rating": 4.8,
+      "category": "Music"
+    },
+    {
+      "id": "7b",
+      "title": "Minecraft",
+      "image": "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/Homepage_Discover-our-games_MC-Vanilla-KeyArt_864x864.jpg",
+      "price": 29.99,
+      "sale": 15,
+      "rating": 4.9,
+      "category": "Video Games"
+    },
+    {
+      "id": "8b",
+      "title": "The Godfather Trilogy",
+      "image": "https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@._V1_.jpg",
+      "price": 39.99,
+      "sale": 25,
+      "rating": 4.9,
+      "category": "Movies"
+    },
+    {
+      "id": "9b",
+      "title": "Thriller - Michael Jackson",
+      "image": "https://media.istockphoto.com/id/1387752063/photo/3d-rendered-illustration-of-detective-man-in-hat.jpg?s=612x612&w=0&k=20&c=dNodmMNxKveDHQU6kmfjUpRRtMi5GuXyRWlj-IcbRWo=",
+      "price": 17.99,
+      "sale": 8,
+      "rating": 4.7,
+      "category": "Music"
+    },
+    {
+      "id": "10b",
+      "title": "Assassin's Creed Valhalla",
+      "image": "https://cdn1.epicgames.com/400347196e674de89c23cc2a7f2121db/offer/AC%20KINGDOM%20PREORDER_STANDARD%20EDITION_EPIC_Key_Art_Wide_3840x2160-3840x2160-485fe17203671386c71bde8110886c7d.jpg",
+      "price": 59.99,
+      "sale": 10,
+      "rating": 4.6,
+      "category": "Video Games"
+    }
+  ]
+  
