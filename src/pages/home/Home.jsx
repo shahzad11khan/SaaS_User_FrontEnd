@@ -6,13 +6,16 @@ import { AppBanner } from './AppBanner'
 
 import {Header} from '../../components/Header'
 import Footer from '../../components/Footer'
+import { useState } from 'react'
 
 export const Home = () => {
+  let [products , setProduct] = useState(null)
+  let [categoryName , setCategoryName] = useState(null)
   return (
     <>
     <Header />
-    <Hero/>
-    <Deals />
+    <Hero  setProduct={setProduct} setCategoryName={setCategoryName} />
+    <Deals products={products} categoryName={categoryName} />
     <DealsOfDay />
     <AppBanner />
     {/* <Map /> */}

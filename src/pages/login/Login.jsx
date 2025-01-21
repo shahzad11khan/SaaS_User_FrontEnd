@@ -14,7 +14,7 @@ function Login() {
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
   let [reset, setReset] = useState(false);
   const [form, setForm] = useState({
-    email: '',
+    email: 'as',
     password: ''
   });
 
@@ -27,7 +27,6 @@ function Login() {
   // Handling login with Redux thunk
   const handleLogin = (e) => {
     e.preventDefault();
-
     dispatch(loginUser(form));
   };
 

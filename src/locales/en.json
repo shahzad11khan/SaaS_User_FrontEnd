@@ -22,8 +22,7 @@
         "paragraph": "Explore nearby deals on map and buy deals to enjoy quality food with your family",
         "bText":"Explore",
         "searchForm":{
-            "dinning": "Dinning",
-            "selectAll" : "Select All",
+            "selectCategory": "Select Category",
             "selectSubCtgry" : "Select Sub Category",
             "city": "Lahore",
             "destination": "Destination",

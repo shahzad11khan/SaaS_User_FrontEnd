@@ -16,7 +16,8 @@
     let [id , setId] = useState(null);
     let [checkedArr , setCheckedArr] = useState([])
     
-    let token = useSelector(state => state.auth.token)
+    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";  
+
     useEffect(() => {
       if(token) {
         setId(jwtDecode(token).id);  

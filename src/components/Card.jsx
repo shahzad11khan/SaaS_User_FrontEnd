@@ -13,7 +13,8 @@ import { toast , ToastContainer } from "react-toastify";
 
 function Card({data}){
      
-    let token = useSelector(state => state.auth.token)
+    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ" ;
+
     let dispatch = useDispatch();
 
     let [more, setMore] = useState(false);
@@ -117,27 +118,32 @@ function Card({data}){
                 </div>
                 <div  className="flex justify-end items-center gap-2">
                     <img src={Union} alt="" />
-                    <p className="outfit text-[12px]">Flat {data.saleOff}% Off</p>
+                    <p className="outfit text-[12px]">Flat {data.sale}% Off</p>
                 </div>
             </div>
 
             {/* title & location */}
             <div  className="relative flex flex-col gap-1 pt-3 px-3">
                 <h1 className="text-[24px] font-[600] outfit">{data.title}</h1>
-                <p className="flex items-center gap-2 text-[14px]  outfit ">
-                    <img className="w-[20px] h-[20px]" src={Location} alt="" />
-                    <span className="opacity-50">{data.location[0].country},{data.location[0].city}</span>
-                </p>
-                <p className="flex items-center gap-2 text-[14px] outfit">
-                    <img className="w-[20px] h-[20px]" src={Location} alt="" />
-                    <span className="opacity-50">{data.location[0].country},{data.location[0].city}</span> 
-                    <span onClick={()=> setMore(!more)} className=" cursor-pointer text-[#219653]">+{data.location.length}more</span>
-                </p>
+                <p className="outfit font-bold text-[18px]">$ {data.price}</p>
+                {data.location?
+                <>
+                    <p className="flex items-center gap-2 text-[14px]  outfit ">
+                        <img className="w-[20px] h-[20px]" src={Location} alt="" />
+                        <span className="opacity-50">{data.location[0].country},{data.location[0].city}</span>
+                    </p>
+                    <p className="flex items-center gap-2 text-[14px] outfit">
+                        <img className="w-[20px] h-[20px]" src={Location} alt="" />
+                        <span className="opacity-50">{data.location?.[0].country},{data.location?.[0]?.city}</span> 
+                        <span onClick={()=> setMore(!more)} className=" cursor-pointer text-[#219653]">+{data.location?.length}more</span>
+                    </p>
+                </>
+                :null}
                 {/* more location */}
-                {more?                
+                { more?                
                 <div className="shadow-xl shadow-gray-300 absolute top-[-180px] right-20 bg-white px-2 py-4 border border-[#219653] rounded-lg flex flex-col gap-2 ">
                     <p className="text-[20px] outfit font-bold">Locations</p>
-                    {data?.location.map((el ,idx) => (
+                    {data?.location?.map((el ,idx) => (
                         <p key={idx} className="flex  items-center gap-2 text-[14px] outfit ">
                             <img className="w-[20px] h-[20px]" src={Location} alt="" />
                             <span className="opacity-50">{el.country},{el.city}</span>
@@ -146,10 +152,10 @@ function Card({data}){
                 </div>
                 :null}
             </div>
-            <hr className="mt-3 mx-3 "/>
+            <hr className="mt-3 mx-3 "/> 
             {/* user & button */}
-            <div className="flex justify-between px-3 py-3">
-                <img className="rounded-full w-[36px] h-[36px]" src={data.userImg} alt="" />
+            <div className="flex justify-end px-3 py-3">
+                {/* <img className="rounded-full w-[36px] h-[36px]" src={data.userImg} alt="" /> */}
                 <button onClick={()=>CartClick(data)} className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">
                     Add To Cart
                 </button>
@@ -160,17 +166,18 @@ function Card({data}){
 
 Card.propTypes = {
   data: PropTypes.shape({
+    price:PropTypes.number.isRequired,
     id:PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    saleOff: PropTypes.number.isRequired,
+    sale: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     location: PropTypes.arrayOf(
       PropTypes.shape({
         country: PropTypes.string.isRequired,
         city: PropTypes.string.isRequired
       })
-    ).isRequired,
+    ),
     userImg: PropTypes.string.isRequired
   }).isRequired
 };

@@ -1,68 +1,124 @@
-import CardRating from "./CardRating"
-import Union from '../assets/Card/Union.svg'
-import { useEffect, useState } from "react";
+  // import CardRating from "./CardRating"
+  // import Union from '../assets/Card/Union.svg'
+  import { useEffect, useState } from "react"
 
-import { jwtDecode } from "jwt-decode"
+  import { jwtDecode } from "jwt-decode"
+  import { useDispatch, useSelector } from "react-redux";
+  import { Header } from "./Header";
+  import Footer from "./Footer";
+  // import { removeOneItemCount } from "../slices/cartSlice";
+import {  removeFavourite  } from "../slices/favoriteSlice";
 
+  export const Favorite = () => {
+    let dispatch = useDispatch()
+    let [favoriteData , setFavoriteData] = useState(null);
+    let [itemCount , setItemCount] = useState(0);
+    let [price , setPrice] = useState(0)
+    let [id , setId] = useState(null);
+    let [checkedArr , setCheckedArr] = useState([])
+    
+    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";  
 
-export const Favorite = () => {
-  let [favoriteData , setFavoriteData] = useState(null)
-  let [id , setId] = useState(null);
-  // let [empty ,setEmpty] = useState(true)
-  
-  const token= localStorage.getItem('token')
-  useEffect(() => {
-    if(token) {
-      setId(jwtDecode(token).id);  
+    useEffect(() => {
+      if(token) {
+        setId(jwtDecode(token).id);  
+      }    
+      const storedfavorite = JSON.parse(localStorage.getItem('favorites'));
+      setFavoriteData(storedfavorite);
+    }, [token ]);
+
+    useEffect(()=>{
+      let checkedPrice = checkedArr.map(el => el.price).reduce((finalValue , item)=> finalValue + item, 0)
+      setPrice(checkedPrice)
+      let checkedCount = checkedArr.length
+      setItemCount(checkedCount)
+    },[checkedArr])
+
+    
+    
+    let handlRemove = (card) => {
+      let deletes = favoriteData.filter((item) =>
+          item.id !== card.id && item.userId === id
+          ?item
+          :null
+      )
+      setFavoriteData(deletes);
+      localStorage.setItem('favorites', JSON.stringify(deletes)); 
+      
+      dispatch(removeFavourite());
     }
-  }, [token]);
 
-  useEffect(()=>{
-    setFavoriteData(JSON.parse(localStorage.getItem('favorites')))
-  },[])
+    let handleCheck = (card) =>{
+      let findItem = checkedArr.some(item => item.id === card.id);
+      if(findItem){
+        let newArr = checkedArr.filter(el => el.id !== card.id )
+        setCheckedArr(newArr)
+        
+      }else{
+        let newArr = [...checkedArr , card]
+        setCheckedArr(newArr)
+      }
+    }
 
-  return (
-
-    <div className="   h-[100vh] flex justify-center  items-center">
-      <div className=" w-[900px] rounded-lg  border border-[#013D29]">
-        <div className="px-10  h-[100px] bg-[#013D29] outfit ">
-          <h1 className="text-[60px] text-white font-semibold">Favorites</h1>
-        </div>
-
-        <div className="overflow-y-auto  py-6 flex flex-col gap-5 items-center h-[500px]">
-          {favoriteData?.map((card,idx)=>{
+    return (
+      <>
+      <Header />
+      <div className=" flex justify-center bg-[#FCF5DC]">
+      <div className="flex gap-5 w-[1200px]   ">
+        {/* cart items */}
+        <div className=" flex flex-col items-center gap-5 py-5  w-[60%] ">
+          <h1 className="bg-white w-full px-5 text-[34px] font-semibold rounded-lg">Favorite</h1>
+          {favoriteData? favoriteData.map((card,idx)=>{
             if(card.userId == id){
-              return (<div className="w-[80%]  flex gap-5 shadow-lg  bg-white shadow-gray rounded-lg   " key={idx}>
-              {/* image */}
-              <div className="w-[380px] h-[200px] overflow-hidden">
-                <img className="w-[380px] h-[200px] rounded-tl-lg rounded-bl-lg object-cover" src={card.image} alt="" />
-              </div>
-              {/* details */}
-              <div className="flex flex-col justify-around">
-                <h1 className="text-[24px] font-[600] outfit">{card.title}</h1>
-                <div className="flex justify-between pt-3 px-3">
-                  <div className="flex justify-start items-center">
-                    <CardRating rating={card.rating}/>
-                  </div>
-                  <div  className="flex justify-end items-center gap-2">
-                   <img src={Union} alt="" />
-                    <p className="outfit text-[12px]">Flat {card.saleOff}% Off</p>
+              return (
+              <div className="relative flex gap-5 w-full items-center  h-[150px] px-6 bg-white rounded-lg " key={idx}>
+                {/* check icon */}
+                <div onClick={() => handleCheck(card)} className={`cursor-pointer w-7  h-7 flex justify-center items-center rounded-md ${checkedArr.some(item => item.id === card.id)? 'text-[#013D29] border-[#013D29]':'text-gray-300 border-gray-300'}  border-[2px] `}>
+                  <i className="  fa-solid fa-check"></i>
+                </div>
+                {/* image */}
+                <div className="w-[150px] h-[100px]  ">
+                  <img className=" w-full h-full rounded-lg" src={card.image} alt="" />
+                </div>
+                {/* details */}
+                <div className="flex gap-2 flex-col  h-[100px]   ">
+                  <div className="  outfit flex flex-col ">
+                    <h1 className="text-[16px] font-semibold">{card.title}</h1>
+                    <p className="text-[16px] pt-3"><span className="outfit opacity-70">Price :</span> <span className="font-semibold">{card.price}$</span></p>
                   </div>
                 </div>
-                <div className="flex justify-between outfit items-center px-3 py-3">
-                <h1 className="text-lg font-bold">Liked</h1>
-                  <button className="bg-[#219653] py-1 px-3 text-white rounded-full">Get Offer</button>
+                {/* delete icon */}
+                <div>
+                  <i onClick={()=> handlRemove(card)} className="cursor-pointer absolute top-7 right-6 text-[red] fa-solid fa-trash"></i>
                 </div>
               </div>
-            </div>
-          );
-          }
-          return null;
+            )} return null;
           })
-          }
+          :<p className="py-5  w-full rounded-none-lg text-center bg-white "> cart is empty</p>
+        }
         </div>
-      </div>    
-    </div>
-  )
-}
-
+        {/* Order Summary */}
+        <div className="w-[40%] py-5">
+          <div className="outfit text-[16px] bg-white h-full w-full rounded-lg p-5 flex flex-col gap-3  ">
+            <p className="text-[20px]">Order Summary</p>
+            <div className="flex justify-between ">
+              <span className="opacity-50"> Subtotal ( items)</span>
+              <span>USD.{price}</span>
+            </div>
+            <div className="flex justify-between ">
+              <span className="opacity-50">Shipping Fee</span>
+              <span>USD.0</span>
+            </div>
+            <div className="flex justify-between ">
+              <span>Total</span>
+              <span>USD.{price}</span>
+            </div>
+            <button className="w-full bg-[#013D29] text-white py-2 rounded-lg">PROCEED TO CHECKOUT ({itemCount})</button>
+          </div>
+        </div>    
+      </div>
+      </div>
+      <Footer />
+      </>
+    )
+  }

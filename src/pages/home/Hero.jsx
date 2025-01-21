@@ -4,8 +4,9 @@ import playIcon from '../../assets/Hero/Play Circle.svg'
 import { SearchForm } from './SearchForm'
 import { Detail } from './Detail'
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types'
 
-export const Hero = () => {
+export const Hero = ({setProduct , setCategoryName}) => {
   
   const { t, } = useTranslation();
   return (
@@ -26,8 +27,12 @@ export const Hero = () => {
             </div>
         </div>
     </div>
-    <SearchForm />
+    <SearchForm setProduct={setProduct} setCategoryName={setCategoryName}/>
     <Detail />
     </>
   )
+}
+Hero.propTypes = {
+  setProduct : PropTypes.func.isRequired,
+  setCategoryName: PropTypes.func.isRequired,
 }

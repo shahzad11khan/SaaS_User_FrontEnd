@@ -18,6 +18,7 @@ export  const getUser = createAsyncThunk(
                 authorization:`Bearer ${token}`
               }
             })
+            connsoel.log(response.data)
             return response.data;
           }catch(error){
             console.log(error)

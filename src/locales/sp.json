@@ -28,8 +28,7 @@
         "paragraph": "Explora las ofertas cercanas en el mapa y compra ofertas para disfrutar de comida de calidad con tu familia",
         "bText": "Explorar",
         "searchForm": {
-            "dinning": "Comedor",
-            "selectAll": "Seleccionar Todo",
+            "selectCategory": "seleccionar Categoría",
             "selectSubCtgry": "Seleccionar Subcategoría",
             "city": "Lahore",
             "destination": "Destino",

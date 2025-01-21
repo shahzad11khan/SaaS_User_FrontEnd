@@ -16,6 +16,9 @@ const favoriteSlice = createSlice({
     resetFavouriteCount: (state) => {
       state.count = 0;
     },
+    removeOneItemCount: (state, action) => {
+      state.count -= action.payload;
+    },
   },
 });
 
@@ -24,6 +27,7 @@ export const {
   removeFavourite,
   setFavouriteCount,
   resetFavouriteCount,
+  removeOneItemCount,
 } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;

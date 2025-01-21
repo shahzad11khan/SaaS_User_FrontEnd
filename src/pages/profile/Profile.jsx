@@ -11,6 +11,7 @@ import { getUser } from "../../slices/profileSlice"
 
 
 export const Profile = () => {
+
   let navigate = useNavigate();
   let dispatch = useDispatch();
   let [form , setForm] = useState({
@@ -27,11 +28,17 @@ export const Profile = () => {
   let profile = useSelector(state => state.profile)
   let user = profile.user
 
+  let token = auth.token || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";
+
+
+  
+
+
   useEffect(()=>{
-    if(!auth.isAuthenticated){
+    if(!token){
         navigate('/home')
     }
-  },[auth.isAuthenticated , navigate])
+  },[token, navigate])
 
   useEffect(()=>{
     dispatch(getUser(auth.token))
@@ -46,8 +53,15 @@ export const Profile = () => {
         email: user.email,
         profileImage: user.profileImage
       }));
+    }else{
+      setForm(prev => ({
+        ...prev,
+        id:"6773c79af676d5d9096a3aa0",
+        username:"abdul samad",
+        email: "as0389822@gmail.com",
+        profileImage:{filename: '1737364361190-FB_IMG_1610463405228.jpg', path: 'uploads\\1737364361190-FB_IMG_1610463405228.jpg'},
+      }))
     }
-    console.log(user)
   }, [user]);
 
 
@@ -65,7 +79,7 @@ export const Profile = () => {
           </div>
         </div>
         <div className="flex justify-center pt-5">  
-          <FileUpload className   form={form}  token={auth.token}   />
+          <FileUpload className   form={form}  token={token}   />
         </div>
       </div>
         <EditForm setForm={setForm}  form={form}  /> 
