@@ -57,8 +57,8 @@ export const Profile = () => {
       setForm(prev => ({
         ...prev,
         id:"6773c79af676d5d9096a3aa0",
-        username:"abdul samad",
-        email: "as0389822@gmail.com",
+        username:"Coding Life",
+        email: "shahzadkhan311@gmail.com",
         profileImage:{filename: '1737364361190-FB_IMG_1610463405228.jpg', path: 'uploads\\1737364361190-FB_IMG_1610463405228.jpg'},
       }))
     }

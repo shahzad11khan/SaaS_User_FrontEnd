@@ -8,7 +8,7 @@ export const Deals = ({products , categoryName}) => {
 
   let {t} = useTranslation();
   
-  const items =products  || t('deals.items', { returnObjects: true }); 
+  const items = products  || t('deals.items', { returnObjects: true }); 
 
 console.log(items)
   const firstThreeDeals = items.slice(0, 3);
