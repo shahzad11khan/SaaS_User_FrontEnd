@@ -7,16 +7,20 @@
   import { Header } from "./Header";
   import Footer from "./Footer";
   import { addCart, removeCart, removeOneItemCount } from "../slices/cartSlice";
+  import { PaymentsMehtod } from "./PaymentsMehtod";
+import StripePayment from "../stripe/StripePayment";
+  
 
   export const Cart = () => {
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
     let [CartData , setCartData] = useState(null);
     let [itemCount , setItemCount] = useState(0);
-    let [price , setPrice] = useState(0)
+    let [price , setPrice] = useState(0);
     let [id , setId] = useState(null);
-    let [checkedArr , setCheckedArr] = useState([])
+    let [checkedArr , setCheckedArr] = useState([]);
+    let [next , setNext] = useState(0)
     
-    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";  
+    let token = useSelector(state => state.auth.token)  ;  
 
     useEffect(() => {
       if(token) {
@@ -86,6 +90,7 @@
 
     let handleCheck = (card) =>{
       let findItem = checkedArr.some(item => item.id === card.id);
+      console.log(findItem)
       if(findItem){
         let newArr = checkedArr.filter(el => el.id !== card.id )
         setCheckedArr(newArr)
@@ -94,6 +99,7 @@
         let newArr = [...checkedArr , card]
         setCheckedArr(newArr)
       }
+      console.log(checkedArr)
     } 
 
     return (
@@ -101,10 +107,12 @@
       <Header />
       <div className=" flex justify-center bg-[#FCF5DC]">
       <div className="flex gap-5 w-[1200px]   ">
-        {/* cart items */}
+        
+        {next === 0  ?
+        // cart items 
         <div className=" flex flex-col items-center gap-5 py-5  w-[60%] ">
           <h1 className="bg-white w-full px-5 text-[34px] font-semibold rounded-lg">Cart</h1>
-          {CartData? CartData.map((card,idx)=>{
+          {CartData?.length>0 ?CartData.map((card,idx)=>{
             if(card.userId == id){
               return (
               <div className="relative flex gap-5 w-full items-center  h-[150px] px-6 bg-white rounded-lg " key={idx}>
@@ -139,6 +147,21 @@
           :<p className="py-5  w-full rounded-none-lg text-center bg-white "> cart is empty</p>
         }
         </div>
+        : next === 1?
+          <PaymentsMehtod setNext={setNext} selectedProducts={checkedArr}></PaymentsMehtod>
+        : next === 2?
+        <div className="flex flex-col items-center gap-5 py-5  w-[60%]">Easypaisa</div>
+        :next === 3?
+        <div className="flex flex-col items-center gap-5 py-5  w-[60%]">Visa Card</div>
+        :next === 4 ? 
+        <div className="flex flex-col items-center gap-5 py-5  w-[60%]">
+          <StripePayment selectedProducts={checkedArr} />
+        </div>
+        :next === 5 ?
+        <div className="flex flex-col items-center gap-5 py-5  w-[60%]">On Delivery</div>
+        : null 
+        }
+
         {/* Order Summary */}
         <div className="w-[40%] py-5">
           <div className="outfit text-[16px] bg-white h-full w-full rounded-lg p-5 flex flex-col gap-3  ">
@@ -155,7 +178,8 @@
               <span>Total</span>
               <span>USD.{price}</span>
             </div>
-            <button className="w-full bg-[#013D29] text-white py-2 rounded-lg">PROCEED TO CHECKOUT ({itemCount})</button>
+            {next<1 && <button onClick={()=> itemCount>0 &&  setNext(1)} className={` ${itemCount>0?'curser-pointer': 'cursor-not-allowed'} w-full bg-[#013D29] text-white py-2 rounded-lg`}>PROCEED TO CHECKOUT ({itemCount})</button>
+          }
           </div>
         </div>    
       </div>
@@ -164,3 +188,4 @@
       </>
     )
   }
+  

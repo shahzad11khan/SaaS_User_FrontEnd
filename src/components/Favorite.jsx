@@ -17,7 +17,7 @@ import {  removeFavourite  } from "../slices/favoriteSlice";
     let [id , setId] = useState(null);
     let [checkedArr , setCheckedArr] = useState([])
     
-    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";  
+    let token = useSelector(state => state.auth.token)  ;  
 
     useEffect(() => {
       if(token) {
@@ -44,7 +44,6 @@ import {  removeFavourite  } from "../slices/favoriteSlice";
       )
       setFavoriteData(deletes);
       localStorage.setItem('favorites', JSON.stringify(deletes)); 
-      
       dispatch(removeFavourite());
     }
 
@@ -68,7 +67,7 @@ import {  removeFavourite  } from "../slices/favoriteSlice";
         {/* cart items */}
         <div className=" flex flex-col items-center gap-5 py-5  w-[60%] ">
           <h1 className="bg-white w-full px-5 text-[34px] font-semibold rounded-lg">Favorite</h1>
-          {favoriteData? favoriteData.map((card,idx)=>{
+          {favoriteData?.length>0 ? favoriteData.map((card,idx)=>{
             if(card.userId == id){
               return (
               <div className="relative flex gap-5 w-full items-center  h-[150px] px-6 bg-white rounded-lg " key={idx}>
@@ -92,9 +91,9 @@ import {  removeFavourite  } from "../slices/favoriteSlice";
                   <i onClick={()=> handlRemove(card)} className="cursor-pointer absolute top-7 right-6 text-[red] fa-solid fa-trash"></i>
                 </div>
               </div>
-            )} return null;
+            )};
           })
-          :<p className="py-5  w-full rounded-none-lg text-center bg-white "> cart is empty</p>
+          :<p className="py-5  w-full rounded-none-lg text-center bg-white ">  not added to favorite</p>
         }
         </div>
         {/* Order Summary */}
@@ -102,7 +101,7 @@ import {  removeFavourite  } from "../slices/favoriteSlice";
           <div className="outfit text-[16px] bg-white h-full w-full rounded-lg p-5 flex flex-col gap-3  ">
             <p className="text-[20px]">Order Summary</p>
             <div className="flex justify-between ">
-              <span className="opacity-50"> Subtotal ( items)</span>
+              <span className="opacity-50"> Subtotal ({itemCount})</span>
               <span>USD.{price}</span>
             </div>
             <div className="flex justify-between ">

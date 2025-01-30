@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { signUpUser } from "../../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
 
- function SignUp(){
+ function SignUp({setSignUpView , setLoginView}){
+    let location = useLocation()
     let dispatch = useDispatch();
     let {isAuthenticated, loading, error} = useSelector(state => state.auth)
     const navigate = useNavigate()    
@@ -25,7 +27,12 @@ import { useDispatch, useSelector } from "react-redux";
     }
 
     let navigateToLogin = ()=>{
-        navigate('/Login')
+        if(location.pathname === "/signup"){
+            navigate('/login');
+        }else{
+            setLoginView(true)
+            setSignUpView(false)
+        }
     }
 
     const handleSignup = async(e)=>{
@@ -35,7 +42,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 
   return (
-    <div className="mb-[130px] h-[70vh] flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center ">
+    <div className=" h-[70vh] flex flex-col justify-center items-center bg-white w-[500px] rounded-lg">
         {/* {success? (<p className={`text-center w-[80%] py-1 rounded-full mt-1 text-[14px] bg-[#b8fcbb] pl-2 text-[#014705] font-semibold `}>{success}</p>) : null} */}
         <h1 className="text-[24px] text-[#219653] outfit md:text-[40px] font-bold">Sign Up</h1>
         <form onSubmit={handleSignup} className="w-[300px]" >
@@ -58,7 +66,14 @@ import { useDispatch, useSelector } from "react-redux";
         </form>
         <div className="my-5 outfit"><span className=" text-12px text-[gray]">Already have  account?</span><span onClick={navigateToLogin} className=" ml-2 cursor-pointer underline font-bold">Login</span></div>
     </div>
+    </div>
   )
+}
+
+
+SignUp.propTypes = {
+  setSignUpView: PropTypes.func,
+  setLoginView: PropTypes.func,
 }
 
 export default SignUp

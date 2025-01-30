@@ -13,7 +13,8 @@ import { toast , ToastContainer } from "react-toastify";
 
 function Card({data}){
      
-    let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ" ;
+    let token = useSelector(state => state.auth.token) 
+    // || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ" ;
 
     let dispatch = useDispatch();
 
@@ -54,6 +55,7 @@ function Card({data}){
             }
 
             const decodedToken = jwtDecode(token);
+            console.log(decodedToken)
             card.userId =  decodedToken.id
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
@@ -80,6 +82,7 @@ function Card({data}){
 
         let carts = JSON.parse(localStorage.getItem('cart')) || [];
         let decodedToken = jwtDecode(token);
+        console.log(decodedToken)
         let existingCartIndex = carts.findIndex(cart => cart.id === card.id && cart.userId === decodedToken.id);
         
         if (existingCartIndex !== -1 && decodedToken.id === carts[existingCartIndex].userId) {

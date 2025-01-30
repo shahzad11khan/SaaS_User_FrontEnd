@@ -1,0 +1,1 @@
+export const USER_POST_END_POINT = "/signup"

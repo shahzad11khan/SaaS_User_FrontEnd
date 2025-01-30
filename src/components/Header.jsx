@@ -21,9 +21,12 @@ import { useSelector ,useDispatch} from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { logout } from '../slices/authSlice';
 
+import Login from '../pages/login/Login'
+import SignUp from '../pages/signup/SignUp'
+
 
 export const Header = () => {
-  // destruct hook 
+   
   let navigate= useNavigate()
   let dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -34,7 +37,12 @@ export const Header = () => {
   let [profile , setProfile] = useState(false);
   let [search , setSearch] = useState('')
   let navArr = [[Home,t('header.bottom.1'),'/home'],[Dining,t('header.bottom.2'),'/dinning'],[Salon,t('header.bottom.3'),'/salon'],[Group,t('header.bottom.4'),'/entertainment'],[Entertain,t('header.bottom.5') ,'/home services'],]
-  let token = useSelector(state => state.auth.token) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";
+  let token = useSelector(state => state.auth.token)     ;
+
+
+  let [loginView , setLoginView] = useState(false)
+  let [signUpView , setSignUpView] = useState(false)
+
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -56,6 +64,7 @@ export const Header = () => {
     setProfile(!profile);
   }
   return (
+    <>
     < div className=''>
     {/* upper header  */}
     <div className="h-[44px] bg-[#013D29] hidden md:flex justify-between items-center px-6  ">
@@ -101,19 +110,35 @@ export const Header = () => {
           <img src={GroupIcon} alt="group" />
         </div>
         <div className=' flex  gap-2 h-[40px] pl-3'>
-            <Link to={'/favorite'} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
-                <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
-                <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+          {/* favorite & cart  icons */}
+          {token?
+          <>
+            <Link to="/favorite" className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+              <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
             </Link>
             <Link to={'/cart'} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
-            <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
+              <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
             <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </Link>
-
+          </>
+          :
+          <>
+            <div onClick={() => setLoginView(true)}  className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+              <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+            </div>
+            <div onClick={() => setLoginView(true)} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+              <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
+            <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
+            </div>
+          </>
+          }
+          
             <span onClick={()=> setProfile(!profile)} className='cursor-pointer w-[40px] rounded-full h-[40px] bg-[#E9E9E9]  items-center hidden md:flex  justify-center'>
                 <img src={ProfileIcon} alt="profile" />
             </span>
-
+            {/* login signup and profile log oout  routes button*/}
             {profile? 
             <div className='z-50 absolute top-14 rounded-lg right-0  py-4 bg-white border'>
               {token?  
@@ -144,6 +169,20 @@ export const Header = () => {
       </div>
     ))}
   </div>
+  </div>
+  {loginView ?
+    <div className=' absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>     
+      <Login setSignUpView={setSignUpView}  setLoginView={setLoginView} />        
+      <i onClick={() => setLoginView(false)} className="relative right-16 top-[-220px] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
     </div>
+    : null}
+
+      {signUpView ?
+    <div className=' absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>
+        <SignUp  setSignUpView={setSignUpView}  setLoginView={setLoginView} />
+        <i onClick={() => setSignUpView(false)} className="relative right-16 top-[-220px] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
+    </div>
+    : null}
+  </>
   )
 }

@@ -47,6 +47,10 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
     },
+    loginWithGoogle: (state, action)=>{
+      state.token = action.payload.credential,
+      state.isAuthenticated = true;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -80,6 +84,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout , loginWithGoogle } = authSlice.actions;
 
 export default authSlice.reducer;

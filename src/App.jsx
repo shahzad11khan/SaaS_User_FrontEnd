@@ -11,6 +11,7 @@ import { Salon } from "./pages/salon/Salon";
 import { Entertainment } from "./pages/entertainment/Entertainmeent";
 import { HomeServices } from "./pages/home services/HomeServices";
 import { ProductDetail } from "./pages/product details/ProductDetail";
+import StripePayment from "./stripe/StripePayment";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/entertainment" element={<Entertainment />} />
         <Route path="/home services" element={<HomeServices />} />
         <Route path="/product/details/:id" element={<ProductDetail />} />
+        <Route path="/stripePayment" element={<StripePayment />} />
       </Routes>
     </>
   )

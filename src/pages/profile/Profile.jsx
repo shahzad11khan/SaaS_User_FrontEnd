@@ -8,6 +8,7 @@ import { FileUpload } from "./FileUpload"
 import {Header} from '../../components/Header'
 import { useDispatch, useSelector } from "react-redux"
 import { getUser } from "../../slices/profileSlice"
+// import {jwtDecode} from "jwt-decode"
 
 
 export const Profile = () => {
@@ -26,10 +27,9 @@ export const Profile = () => {
   
   let auth = useSelector(state => state.auth);
   let profile = useSelector(state => state.profile)
-  let user = profile.user
+  let user = profile.user;
 
-  let token = auth.token || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzNjNzlhZjY3NmQ1ZDkwOTZhM2FhMCIsImVtYWlsIjoiYXMwMzg5ODIyQGdtYWlsLmNvbSIsImlhdCI6MTczNzM3MTM4NSwiZXhwIjoxNzM3NDU3Nzg1fQ.OAx21i3tq3K0hxUlLNgQfyPUe_7mM4VTf1eDqlPwiQQ";
-
+  let token = auth.token ;
 
   
 
@@ -45,24 +45,27 @@ export const Profile = () => {
   },[dispatch ,auth.token ])
 
   useEffect(() => {
-    if (user) {
+    if(user){
       setForm(prev => ({
         ...prev,
         id: user._id,
         username: user.username,
         email: user.email,
         profileImage: user.profileImage
-      }));
-    }else{
-      setForm(prev => ({
-        ...prev,
-        id:"6773c79af676d5d9096a3aa0",
-        username:"abdul samad",
-        email: "as0389822@gmail.com",
-        profileImage:{filename: '1737364361190-FB_IMG_1610463405228.jpg', path: 'uploads\\1737364361190-FB_IMG_1610463405228.jpg'},
-      }))
+      })
+    );
     }
-  }, [user]);
+    // else if(token){
+    //   let data = jwtDecode(token); 
+    //   setForm(prev => ({
+    //     ...prev,
+    //     // id: user._id,
+    //     username: data.name,
+    //     email: data.email,
+    //     googelProfile: data.picture
+    //   }))
+    // }
+  }, [user ,token]);
 
 
 
