@@ -23,6 +23,7 @@ import { logout } from '../slices/authSlice';
 
 import Login from '../pages/login/Login'
 import SignUp from '../pages/signup/SignUp'
+import { googleLogout } from "@react-oauth/google"
 
 
 export const Header = () => {
@@ -59,6 +60,7 @@ export const Header = () => {
   }
 
   let handleLogout = ()=>{
+    googleLogout()
     dispatch(logout());
     navigate('/');
     setProfile(!profile);

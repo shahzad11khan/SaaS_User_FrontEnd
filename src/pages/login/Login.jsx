@@ -5,7 +5,6 @@ import { ResetPassword } from "./ResetPassword";
 import { loginUser ,loginWithGoogle } from '../../slices/authSlice';
 import GoogleLoginButton from "./GoogleLoginButton";
 
-
 import PropTypes from "prop-types";
 
 function Login({setSignUpView , setLoginView}) {
@@ -17,7 +16,7 @@ function Login({setSignUpView , setLoginView}) {
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
   let [reset, setReset] = useState(false);
   const [form, setForm] = useState({
-    email: 'as',
+    email: '',
     password: ''
   });
 
@@ -30,6 +29,7 @@ function Login({setSignUpView , setLoginView}) {
   // Handling login with Redux thunk
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log('hello')
     dispatch(loginUser(form));
   };
 

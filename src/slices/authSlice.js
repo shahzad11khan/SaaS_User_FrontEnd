@@ -1,8 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import {BASE_URL} from '../components/apis/BaseUrl'
+import {USER_MIDDLE_POINT} from '../components/apis/MiddlePoint'
+import {USER_LOGIN_POST_END_POINT, USER_SIGNUP_POST_END_POINT} from '../components/apis/EndPoint'
+import { toast } from 'react-toastify';
 
 const initialState = {
+  signUp:false,
   token: null,
   isAuthenticated: false,
   loading: false,
@@ -10,32 +15,38 @@ const initialState = {
   user:null
 };
 
+
+export const signUpUser = createAsyncThunk(
+  'auth/signupUser',
+  async(formData , thunkAPI )=>{ 
+    try{
+      let response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_SIGNUP_POST_END_POINT , formData,{
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }});
+      // useNavigate()("/login")
+      toast.success(response.data.message)
+      return response.data
+    }catch(error){
+      console.log(error)
+      toast.error(error.response?.data?.error || "signUp failed")
+      return thunkAPI.rejectWithValue(error.response?.data?.error || 'Something went wrong');
+    }
+  }
+)
+
 export const  loginUser =  createAsyncThunk(
   'auth/loginUser',
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.post('http://localhost:8080/user/auth/login', formData);
-      // localStorage.setItem('token', response.data.token); // Store token in localStorage
+      const response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_LOGIN_POST_END_POINT, formData);
       return response.data; // Return user data
     } catch (error) {
-      // Reject with a custom error message
-      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Something went wrong');
+      toast.error(`${error.response?.data?.error}`)
+      return thunkAPI.rejectWithValue(error.response?.data?.error || 'Something went wrong');
     }
   }
 );
-
-export const signUpUser = createAsyncThunk(
-  'auth/signupUser',
-  async(formData , thunkAPI )=>{
-    try{
-    let response = await axios.post('http://localhost:8080/user/auth/signup' , formData);
-    // localStorage.setItem('token',response.data.token);
-    return response.data
-    }catch(error){
-      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Something went wrong');
-    }
-  }
-)
 
 const authSlice = createSlice({
   name: 'auth',
@@ -54,6 +65,20 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    .addCase( signUpUser.pending , (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(signUpUser.fulfilled, (state) => {
+      state.loading = false;
+      state.signUp = true;
+      // state.isAuthenticated = true;
+    })
+    .addCase(signUpUser.rejected, (state) => {
+      state.loading = false;
+      // state.error = action.payload
+      // console.log(action)
+    })
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -66,20 +91,6 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
-      .addCase( signUpUser.pending , (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(signUpUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.token = action.payload.token
-      })
-      .addCase(signUpUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload
-        console.log(action)
       });
   },
 });
