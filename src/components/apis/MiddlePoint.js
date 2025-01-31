@@ -1,0 +1,1 @@
+export const USER_MIDDLE_POINT = "/api/user"

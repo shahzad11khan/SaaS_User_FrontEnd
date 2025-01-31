@@ -17,7 +17,7 @@ export const FileUpload = ({token ,form }) => {
 
   return (
     <div  className="relative w-[150px] h-[150px]  rounded-full">
-      <img className="h-full w-full rounded-full object-cover" src={form.profileImage?`http://localhost:8080/${form.profileImage.path}` : defaultPic} alt="user" />
+      <img className="h-full w-full rounded-full object-cover" src={form.profileImage? form.profileImage : defaultPic} alt="user" />
       <label
         htmlFor="file-input"
         className="absolute right-[12px] bottom-[12px] hover:bg-[#013D29] text-[#219653] bg-white h-[30px] w-[30px] border rounded-full cursor-pointer flex justify-center items-center"
@@ -38,8 +38,7 @@ export const FileUpload = ({token ,form }) => {
 FileUpload.propTypes = {
     token : PropTypes.string.isRequired,
     form: PropTypes.shape({
-        profileImage:PropTypes.shape({
-            path: PropTypes.string.isRequired
-        })
+      profileImage:PropTypes.string,
+      googelProfile: PropTypes.string
     }).isRequired
 }

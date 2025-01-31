@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ResetPassword } from "./ResetPassword";
+import { loginUser ,loginWithGoogle } from '../../slices/authSlice';
+import GoogleLoginButton from "./GoogleLoginButton";
 
+import PropTypes from "prop-types";
 
-import { loginUser } from '../../slices/authSlice';
-
-function Login() {
+function Login({setSignUpView , setLoginView}) {
+  let location = useLocation()
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ function Login() {
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
   let [reset, setReset] = useState(false);
   const [form, setForm] = useState({
-    email: 'as',
+    email: '',
     password: ''
   });
 
@@ -27,11 +29,17 @@ function Login() {
   // Handling login with Redux thunk
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log('hello')
     dispatch(loginUser(form));
   };
 
   let navigateToSignup = () => {
-    navigate('/signup');
+    if(location.pathname === "/login"){
+      navigate('/signup');
+    }else{
+      setLoginView(false)
+      setSignUpView(true)
+    }
   };
 
   useEffect(()=>{
@@ -40,9 +48,19 @@ function Login() {
     }
   },[isAuthenticated ,navigate])
 
+  const handleLoginSuccess =(response) => {
+    console.log("Login Success:");
+    dispatch(loginWithGoogle(response));
+
+  }
+
+  const handleLoginFailure = () => {
+    console.log("Login Failed");
+  };
 
   return (
-    <div className="mb-[130px] h-[70vh] flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center ">
+    <div className= "  w-[500px] h-[70vh] flex flex-col justify-center items-center rounded-xl bg-white">
       {reset ? (
         <div className="absolute top-10 z-10 w-full h-[70%] bg-white rounded-lg">
           <ResetPassword reset={reset} setReset={setReset} />
@@ -82,23 +100,36 @@ function Login() {
           />
           {error && <p className="rounded-full mt-1 text-[12px] text-[#ff1c1c] pl-2 text-red font-semibold">{error}</p>}
         </div>
-        <button type="submit" className="mt-4 bg-[#013D29] outfit text-white py-2 px-4 rounded-full">
+
+        {/* {error ? ( */}
+        <p onClick={() => setReset(!reset)} className="pt-2 cursor-pointer text-[#219653] font-bold h-[40px]">
+          Reset Password
+        </p>
+        {/* ) : null} */}
+
+        <button type="submit" className=" bg-[#013D29] outfit text-white py-2 px-4 rounded-full">
           {loading ? 'Logging in...' : 'Log In'}
         </button>
       </form>
-      {/* {error ? ( */}
-        <p onClick={() => setReset(!reset)} className="cursor-pointer text-[#219653] font-bold h-[40px]">
-          Reset Password
-        </p>
-      {/* ) : null} */}
       <div className="my-5 outfit">
         <span className="text-12px text-[gray]">Don&apos;t have an account?</span>
         <span onClick={navigateToSignup} className="ml-2 cursor-pointer underline font-bold">
           Sign Up
         </span>
       </div>
+
+      <div className="flex flex-col gap-5">
+        <GoogleLoginButton
+          onSuccess={handleLoginSuccess}
+          onFailure={handleLoginFailure}>
+        </GoogleLoginButton>
+      </div>
     </div>
+    </div>  
   );
 }
-
+Login.propTypes = {
+  setSignUpView: PropTypes.func,
+  setLoginView: PropTypes.func,
+}
 export default Login;

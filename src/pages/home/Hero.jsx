@@ -28,7 +28,7 @@ export const Hero = ({setProduct , setCategoryName}) => {
         </div>
     </div>
     <SearchForm setProduct={setProduct} setCategoryName={setCategoryName}/>
-    <Detail />
+    <Detail setProduct={setProduct} setCategoryName={setCategoryName} />
     </>
   )
 }
