@@ -12,6 +12,7 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   error: null,
+  success: null,
   user:null
 };
 
@@ -20,12 +21,10 @@ export const signUpUser = createAsyncThunk(
   'auth/signupUser',
   async(formData , thunkAPI )=>{ 
     try{
-      let response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_SIGNUP_POST_END_POINT , formData,{
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }});
-      // useNavigate()("/login")
-      toast.success(response.data.message)
+      let response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_SIGNUP_POST_END_POINT , formData
+    );
+        toast.success(response.data.message)
+        navigateToLogin()
       return response.data
     }catch(error){
       console.log(error)
@@ -39,11 +38,12 @@ export const  loginUser =  createAsyncThunk(
   'auth/loginUser',
   async (formData, thunkAPI) => {
     try {
+      console.log(formData)
       const response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_LOGIN_POST_END_POINT, formData);
-      return response.data; // Return user data
+      return response.data; // Return user data with fulfilled state
     } catch (error) {
-      toast.error(`${error.response?.data?.error}`)
-      return thunkAPI.rejectWithValue(error.response?.data?.error || 'Something went wrong');
+      console.log(error)
+      return thunkAPI.rejectWithValue(error.response?.data?.message || 'Something went wrong'); // return rejected state
     }
   }
 );
@@ -61,6 +61,12 @@ const authSlice = createSlice({
     loginWithGoogle: (state, action)=>{
       state.token = action.payload.credential,
       state.isAuthenticated = true;
+    },
+    resetSuccess : (state) => {
+      state.success = null;
+    },
+    resetError : (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -86,6 +92,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
+        state.success = action.payload.message;
         state.isAuthenticated = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -95,6 +102,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout , loginWithGoogle } = authSlice.actions;
+export const { logout , loginWithGoogle , resetSuccess , resetError } = authSlice.actions;
 
 export default authSlice.reducer;

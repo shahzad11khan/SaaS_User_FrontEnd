@@ -6,13 +6,13 @@ import GroupIcon from '../assets/icons/Group 1000001661.svg';
 // import BuyIcon from '../assets/icons/Buy.svg';
 import Heart from '../assets/Card/Heart.svg'
 import ProfileIcon from '../assets/icons/Profile.svg';
-import {  useState } from 'react';
+import {  useEffect, useState } from 'react';
 
-import Dining from '../assets/navIcons/Dinning.svg'
-import Entertain from '../assets/navIcons/Entetainment.svg'
-import Group from '../assets/navIcons/Group 1000004755.svg'
-import Home from '../assets/navIcons/Home.svg'
-import Salon from '../assets/navIcons/Salon.svg'
+// import Dining from '../assets/navIcons/Dinning.svg'
+// import Entertain from '../assets/navIcons/Entetainment.svg'
+// import Group from '../assets/navIcons/Group 1000004755.svg'
+// import Home from '../assets/navIcons/Home.svg'
+// import Salon from '../assets/navIcons/Salon.svg'
 import Menu from '../assets/icons/MENU.svg'
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -21,30 +21,42 @@ import { useSelector ,useDispatch} from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { logout } from '../slices/authSlice';
 
-import Login from '../pages/login/Login'
-import SignUp from '../pages/signup/SignUp'
+import Login from './login/Login'
+import SignUp from './signup/SignUp'
 import { googleLogout } from "@react-oauth/google"
 
 
 export const Header = () => {
-   
+  let [categories , setCategories] =useState(null)
   let navigate= useNavigate()
   let dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   let favorite = useSelector(state => state.favorite);
   let cart = useSelector(state => state.cart);
+  const {products}  = useSelector(state => state.product);
+
+  useEffect(() => {
+    // Extract unique categories from `products`
+    const uniqueCategories = [...new Set(products?.map((el) => el.productCategory))];
+    setCategories(uniqueCategories);
+  }, [products]);
   
   let[navbar , setNavbar] = useState(false);
   let [profile , setProfile] = useState(false);
   let [search , setSearch] = useState('')
-  let navArr = [[Home,t('header.bottom.1'),'/home'],[Dining,t('header.bottom.2'),'/dinning'],[Salon,t('header.bottom.3'),'/salon'],[Group,t('header.bottom.4'),'/entertainment'],[Entertain,t('header.bottom.5') ,'/home services'],]
+  // let navArr = [[Home,t('header.bottom.1'),'/home'],[Dining,t('header.bottom.2'),'/dinning'],[Salon,t('header.bottom.3'),'/salon'],[Group,t('header.bottom.4'),'/entertainment'],[Entertain,t('header.bottom.5') ,'/home services'],]
   let token = useSelector(state => state.auth.token)     ;
 
 
   let [loginView , setLoginView] = useState(false)
   let [signUpView , setSignUpView] = useState(false)
 
-
+useEffect(()=>{
+  let lng = localStorage.getItem('i18nextLng');
+    if(lng){
+      i18n.changeLanguage(lng);
+    }  
+  },[i18n])
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
@@ -60,11 +72,23 @@ export const Header = () => {
   }
 
   let handleLogout = ()=>{
+    localStorage.removeItem('appState')
     googleLogout()
     dispatch(logout());
     navigate('/');
     setProfile(!profile);
   }
+
+  let handleLoginPreview = ()=> {
+    setProfile(!profile)
+    setLoginView(true)
+  }
+
+  let handleSignupPreview = ()=> {
+    setProfile(!profile)
+    setSignUpView(true)
+  }
+
   return (
     <>
     < div className=''>
@@ -150,8 +174,8 @@ export const Header = () => {
                 </span>
                 :
                 <span>
-                  <Link onClick={()=> setProfile(!profile)} className=' py-2 w-[200px] pl-4 flex gap-2 text-[14px] hover:bg-[#E9FBF2] items-center' to={'/login'} ><img className=' text-[10px]' src={ProfileIcon} alt="" />Login</Link>
-                  <Link onClick={()=> setProfile(!profile)} className='py-2 w-[200px] pl-4 flex gap-2 text-[14px] hover:bg-[#E9FBF2] items-center' to={'/signup'}  ><img className='text-[10px] 'src={ProfileIcon} alt="" />Sign Up</Link>
+                  <p  onClick={handleLoginPreview} className='cursor-pointer py-2 w-[200px] pl-4 flex gap-2 text-[14px] hover:bg-[#E9FBF2] items-center'  ><img className=' text-[10px]' src={ProfileIcon} alt="" />Login</p>
+                  <p onClick={handleSignupPreview} className='cursor-pointer py-2 w-[200px] pl-4 flex gap-2 text-[14px] hover:bg-[#E9FBF2] items-center'  ><img className='text-[10px] 'src={ProfileIcon} alt="" />Sign Up</p>
                 </span>
               }
             </div>
@@ -165,24 +189,24 @@ export const Header = () => {
   {/* bottom header */}
   <div className='  gap-20 h-[60px] pl-[60px] px-6 hidden md:flex '>
 
-    {navArr.map((el,idx) =>(
+    {categories?.map((el,idx) =>(
       <div className='flex ' key={idx}>
-          <Link to={el[2]} className='cursor-pointer flex items-center gap-2 outfit text-[14px]'><img className='h-[20px] ' src={el[0]} alt="" />{el[1]}</Link>
+          <Link to={`/${el}`} className='cursor-pointer flex items-center gap-2 outfit text-[14px]'>{el.toUpperCase()}</Link>
       </div>
     ))}
   </div>
   </div>
   {loginView ?
-    <div className=' absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>     
+    <div className='absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>     
       <Login setSignUpView={setSignUpView}  setLoginView={setLoginView} />        
-      <i onClick={() => setLoginView(false)} className="relative right-16 top-[-220px] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
+      <i onClick={() => setLoginView(false)} className="relative right-[3%] top-[-35%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
     </div>
     : null}
 
       {signUpView ?
     <div className=' absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>
         <SignUp  setSignUpView={setSignUpView}  setLoginView={setLoginView} />
-        <i onClick={() => setSignUpView(false)} className="relative right-16 top-[-220px] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
+        <i onClick={() => setSignUpView(false)} className="relative right-[3%] top-[-42%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
     </div>
     : null}
   </>

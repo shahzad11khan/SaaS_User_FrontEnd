@@ -36,7 +36,7 @@ export const FileUpload = ({token ,form }) => {
 
 
 FileUpload.propTypes = {
-    token : PropTypes.string.isRequired,
+    token : PropTypes.string,
     form: PropTypes.shape({
       profileImage:PropTypes.string,
       googelProfile: PropTypes.string

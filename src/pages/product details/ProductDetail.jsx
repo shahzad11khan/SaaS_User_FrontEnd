@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"
 import { Header } from "../../components/Header";
-import data1 from '../../assets/json/dinning.json'
-import data2 from '../../assets/json/entertainment.json'
-import data3 from '../../assets/json/homeServices.json'
-import data4 from '../../assets/json/salon.json'
+// import data1 from '../../assets/json/dinning.json'
+// import data2 from '../../assets/json/entertainment.json'
+// import data3 from '../../assets/json/homeServices.json'
+// import data4 from '../../assets/json/salon.json'
 import CardRating from "../../components/CardRating";
 import Union from '../../assets/Card/Union.svg'
 import Footer from "../../components/Footer";
@@ -16,13 +16,16 @@ import { addCart, addOneItemCount } from "../../slices/cartSlice";
 
 
 export const ProductDetail = () => {
+    let {products} = useSelector(state => state.product)
+
     let [count ,setCount] = useState(1);
     let {id} = useParams();
     let token = useSelector(state => state.auth.token)
     let dispatch = useDispatch();
 
-    let data = [...data1, ...data2, ...data3, ...data4];
-    let filterArr = data.filter(item => item.id === id);
+    // let data = [...data1, ...data2, ...data3, ...data4];
+    let filterArr = products?.filter(item => item._id === id);
+    console.log(filterArr)
     let details = filterArr[0];
 
     let incrementCount = () => {
@@ -32,7 +35,7 @@ export const ProductDetail = () => {
     let decrementCount = () => {
         setCount(preValue => preValue>1 ? preValue - 1 : 1)
     }
-
+    console.log(jwtDecode(token))
     let CartClick = async (card) => {
         if (!token) {
             return toast.error('You need to login first');
@@ -40,16 +43,17 @@ export const ProductDetail = () => {
 
         let carts = JSON.parse(localStorage.getItem('cart')) || [];
         let decodedToken = jwtDecode(token);
-        let existingCartIndex = carts.findIndex(cart => cart.id === card.id && cart.userId === decodedToken.id);
+        console.log(carts)
+        let existingCartIndex = carts.findIndex(cart => cart._id === card._id && cart.clintId === decodedToken.userId);
         
-        if (existingCartIndex !== -1 && decodedToken.id === carts[existingCartIndex].userId) {
+        if (existingCartIndex !== -1 && decodedToken.userId === carts[existingCartIndex].clintId) {
             carts[existingCartIndex].count += count;
-            toast.info(`${card.title} count updated in cart`);
+            toast.info(`${card.productName} count updated in cart`);
         } else {
             card.userId = decodedToken.id;
             card.count = count;
             carts.push(card);
-            toast.success(`${card.title} added to cart`);
+            toast.success(`${card.productName} added to cart`);
         }
 
         localStorage.setItem('cart', JSON.stringify(carts));    
@@ -67,12 +71,12 @@ export const ProductDetail = () => {
         <ToastContainer  position="top-center" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
         <div className="flex  gap-10 w-[1200px] p-10">
             <div>
-                <img className="rounded-lg w-[450px] h-[450px] " src={details.image} alt="" />
+                <img className="rounded-lg w-[450px] h-[450px] " src={details.productImageUrl} alt="" />
             </div>
             <div className="py-5  flex flex-col gap-5">
                 <span className="flex gap-3 items-center">
                     <p className="text-[20px] outfit opacity-50">Title :</p> 
-                    <h2 className="text-[36px] outfit font-semibold">{details.title}</h2>
+                    <h2 className="text-[36px] outfit font-semibold">{details.productName}</h2>
                 </span>
                 <span className="flex gap-3 items-center">
                     <p className="text-[20px] outfit opacity-50">Raitng :</p> 
@@ -82,16 +86,16 @@ export const ProductDetail = () => {
                     <p className="text-[20px] outfit opacity-50">Sale :</p> 
                     <div  className="flex justify-end items-center gap-2">
                         <img src={Union} alt="" />
-                        <p className="outfit text-[20px]">Flat {details.sale}% Off</p>
+                        <p className="outfit text-[20px]">Flat {details.productTag}</p>
                     </div>
                 </span>
                 <span className="flex gap-3 items-center">
                     <p className="text-[20px] outfit opacity-50">Price :</p>
-                     <h2  className="outfit text-[20px]">{details.price}$</h2>
+                     <h2  className="outfit text-[20px]">{details.productPrice}$</h2>
                 </span>
                 <span className="flex gap-3 items-center">
                     <p className="text-[20px] outfit opacity-50">Category :</p> 
-                    <h2 className="outfit text-[20px]">{details.category}</h2>
+                    <h2 className="outfit text-[20px]">{details.productCategory}</h2>
                 </span>
                 <span className="flex gap-3 items-center">
                     <p className="text-[20px] outfit opacity-50">Quantity :</p> 

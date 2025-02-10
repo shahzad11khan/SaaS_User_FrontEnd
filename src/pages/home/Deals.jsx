@@ -2,16 +2,20 @@ import { useTranslation } from 'react-i18next';
 import Card from '../../components/Card'
 import { useState,  } from 'react';
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux';
 
-export const Deals = ({products , categoryName}) => {
+export const Deals = ({searchProducts , categoryName }) => {
   let [more , setMore] = useState(false)
-
   let {t} = useTranslation();
+  const {products , loading } = useSelector(state => state.product)
   
-  const items =products  || t('deals.items', { returnObjects: true }); 
-  console.log(items)
-  const firstThreeDeals = items.slice(0, 3);
-  const secondThreeDeals =items.slice(6, 9);
+  // const products =products  || t('deals.products', { returnObjects: true });
+  const firstThreeDeals =searchProducts?.length>0
+   ? searchProducts.slice(0, 3)
+   : products?.slice(0, 3);
+  const secondThreeDeals = searchProducts?.length>5
+   ? searchProducts.slice(6, 9)
+   : products?.length>5 && products.slice(6, 9);
 
   let showMore=()=>{
     setMore(true)
@@ -25,7 +29,7 @@ export const Deals = ({products , categoryName}) => {
         {/* title % button */}
         <div className="md:w-[1200px] bg-white flex gap-10 flex-col ">
             <div className="w-full flex justify-between items-center">
-              { products === null ||  products.length < 1 
+              { searchProducts === null ||  searchProducts.length < 1 
               ?            
               <>     
               <div className='' >
@@ -43,20 +47,24 @@ export const Deals = ({products , categoryName}) => {
             </div>
               }
             </div>
-            {/* card */}
-            <div  className='flex gap-10 flex-col md:flex-row justify-start  '>
-            {firstThreeDeals?.map((deal, index) => (
+            {/* first three view by default */}
+            <div  className='flex gap-7  flex-wrap flex-col md:flex-row justify-start  '>
+            {loading ?
+            <p>loading...</p>
+            : firstThreeDeals.map((deal, index) => (
             <Card key={index} data={deal} />
-          ))}
+            ))}
             </div>
 
-            {more && <div  className='flex gap-10 flex-col md:flex-row justify-start  '>
+            {/* second three view if present */}
+            {more && <div  className='flex gap-7  flex-wrap flex-col md:flex-row justify-start  '>
             {secondThreeDeals?.map((deal, index) => (
             <Card key={index} data={deal} />
           ))}
             </div>}
 
-          {items.length > 3 && 
+          {/* button for second three if present */}
+          {products?.length > 3 && 
             <div className={`text-center outfit font-bold `}>
             { !more
             ?<button onClick={showMore}>show more</button>
@@ -70,21 +78,22 @@ export const Deals = ({products , categoryName}) => {
 }
 
 Deals.propTypes={
-    products: PropTypes.arrayOf(
+    searchProducts: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        sale: PropTypes.number.isRequired,
+        _id: PropTypes.string.isRequired,
+        productName: PropTypes.string.isRequired,
+        productImageUrl: PropTypes.string.isRequired,
+        productPrice: PropTypes.number.isRequired,
+        productTag: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        category: PropTypes.string.isRequired,
+        productCategory: PropTypes.string.isRequired,
       })
     ),
   
     categoryName: PropTypes.shape({
-      SelectedCategory: PropTypes.string.isRequired,
-      search: PropTypes.string.isRequired,
-      selectedSubCategory: PropTypes.string.isRequired,
+      SelectedCategory: PropTypes.string,
+      search: PropTypes.string,
+      selectedSubCategory: PropTypes.string,
     }),
+    
 }

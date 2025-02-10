@@ -2,7 +2,7 @@ import Object from '../../assets/Hero/OBJECTS.png'
 import Image from '../../assets/Hero/2c5598627d268e8c9154dc45635c709d.jpeg'
 import playIcon from '../../assets/Hero/Play Circle.svg'
 import { SearchForm } from './SearchForm'
-import { Detail } from './Detail'
+import { SubCategory } from './SubCategory'
 import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types'
 
@@ -27,8 +27,8 @@ export const Hero = ({setProduct , setCategoryName}) => {
             </div>
         </div>
     </div>
-    <SearchForm setProduct={setProduct} setCategoryName={setCategoryName}/>
-    <Detail setProduct={setProduct} setCategoryName={setCategoryName} />
+    <SearchForm setProduct={setProduct} setCategoryName={setCategoryName} />
+    <SubCategory setProduct={setProduct} setCategoryName={setCategoryName} />
     </>
   )
 }

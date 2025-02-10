@@ -7,7 +7,7 @@ export const AppBanner = () => {
   return (
     <>
     {/* mobil app banner */}
-    <div className="px-4  flex w-full justify-center bg-white  md:py-20 rounded-lg ">
+    <div className="px-4  flex w-full justify-center bg-white   rounded-lg ">
         <div className=" mx-4 mt-10 pt-10 md:pt-0  md:h-[600px] border bordre-solid flex flex-col md:flex-row items-center justify-center w-[1200px] h-[550px] bg-[#F0FFF8] rounded-xl ">
             <div className='full md:w-[40%]'>
                 <div className="w-[200px] h-[200px] md:w-[386px] md:h-[386px] rounded-full flex items-center bg-[#B6E0CA]">
@@ -24,7 +24,6 @@ export const AppBanner = () => {
             </div>
         </div>
     </div>
-    <hr />
     {/* information about the service */}
      <div className='flex  justify-center py-10'>
         <div className='flex flex-wrap gap-16 justify-center md:justify-around w-[1000px] h-[57px]'>

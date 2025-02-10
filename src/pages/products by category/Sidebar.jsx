@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 // import { useLocation } from "react-router-dom"
 
 export const Sidebar = ({lowToHigh ,highToLow ,viewByCtgry ,products}) => {
-    let ctry = products.map(el=> el.category);
+    let ctry = products.map(el=> el.productSubCategory);
     let cArr = [...new Set(ctry)];
+    console.log(cArr)
     let [priceToggle , setPriceToggle] = useState(false)
     let [ctgryToggle , setCtgryToggle] = useState(false)
 
@@ -43,15 +44,21 @@ Sidebar.propTypes = {
     lowToHigh: PropTypes.func.isRequired,
     highToLow: PropTypes.func.isRequired,
     viewByCtgry: PropTypes.func.isRequired,
-    products: PropTypes.arrayOf(
-    PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        sale: PropTypes.number.isRequired,
-        rating: PropTypes.number.isRequired,
-        category: PropTypes.string.isRequired,
-    })
-    ).isRequired
+    products: PropTypes.arrayOf({
+        productCategory: PropTypes.string,
+        productDescription: PropTypes.string,
+        productImagePublicId: PropTypes.string,
+        productImageUrl :PropTypes.string,
+        productName :PropTypes.string,
+        productPrice :PropTypes.number,
+        productQuantity :PropTypes.number,
+        productSubCategory :PropTypes.string,
+        productTag :PropTypes.string,
+        rating :PropTypes.number,
+        role :PropTypes.string,
+        updatedAt :PropTypes.string,
+        userId :PropTypes.string,
+        userName :PropTypes.string,
+        _id :PropTypes.string,
+    }).isRequired
   };
