@@ -33,7 +33,8 @@ export const Profile = () => {
 
 
   useEffect(() => {
-    let {role, userEmail, userId, userImage ,userName} = jwtDecode(token)
+    if(token){
+      let {role, userEmail, userId, userImage ,userName} = jwtDecode(token)
       setForm(prev => ({
         ...prev,
         role,
@@ -43,6 +44,7 @@ export const Profile = () => {
         profileImage: userImage
       })
     );
+    }
   }, [token]);
 
 

@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { signUpUser } from "../../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import defaultPic  from '../../assets/default user/defaultUser.png';
 
 
 function SignUp({ setSignUpView, setLoginView }) {
-  const location = useLocation();
   const dispatch = useDispatch();
   const { isAuthenticated, loading } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -81,24 +80,24 @@ function SignUp({ setSignUpView, setLoginView }) {
     dispatch(signUpUser(formData));
   };
 
-  // 🔵 Navigate to Login
+  //  Navigate to Login
   const navigateToLogin = () => {
-    if (location.pathname === "/signup") {
-      navigate("/login");
-    } else {
+    // if (location.pathname === "/signup") {
+    //   navigate("/login");
+    // } else {
       setLoginView(true);
       setSignUpView(false);
-    }
+    // }
   };
 
   return (
     <div className="flex flex-col justify-center items-center">
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} closeOnClick={false} />
 
-      <div className="flex flex-col justify-center items-center bg-white w-[600px] rounded-lg">
+      <div className="flex flex-col justify-center items-center bg-white w-[500px] rounded-lg">
         <h1 className="text-[24px] text-[#219653] outfit md:text-[40px] font-bold">Sign Up</h1>
 
-        <form onSubmit={handleSignup} className="w-full ">
+        <form onSubmit={handleSignup} className="w-full px-[60px] ">
             {/* User logo */}
           <div  className="relative flex justify-center">
             <img className="h-[120px] w-[120px] rounded-full object-cover" src={ previewUrl} alt="user" />
@@ -200,8 +199,8 @@ function SignUp({ setSignUpView, setLoginView }) {
                 value={form.confirmPassword}
                 name="confirmPassword"
                 required />
-              <div onClick={() => setView(!view)} className="cursor-pointer absolute right-5 top-10">
-                <b>{view ? "Hide" : "Show"}</b>
+              <div onClick={() => setView(!view)} className="cursor-pointer absolute right-[18px] top-[37px]">
+                <i className={`${view ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}`}></i>
               </div>
             </div>
           </div>

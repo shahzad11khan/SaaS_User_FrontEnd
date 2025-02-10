@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ResetPassword } from "./ResetPassword";
-import { loginUser ,loginWithGoogle } from '../../slices/authSlice';
+import { loginUser ,loginWithGoogle , resetError , resetSuccess} from '../../slices/authSlice';
 import GoogleLoginButton from "./GoogleLoginButton";
+import { toast, ToastContainer } from "react-toastify";
 
 import PropTypes from "prop-types";
 
@@ -13,7 +14,7 @@ function Login({setSignUpView , setLoginView}) {
   const dispatch = useDispatch();
 
   // Accessing auth state from Redux
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading, error, isAuthenticated , success} = useSelector((state) => state.auth);
   let [reset, setReset] = useState(false);
   const [form, setForm] = useState({
     email: '',
@@ -42,16 +43,27 @@ function Login({setSignUpView , setLoginView}) {
     }
   };
 
+  useEffect(() => {
+    if (success) {
+      toast.success(success);
+      dispatch(resetSuccess());
+    }
+    
+    if (error) {
+      toast.error(error);
+      dispatch(resetError());
+    }
+  }, [success, error, dispatch]); 
+
   useEffect(()=>{
     if (isAuthenticated) {
-      navigate('/home');
+      setLoginView(false)    
     }
-  },[isAuthenticated ,navigate])
+  },[isAuthenticated ,setLoginView])
 
   const handleLoginSuccess =(response) => {
     console.log("Login Success:");
     dispatch(loginWithGoogle(response));
-
   }
 
   const handleLoginFailure = () => {
@@ -59,13 +71,11 @@ function Login({setSignUpView , setLoginView}) {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center ">
-    <div className= "  w-[500px] h-[70vh] flex flex-col justify-center items-center rounded-xl bg-white">
-      {reset ? (
-        <div className="absolute top-10 z-10 w-full h-[70%] bg-white rounded-lg">
-          <ResetPassword reset={reset} setReset={setReset} />
-        </div>
-      ) : null}
+    <div className={`flex flex-col justify-center items-center  h-[100vh]`}>  
+    <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
+    <div className= " relative w-[400px] h-[80vh] flex flex-col justify-center items-center rounded-xl bg-white">
+    {!reset?
+      <>
       <h1 className="text-[24px] text-[#219653] outfit md:text-[40px] font-bold">Login</h1>
       <form onSubmit={handleLogin} className="w-[300px]">
         <div className="flex gap-1 outfit flex-col mt-4">
@@ -82,7 +92,7 @@ function Login({setSignUpView , setLoginView}) {
             name="email"
             required
           />
-          {error && <p className="rounded-full mt-1 text-[12px]  pl-2 text-[#ff1c1c] font-semibold">{error}</p>}
+          {/* {error && <p className="rounded-full mt-1 text-[12px]  pl-2 text-[#ff1c1c] font-semibold">{error}</p>} */}
         </div>
         <div className="flex outfit gap-1 flex-col mt-4">
           <label htmlFor="passwords">
@@ -91,14 +101,14 @@ function Login({setSignUpView , setLoginView}) {
           <input
             id="passwords"
             className="border border-solid border-grey focus:outline-none py-2 pl-2 rounded-lg"
-            type="password"
+            type="text"
             placeholder="password"
             onChange={handleOnChange}
             value={form.password}
             name="password"
             required
           />
-          {error && <p className="rounded-full mt-1 text-[12px] text-[#ff1c1c] pl-2 text-red font-semibold">{error}</p>}
+          {/* {error && <p className="rounded-full mt-1 text-[12px] text-[#ff1c1c] pl-2 text-red font-semibold">{error}</p>} */}
         </div>
 
         {/* {error ? ( */}
@@ -124,6 +134,12 @@ function Login({setSignUpView , setLoginView}) {
           onFailure={handleLoginFailure}>
         </GoogleLoginButton>
       </div>
+      </>
+      : 
+      <div className="absolute z-10   bg-white rounded-lg">
+        <ResetPassword reset={reset} setReset={setReset} />
+      </div> 
+      }
     </div>
     </div>  
   );

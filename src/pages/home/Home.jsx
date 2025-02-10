@@ -6,10 +6,18 @@ import { AppBanner } from './AppBanner'
 
 import {Header} from '../../components/Header'
 import Footer from '../../components/Footer'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import {allProducts} from '../../slices/ProductsSlice.js'
+import { useDispatch} from 'react-redux'
+import { Overview } from './Overview.jsx'
 
 export const Home = () => {
-  let [products , setProduct] = useState(null)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(allProducts())
+  },[dispatch])
+
+  let [searchProducts , setProduct] = useState(null)
   let [categoryName , setCategoryName] = useState(null)
   let icons= [
     {id:'header', icon : 'fa-arrow-up'},
@@ -34,19 +42,21 @@ export const Home = () => {
       ))}
     </div>
     <div id="header">
-    <Header />
+      <Header />
     </div>
     <div id="hero">
-    <Hero  setProduct={setProduct} setCategoryName={setCategoryName} />
+      <Hero setProduct={setProduct} setCategoryName={setCategoryName} />
     </div>
     <div id="deals">
-    <Deals products={products} categoryName={categoryName} />
+      <Deals  searchProducts={searchProducts} categoryName={categoryName} />
     </div>
     <div id="dealsOfDay">
-    <DealsOfDay />
+      <DealsOfDay />
     </div>
+    
+    <Overview />
     <div id="app">
-    <AppBanner />
+      <AppBanner />
     </div>
     {/* <Map /> */}
     <div id="footer">

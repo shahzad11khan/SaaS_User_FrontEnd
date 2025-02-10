@@ -1,18 +1,19 @@
 import {Header} from '../../components/Header'
 import Footer from '../../components/Footer'
 
-import { Sidebar } from '../../components/Sidebar'
+import { Sidebar } from './Sidebar'
 import { Main } from './Main'
-import data from "../../assets/json/homeServices.json"
 
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-
-export const HomeServices = () => {
-  const [Products, setProducts] = useState(data);
+export const ProductsByCategory = () => {
+  let {products} = useSelector(state => state.product)   
+  const [Products, setProducts] = useState(products);
 
   const sortLowToHigh = () => {
-    const sorted = [...Products].sort((a, b) => a.price - b.price);
+    console.log(products)
+    const sorted = [...Products].sort((a, b) => a.productPrice - b.productPrice);
     setProducts(sorted);
   };
 
@@ -22,7 +23,7 @@ export const HomeServices = () => {
   };
 
   const showByCtgry = (Ctgry)=>{
-    let filterProductByCtgry = data.filter((el=> el.category === Ctgry))
+    let filterProductByCtgry = products.filter((el=> el.category === Ctgry))
     setProducts(filterProductByCtgry);
   }
   return (
@@ -30,8 +31,8 @@ export const HomeServices = () => {
     <Header />
     <div className=' flex justify-center bg-[#FCF5DC] py-20  '>
       <div className='w-[1200px] flex gap-5'>
-        <Sidebar lowToHigh ={sortLowToHigh} highToLow={sortHighToLow} viewByCtgry={showByCtgry} products={data} />
-        <Main products={Products}  />
+        <Sidebar lowToHigh ={sortLowToHigh} highToLow={sortHighToLow} viewByCtgry={showByCtgry} products={products} />
+        <Main products={Products}/>
       </div>
     </div>
     <Footer />

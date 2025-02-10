@@ -9,15 +9,15 @@ import PropTypes from "prop-types";
 
 const stripe = loadStripe('pk_test_51Q9l8LP5ENTV0Z97wtRzdCkSUIymk0ycjYHoNP650fNBvvOe352X3mcRnmg4klvUoBCBdRC7J79XJJAyAJ7Wbo3K00NP4y8hiN');
 
-const StripePayment = ({selectedProducts}) => {
+const StripePayment = ({selectedProducts , address}) => {
+
     const [clientSecret, setClientSecret] = useState(null);
 
-    useEffect(() => {
+    useEffect(() => {   
         axios
             .post("http://localhost:8080/create-payment-intent", {selectedProducts})
             .then((resp) => setClientSecret(resp.data.clientSecret));
     }, [selectedProducts]);
-    console.log(clientSecret)
 
     const options = {
         clientSecret,
@@ -27,7 +27,7 @@ const StripePayment = ({selectedProducts}) => {
     return (
         clientSecret && (
             <Elements stripe={stripe} options={options}>
-                <PaymentForm selectedProducts={selectedProducts}></PaymentForm>
+                <PaymentForm address={address} selectedProducts={selectedProducts}></PaymentForm>
              </Elements>
         )
     );
@@ -35,21 +35,14 @@ const StripePayment = ({selectedProducts}) => {
 
 StripePayment.propTypes ={
     selectedProducts: PropTypes.arrayOf({
-    count: PropTypes.number.isRequired,
-    price:PropTypes.number.isRequired,
-    id:PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    sale: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    location: PropTypes.arrayOf(
-        PropTypes.shape({
-        country: PropTypes.string.isRequired,
-        city: PropTypes.string.isRequired
-        })
-    ),
-    userImg: PropTypes.string.isRequired
+        count: PropTypes.number.isRequired,
+        productPrice:PropTypes.number.isRequired,
+        _id:PropTypes.string.isRequired,
+        ProductImageUrl: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        productName: PropTypes.string.isRequired,
     }),
+    address: PropTypes.string
 }
 
 export default StripePayment;

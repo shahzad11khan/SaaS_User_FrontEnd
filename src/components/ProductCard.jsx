@@ -45,27 +45,30 @@ export const ProductCard = ({data}) => {
       {/* <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" /> */}
         {/* image */}
         <div className="relative">
-            <img className=" w-full h-[150px] object-cover border rounded-lg" src={data.image} alt="" />
+            <img className=" w-full h-[150px] object-cover border rounded-lg" src={data.productImageUrl} alt="" />
         </div>
         {/* title  */}
         <div className="flex justify-between pt-3 px-3">
             <div className="flex justify-start items-center">
                 <CardRating  rating={data.rating}/>
             </div>
+            {
+            data.rating &&
             <div  className="flex justify-end items-center gap-2">
-                <img src={Union} alt="" />
-                <p className="outfit text-[12px]">Flat {data.sale}% Off</p>
-            </div>
+              <img src={Union} alt="" />
+              <p className="outfit text-[12px]">Flat {data.productTag }</p>
+            </div> 
+            }
         </div>
         {/* rating & sale */}    
         <div  className="relative flex flex-col gap-1 pt-3 px-3">
-            <h1 className="text-[16px] font-[600] outfit">{data.title}</h1>
+            <h1 className="text-[16px] font-[600] outfit">{data.productName}</h1>
         </div>
         {/* price & button */}
         <div className="flex justify-between  items-center px-3 py-3">
-          <h1 className="text-[16px] font-[600] outfit">$ {data.price} </h1>
+          <h1 className="text-[16px] font-[600] outfit">$ {data.productPrice} </h1>
           <span className="flex gap-2">
-            <button onClick={()=> handleView(data.id)}  className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">view</button>
+            <button onClick={()=> handleView(data._id)}  className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">view</button>
             {/* <button onClick={()=>CartClick(data)}  className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">
                 Add To Cart
             </button> */}
@@ -76,11 +79,11 @@ export const ProductCard = ({data}) => {
 }
 ProductCard.propTypes = {
   data: PropTypes.shape({
-    id:PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    _id:PropTypes.string.isRequired,
+    productImageUrl: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    sale: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired
+    productTag: PropTypes.number.isRequired,
+    productName: PropTypes.string.isRequired,
+    productPrice: PropTypes.number.isRequired
   }).isRequired
 };

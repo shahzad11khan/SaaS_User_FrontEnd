@@ -2,14 +2,19 @@ import { useTranslation } from 'react-i18next';
 
 import Card from '../../components/Card'
 import  { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export const DealsOfDay = () => {
+  const {products , loading } = useSelector(state => state.product)
   let {t} = useTranslation()
   let [more , setMore] = useState(false)
-  const items = t('dealsOfDay.items', { returnObjects: true }); 
+  // const products = t('dealsOfDay.products', { returnObjects: true }); 
 
-  const firstThreeDeals = items.slice(9,12);
-  const secondThreeDeals = items.slice(3, 6);
+  // const firstThreeDeals = products?.slice(9,12);
+  // const secondThreeDeals = products?.length>5 && products.slice(3, 6);
+
+  const firstThreeDeals = products?.slice(0, 3);
+  const secondThreeDeals = products?.length>5 && products.slice(6, 9);
 
   let showMore=()=>{
     setMore(true)
@@ -31,26 +36,29 @@ export const DealsOfDay = () => {
                 <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('dealsOfDay.bText')}</button>
             </div>
             {/* card */}
-            <div  className='flex gap-10 flex-col md:flex-row justify-between  '>
-              {secondThreeDeals.map((deal, index) => (
+            <div  className='flex gap-10 flex-col md:flex-row justify-start  '>
+              {loading? 
+              <p>loading...</p>
+              :firstThreeDeals.map((deal, index) => (
                 <Card key={index} data={deal } />
               ))}
             </div>
 
           
-            {more && <div  className='flex gap-10 flex-col md:flex-row justify-between  '>
-            {firstThreeDeals.map((deal, index) => (
+            {more && <div  className='flex gap-10 flex-col md:flex-row justify-start  '>
+            {secondThreeDeals?.map((deal, index) => (
               <Card key={index} data={deal} />
             ))}
             </div>}
 
+            {products?.length > 3 &&
             <div className={`text-center outfit font-bold `}>
             {!more
             ?<button onClick={showMore}>show more</button>
             :<button onClick={showLess}>show less</button>
             }
             </div>
-
+            }
         </div>
     </div>
   )
