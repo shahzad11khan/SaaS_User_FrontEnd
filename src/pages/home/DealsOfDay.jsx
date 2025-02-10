@@ -39,7 +39,7 @@ export const DealsOfDay = () => {
             <div  className='flex gap-10 flex-col md:flex-row justify-start  '>
               {loading? 
               <p>loading...</p>
-              :firstThreeDeals.map((deal, index) => (
+              :firstThreeDeals?.map((deal, index) => (
                 <Card key={index} data={deal } />
               ))}
             </div>

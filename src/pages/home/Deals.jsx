@@ -8,6 +8,7 @@ export const Deals = ({searchProducts , categoryName }) => {
   let [more , setMore] = useState(false)
   let {t} = useTranslation();
   const {products , loading } = useSelector(state => state.product)
+  console.log(products)
   
   // const products =products  || t('deals.products', { returnObjects: true });
   const firstThreeDeals =searchProducts?.length>0
@@ -51,7 +52,7 @@ export const Deals = ({searchProducts , categoryName }) => {
             <div  className='flex gap-7  flex-wrap flex-col md:flex-row justify-start  '>
             {loading ?
             <p>loading...</p>
-            : firstThreeDeals.map((deal, index) => (
+            : firstThreeDeals?.map((deal, index) => (
             <Card key={index} data={deal} />
             ))}
             </div>

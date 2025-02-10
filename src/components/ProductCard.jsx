@@ -81,8 +81,8 @@ ProductCard.propTypes = {
   data: PropTypes.shape({
     _id:PropTypes.string.isRequired,
     productImageUrl: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    productTag: PropTypes.number.isRequired,
+    rating: PropTypes.number,
+    productTag: PropTypes.string,
     productName: PropTypes.string.isRequired,
     productPrice: PropTypes.number.isRequired
   }).isRequired

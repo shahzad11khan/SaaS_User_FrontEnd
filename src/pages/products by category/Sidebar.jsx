@@ -44,21 +44,23 @@ Sidebar.propTypes = {
     lowToHigh: PropTypes.func.isRequired,
     highToLow: PropTypes.func.isRequired,
     viewByCtgry: PropTypes.func.isRequired,
-    products: PropTypes.arrayOf({
-        productCategory: PropTypes.string,
-        productDescription: PropTypes.string,
-        productImagePublicId: PropTypes.string,
-        productImageUrl :PropTypes.string,
-        productName :PropTypes.string,
-        productPrice :PropTypes.number,
-        productQuantity :PropTypes.number,
-        productSubCategory :PropTypes.string,
-        productTag :PropTypes.string,
-        rating :PropTypes.number,
-        role :PropTypes.string,
-        updatedAt :PropTypes.string,
-        userId :PropTypes.string,
-        userName :PropTypes.string,
-        _id :PropTypes.string,
-    }).isRequired
+    products: PropTypes.arrayOf(
+        PropTypes.shape({
+            productCategory: PropTypes.string.isRequired,
+            productDescription: PropTypes.string.isRequired,
+            productImagePublicId: PropTypes.string.isRequired,
+            productImageUrl: PropTypes.string.isRequired,
+            productName: PropTypes.string.isRequired,
+            productPrice: PropTypes.number.isRequired,
+            productQuantity: PropTypes.number.isRequired,
+            productSubCategory: PropTypes.string,
+            productTag: PropTypes.string,
+            rating: PropTypes.number,
+            role: PropTypes.string.isRequired,
+            updatedAt: PropTypes.string.isRequired,
+            userId: PropTypes.string.isRequired,
+            userName: PropTypes.string.isRequired,
+            _id: PropTypes.string.isRequired,
+        })
+    ).isRequired
   };
