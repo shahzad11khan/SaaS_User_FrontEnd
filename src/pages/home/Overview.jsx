@@ -12,7 +12,7 @@ export const Overview = () => {
     let cardArr = [[one, t('hero.details.D2.0.h') ,t('hero.details.D2.0.p')],[two,t('hero.details.D2.1.h'),t('hero.details.D2.1.p')],[three,t('hero.details.D2.2.h'),t('hero.details.D2.2.p')]]
 
   return (
-    <div className='flex gap-10 flex-col items-center bg-[#F9F9F9] py-10'>
+    <div className='flex gap-10 flex-col items-center  py-10'>
             <div className='mx-5 md:w-[1200px] flex  flex-col md:flex-row gap-5  justify-between '>
         {cardArr.map((el ,idx)=>(
             <div className=' flex items-center gap-5 md:gap-3 md:w-[30%] '  key={idx}>

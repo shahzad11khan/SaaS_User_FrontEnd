@@ -25,15 +25,15 @@ export const DealsOfDay = () => {
   }
 
   return (
-    <div className="bg-[#FCF5DC] flex px-4 justify-center py-16 md:py-20 ">
+    <div className="bg-[#F0FFF8] flex px-4 justify-center py-16 md:py-26 ">
         {/* title % button */}
         <div className="md:w-[1200px]  flex gap-10 flex-col ">
             <div className="w-full flex justify-between items-center">
                 <div className='' >
-                    <h1 className="text-[34px] md:text-[60px] font-semibold leading-[70px]">{t('dealsOfDay.heading.0')}<span className="text-[#219653]">{t('dealsOfDay.heading.1')}</span></h1>
+                    <h1 className="text-[34px] md:text-[50px] font-semibold leading-[70px]">{t('dealsOfDay.heading.0')}<span className="text-[#219653]">{t('dealsOfDay.heading.1')}</span></h1>
                     <p className='text-[14px] outfit'>{t('dealsOfDay.paragraph')}</p>
                 </div>
-                <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('dealsOfDay.bText')}</button>
+                {/* <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('dealsOfDay.bText')}</button> */}
             </div>
             {/* card */}
             <div  className='flex gap-10 flex-col md:flex-row justify-start  '>

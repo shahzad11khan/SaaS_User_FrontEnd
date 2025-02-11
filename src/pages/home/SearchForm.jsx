@@ -30,17 +30,51 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
   const handleCategory = (e) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({ ...prevForm, [name]: value, selectedSubCategory: '' }));
+    // filter Product by category
+    let cProduct = products.filter(el => el.productCategory === value)
+    setProduct(cProduct)
+    setCategoryName((preValue) => ({ ...preValue, [name]: value,  selectedSubCategory: '' }));
+
 
     // Extract unique subcategories for the selected category
     const filteredSubCategories = [
       ...new Set(products.filter((el) => el.productCategory === value).map((el) => el.productSubCategory)),
     ];
     setSubCategories(filteredSubCategories);
+
   };
 
-  const handleChange = (e) => {
+  const handleSubCategory = (e) => {
     const { name, value } = e.target;
+    console.log( 'name' , name ,'value', value)
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    let filteredProducts  = products.filter(el => el.productSubCategory === value)
+    if (filteredProducts .length !== 0) {
+      filteredProducts = products.filter(el => el.productCategory === form.SelectedCategory)
+    }
+    setProduct(filteredProducts)
+    setCategoryName((preValue) => ({ ...preValue, [name]: value }));
+  };
+
+  const handleSearachInput = (e) => {
+    const { name, value } = e.target;
+    if (!form.SelectedCategory || !form.selectedSubCategory ) {
+      return toast.error('Please select all fields before searching');
+      
+    }
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    const filteredProducts = products.filter(
+      (el) =>
+        el.productCategory === form.SelectedCategory &&
+        el.productSubCategory === form.selectedSubCategory &&
+        el.productName.toLowerCase().includes(form.search.toLowerCase())
+    );
+    
+    setProduct(filteredProducts);
+    console.log(filteredProducts)
+    if (filteredProducts.length === 0) {
+      toast.error('Product not found');
+    }
   };
 
   const handleSearchSubmit = (e) => {
@@ -70,9 +104,10 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
   return (
     <div className='mx-4 z-20 relative md:flex justify-center'>
       <ToastContainer position='top-right' autoClose={2000} hideProgressBar={false} />
-      <div className='shadow-xl top-[-50px] w-full absolute md:w-[1200px] bg-white rounded-lg p-5'>
+      <div className='shadow-xl top-[-45px] w-full absolute md:w-[1200px] bg-white rounded-lg p-5'>
         <form onSubmit={handleSearchSubmit} className='flex flex-col md:flex-row md:flex-wrap gap-3 justify-center items-center'>
-          <select onChange={handleCategory} name='SelectedCategory' className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
+          {/* Category */}
+          <select onChange={handleCategory} name='SelectedCategory' value={form.SelectedCategory} className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
             <option value=''>{t('hero.searchForm.selectCategory')}</option>
             {categories.map((cat, index) => (
               <option key={index} value={cat}>
@@ -80,8 +115,8 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
               </option>
             ))}
           </select>
-
-          <select onChange={handleChange} name='selectedSubCategory' className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
+            {/* subCategory */}
+          <select onChange={handleSubCategory} name='selectedSubCategory' value={form.selectedSubCategory} className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
             <option value=''>{t('hero.searchForm.selectSubCtgry')}</option>
             {subCategories.map((sub, index) => (
               <option key={index} value={sub}>
@@ -89,12 +124,12 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
               </option>
             ))}
           </select>
-
+            {/* search Input */}
           <span className='w-full md:w-[25%] relative'>
             <img className='absolute top-3 left-3' src={VectorIcon} alt='search' />
-            <input onChange={handleChange} value={form.search} placeholder={t('hero.searchForm.placeHolder')} className='w-full h-[44px] px-9 rounded-lg border' type='text' name='search' required />
+            <input onChange={handleSearachInput} value={form.search} placeholder={t('hero.searchForm.placeHolder')} className='w-full h-[44px] px-9 rounded-lg border' type='text' name='search' required />
           </span>
-
+            {/* button */}
           <span className='w-full md:w-[10%] flex items-center justify-center'>
             <button type='submit' className='bg-[#013D29] w-full rounded-full text-white py-1 px-5'>
               {t('hero.searchForm.button')}

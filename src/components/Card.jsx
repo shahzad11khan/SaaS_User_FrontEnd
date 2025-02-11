@@ -96,7 +96,7 @@ function Card({data}){
             <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
             {/* image with heart icon */}
             <div className="relative">
-                <img className="w-[380px] h-[200px] object-cover " src={data.productImageUrl} alt="" />
+                <img className="w-[330px] h-[200px] object-cover " src={data.productImageUrl} alt="" />
                 <div className="absolute top-4 right-4 w-[30px] h-[30px] bg-white rounded-full flex justify-center items-center">
                     <svg onClick={()=> heartClick(data)} className={`w-6 h-6 cursor-pointer ${heart ? 'fill-[#ff0000] ' : ''}`} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path style={{stroke: heart ? "#ff0000" : ""}} d="M2.39192 10.1621C1.49775 7.37242 2.54275 4.18387 5.47359 3.24038C7.01525 2.74324 8.71692 3.03636 9.99859 3.99984C11.2111 3.06301 12.9753 2.74657 14.5153 3.24038C17.4461 4.18387 18.4978 7.37242 17.6044 10.1621C16.2128 14.5839 9.99859 17.9898 9.99859 17.9898C9.99859 17.9898 3.83025 14.6355 2.39192 10.1621Z" stroke="#130F26"/>

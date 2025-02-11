@@ -8,7 +8,6 @@ export const Deals = ({searchProducts , categoryName }) => {
   let [more , setMore] = useState(false)
   let {t} = useTranslation();
   const {products , loading } = useSelector(state => state.product)
-  console.log(products)
   
   // const products =products  || t('deals.products', { returnObjects: true });
   const firstThreeDeals =searchProducts?.length>0
@@ -26,7 +25,7 @@ export const Deals = ({searchProducts , categoryName }) => {
     setMore(false)
   }
   return (
-    <div className=" flex px-4 justify-center py-16 md:py-20 ">
+    <div className=" flex px-4 justify-center pb-16 md:pb-16 ">
         {/* title % button */}
         <div className="md:w-[1200px] bg-white flex gap-10 flex-col ">
             <div className="w-full flex justify-between items-center">
@@ -34,16 +33,16 @@ export const Deals = ({searchProducts , categoryName }) => {
               ?            
               <>     
               <div className='' >
-                <h1 className="text-[34px] md:text-[60px] font-semibold leading-[70px]">{t('deals.heading.0')} <span className="text-[#219653]">{t('deals.heading.1')}</span></h1>
+                <h1 className="text-[34px] md:text-[50px] font-semibold leading-[70px]">{t('deals.heading.0')} <span className="text-[#219653]">{t('deals.heading.1')}</span></h1>
                 <p className='text-[14px] outfit'>{t('deals.paragraph')}</p>
               </div>                
-              <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('deals.bText')}</button>
+              {/* <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('deals.bText')}</button> */}
               </>
               :
               <div className='' >
-              <h1 className="text-[34px] md:text-[60px] font-semibold leading-[70px]"> 
-                {categoryName.SelectedCategory}/ 
-                <span className="text-[#219653]">{categoryName.selectedSubCategory}</span>
+              <h1 className="text-[34px] md:text-[50px] font-semibold leading-[70px]"> 
+                {categoryName.SelectedCategory && categoryName.SelectedCategory}/ 
+                <span className="text-[#219653]">{categoryName.selectedSubCategory && categoryName.selectedSubCategory}</span>
               </h1>
             </div>
               }
@@ -85,8 +84,8 @@ Deals.propTypes={
         productName: PropTypes.string.isRequired,
         productImageUrl: PropTypes.string.isRequired,
         productPrice: PropTypes.number.isRequired,
-        productTag: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
+        productTag: PropTypes.string,
+        rating: PropTypes.number,
         productCategory: PropTypes.string.isRequired,
       })
     ),

@@ -15,7 +15,7 @@ import {  useEffect, useState } from 'react';
 // import Salon from '../assets/navIcons/Salon.svg'
 import Menu from '../assets/icons/MENU.svg'
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useSelector ,useDispatch} from 'react-redux';
 // configure react with i18n 
 import { useTranslation } from 'react-i18next';
@@ -27,6 +27,7 @@ import { googleLogout } from "@react-oauth/google"
 
 
 export const Header = () => {
+  let {category} = useParams()
   let [categories , setCategories] =useState(null)
   let navigate= useNavigate()
   let dispatch = useDispatch();
@@ -117,7 +118,9 @@ useEffect(()=>{
       <div onClick={()=> setNavbar(!navbar)} className="cursor-pointer md:hidden" >
         {navbar? <i className="h-[24px] w-[24px] text-[24px] fa-solid fa-xmark"></i> : <img src={Menu} className="h-[24px] w-[24px] "/>}
       </div>
-      <img src={Logo} alt="logo" />
+      <Link to={'/'}>      
+        <img src={Logo} alt="logo" />
+      </Link>
       <select className='cursor-pointer h-[40px] outfit  px-5 border border-[#219653] rounded-full hidden md:flex ' name="country" id="country">
         <option value=""> {t('header.middle.select.pak')}</option>
         <option value="">{t('header.middle.select.cad')}</option>
@@ -188,13 +191,14 @@ useEffect(()=>{
   
   {/* bottom header */}
   <div className='  gap-20 h-[60px] pl-[60px] px-6 hidden md:flex '>
-
-    {categories?.map((el,idx) =>(
-      <div className='flex ' key={idx}>
-          <Link to={`/${el}`} className='cursor-pointer flex items-center gap-2 outfit text-[14px]'>{el.toUpperCase()}</Link>
-      </div>
-    ))}
+  {categories?.map((el,idx) =>(
+    <div className={`flex ${category && category === el && 'underline underline-offset-8 font-bold decoration-[3px]'}`} key={idx}>
+        <Link to={`/${el}`} className={` cursor-pointer flex items-center gap-2 outfit text-[14px] `}>{el.toUpperCase()}</Link>
+    </div>
+  ))}
   </div>
+
+
   </div>
   {loginView ?
     <div className='absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>     

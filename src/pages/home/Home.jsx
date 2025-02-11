@@ -53,7 +53,6 @@ export const Home = () => {
     <div id="dealsOfDay">
       <DealsOfDay />
     </div>
-    
     <Overview />
     <div id="app">
       <AppBanner />

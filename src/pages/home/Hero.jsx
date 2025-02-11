@@ -14,9 +14,9 @@ export const Hero = ({setProduct , setCategoryName}) => {
     <div className=' md:flex  w-full md:h-[600px] z-0 overflow-hidden' >
         <div className='px-4 md:px-0 relative md:w-[60%] h-[475px] md:h-full bg-[#F0FFF8] flex flex-col items-center pt-16 md:pt-28 '>
             <div className='md:w-[60%] flex flex-col gap-5 z-10'>      
-            <h1 className='text-[44px] md:text-[64px] font-bold outfit leading-[44px] md:leading-[64px]'>{t('hero.heading.1')} <span className='text-[#219653]'>{t('hero.heading.2')}</span> {t('hero.heading.3')}</h1>
-            <p className='text-[ 18px] w-[80%] md:w-[50%] outfit'>{t('hero.paragraph')}</p>
-            <button className='md:mt-5 bg-[#013D29] w-[40%] md:w-[20%] rounded-full text-white outfit py-3 px-5'>{t('hero.bText')}</button>
+              <h1 className='text-[44px] md:text-[64px] font-bold outfit leading-[44px] md:leading-[64px]'>{t('hero.heading.1')} <span className='text-[#219653]'>{t('hero.heading.2')}</span> {t('hero.heading.3')}</h1>
+              <p className='text-[ 18px] w-[80%] md:w-[50%] outfit'>{t('hero.paragraph')}</p>
+              <button className='md:mt-5 bg-[#013D29] w-[40%] md:w-[20%] rounded-full text-white outfit py-3'>{t('hero.bText')}</button>
             </div>
             <img className='absolute bottom-0 md:bottom-[60px] right-[-70px] z-0 ' src={Object} />
         </div>
