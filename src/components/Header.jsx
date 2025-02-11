@@ -129,8 +129,8 @@ useEffect(()=>{
       </select> */}
     </div>
     <div>
-      <div className='flex  gap-7 relative px-6  '>
-        <div className=' gap-3 hidden md:flex '>
+      <div className='flex gap-7 relative px-6'>
+        <div className='gap-3 hidden md:flex'>
           <form   onSubmit={searchSubmit} >
             <input  value={search} onChange={SearchChange} placeholder='what are you looking for?' className='bg-[#F5F5F5] outline-none h-[44px]  pl-3 w-[300px] rounded-full border border-solid border-[#F5F5F5]' type="text" name="search" id="search" />
             <button type="submit" className="cursor-pointer relative  top- right-9">
