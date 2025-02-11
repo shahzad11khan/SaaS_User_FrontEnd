@@ -82,7 +82,7 @@ import { toast , ToastContainer} from "react-toastify";
     
     let handlRemove = (card) => {
       let deletes = CartData.filter((item) =>
-          item.id !== card.id && item.userId === id
+          item._id !== card._id && item.clintId === id
           ?item
           :null
       )
@@ -111,44 +111,52 @@ import { toast , ToastContainer} from "react-toastify";
     return (
       <>
       <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
-
       <Header />
-      <div className=" flex justify-center bg-[#3b3b3b]">
-      <div className="flex gap-5 w-[1200px]   ">
+      <div className=" flex justify-center  ">
+      <div className="flex flex-col gap-5 w-[1200px]   ">
         
         {next === 0  ?
         // cart items 
-        <div className=" flex flex-col items-center gap-5 py-5  w-[60%] ">
-          <h1 className="bg-white w-full px-5 text-[34px] font-semibold rounded-lg">Cart</h1>
+        <div className=" flex flex-col items-center gap-5 py-5     ">
+          <h1 className="bg-white w-full px-5 text-[34px] font-semibold rounded-lg">Cart ({CartData?.length})</h1>
+          {CartData?.length>0 &&<div className="bg-white flex justify-between h-5 w-full">
+            <h6>Product</h6>
+            <h6>Price</h6>
+            <h6>Quantity</h6>
+            <h6>Delete</h6>
+            <h6>Selecked</h6>
+          </div>}
           {CartData?.length>0 ? CartData.map((card,idx)=>{
             if(card.clintId == id){
               return (
-              <div className="relative flex gap-5 w-full items-center  h-[150px] px-6 bg-white rounded-lg " key={idx}>
-                {/* check icon */}
-                <div onClick={() => handleCheck(card)} className={`cursor-pointer w-7  h-7 flex justify-center items-center rounded-md ${checkedArr.some(item => item._id === card._id)? 'text-[#013D29] border-[#013D29]':'text-gray-300 border-gray-300'}  border-[2px] `}>
-                  <i className="  fa-solid fa-check"></i>
+              <div className="relative flex justify-between  gap-5 w-full items-center  h-[100px]  bg-white rounded-lg " key={idx}>
+                {/* image  + title*/}
+                <div className="w-[54px] h-[54px]  flex items-center gap-5  ">
+                  <img className=" w-full h-full rounded-md" src={card.productImageUrl} alt="" />
+                  <h1 className="text-[16px] font-semibold">{card.productName}</h1>
                 </div>
-                {/* image */}
-                <div className="w-[150px] h-[100px]  ">
-                  <img className=" w-full h-full rounded-lg" src={card.productImageUrl} alt="" />
+                {/* price */}
+                <div className="">
+                <p className="text-[16px] ">${card.productPrice}</p>
                 </div>
-                {/* details */}
-                <div className="flex gap-2 flex-col  h-[100px]   ">
-                  <div className="  outfit flex flex-col ">
-                    <h1 className="text-[16px] font-semibold">{card.productName}</h1>
-                    <p className="text-[16px] pt-3"><span className="outfit opacity-70">Price :</span> <span className="font-semibold">{card.productPrice}$</span></p>
-                  </div>
-                  <div className="flex gap-3 items-center">
-                    <p className="text-[16px] outfit opacity-50">Quantity :</p> 
-                    <button onClick={() => countDecrement(card)}  className="rounded-xl  w-8 h-8 bg-[#219653] text-white"><i className="text-[14px] fa-solid fa-minus"></i></button>
+                {/* duantity */}
+                  <div className="flex gap-3 items-center w-[60px] overflow-visible">
+                    <button onClick={() => countDecrement(card)}  className="rounded-xl  w-[32px] h-8"><i className="text-[14px] fa-solid fa-minus"></i></button>
                     <p className=" w-5 flex items-center justify-center text-[16px]">{card.count}</p>
-                    <button onClick={() => countIncrement(card)} className="rounded-xl w-8 h-8 bg-[#219653]  text-white"><i className="text-[14px] fa-solid fa-plus"></i></button>
+                    <button onClick={() => countIncrement(card)} className="rounded-xl w-8 h-8"><i className="text-[14px] fa-solid fa-plus"></i></button>
                   </div>
-                </div>
                 {/* delete icon */}
-                <div>
-                  <i onClick={()=> handlRemove(card)} className="cursor-pointer absolute top-7 right-6 text-[red] fa-solid fa-trash"></i>
+                <div className="w-[45px] flex justify-center">
+                  <button onClick={()=> handlRemove(card)} className="cursor-pointer  text-[#DB4444] ">Delete</button>
                 </div>
+                
+              {/* check icon */}
+              <div className="w-[62px] flex justify-center">
+              <div onClick={() => handleCheck(card)} className={`cursor-pointer w-7  h-7 flex justify-center items-center rounded-md ${checkedArr.some(item => item._id === card._id)? 'text-[#013D29] border-[#013D29]':'text-gray-300 border-gray-300'}  border-[2px] `}>
+              <i className="  fa-solid fa-check"></i>
+            </div>
+            </div>
+
               </div>
             )} return null;
           })
@@ -171,8 +179,8 @@ import { toast , ToastContainer} from "react-toastify";
         }
 
         {/* Order Summary */}
-        <div className="w-[40%] py-5 ">
-          <div className="outfit text-[16px] bg-white h-full w-full rounded-lg p-5 flex flex-col gap-3  ">
+        {CartData?.length>0 && <div className="flex  justify-end w-full py-5 ">
+          <div className="outfit text-[16px] w-[40%] border-black border-[2px] bg-white h-full  rounded-lg p-5 flex flex-col gap-3  ">
             <p className="text-[20px]">Order Summary</p>
             <div className="flex flex-col ">
               <span className="w-[30%] outfit ">Address</span>
@@ -190,10 +198,10 @@ import { toast , ToastContainer} from "react-toastify";
               <span>Total</span>
               <span>USD.{price}</span>
             </div>
-            {next<1 && <button onClick={()=> itemCount>0 && address.length >0  ?  setNext(1):toast.error("you did not mention the delivery address or not selected products")} className={` ${itemCount>0 && address.length > 0 ?'curser-pointer': 'cursor-not-allowed'} w-full bg-[#013D29] text-white py-2 rounded-lg`}>PROCEED TO CHECKOUT ({itemCount})</button>
+            {next<1 && <button onClick={()=> itemCount>0 && address.length >0  ?  setNext(1):toast.error("you did not mention the delivery address or not selected products")} className={` ${itemCount>0 && address.length > 0 ?'curser-pointer': 'cursor-not-allowed'} w-full bg-[#DB4444] text-white py-2 rounded-lg`}>PROCEED TO CHECKOUT ({itemCount})</button>
           }
           </div>
-        </div>    
+        </div>}    
       </div>
       </div>
       <Footer />

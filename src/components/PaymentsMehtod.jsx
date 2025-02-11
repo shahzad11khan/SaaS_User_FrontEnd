@@ -12,8 +12,8 @@ export const PaymentsMehtod = ({setNext}) => {
         setNext(link)
     }
   return (
-    <div className="flex flex-col items-center gap-5 py-5  w-[60%] ">
-        <div className="p-5 bg-[#FCF5DC]  flex justify-start gap-5 flex-wrap rounded-lg">
+    <div className="flex flex-col items-center gap-5 py-5  w-full ">
+        <div className="p-5  flex justify-start gap-5 flex-wrap rounded-lg">
             <h1 className="bg-white w-full px-5 text-[30px] font-semibold rounded-lg">Select Payment Method</h1>
             {
                 acounts.map((el , idx)  => 

@@ -84,9 +84,8 @@ function Card({data}){
             carts[existingCartIndex].count += 1;
             toast.info(`${card.productName} count updated in cart`);
         } else {
-            card.clintId = decodedToken.userId;
-            card.count = 1;
-            carts.push(card);
+            let updatedCard ={...card,clintId:decodedToken.userId , count:1};
+            carts.push(updatedCard);
             toast.success(`${card.productName} added to cart`);
         }
         localStorage.setItem('cart', JSON.stringify(carts));    
@@ -119,7 +118,7 @@ function Card({data}){
                     </div>
                 }
                 {/* add to cart Button */}
-                <button onClick={()=>CartClick(data)} className="absolute bottom-0 w-full bg-[black] py-2 px-3 text-white outfit ">
+                <button onClick={()=>CartClick(data)} className="absolute  bottom-0 w-full bg-[black] py-2 px-3 text-white outfit ">
                     Add To Cart
                 </button>
             </div>
