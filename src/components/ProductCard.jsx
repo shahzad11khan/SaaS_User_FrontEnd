@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import CardRating from "./CardRating"
-import Union from '../assets/Card/Union.svg'
+// import Union from '../assets/Card/Union.svg'
 import { useNavigate } from "react-router-dom";
 // import { toast ,ToastContainer} from "react-toastify";
 // import { jwtDecode } from "jwt-decode";
@@ -41,40 +41,39 @@ export const ProductCard = ({data}) => {
     // };
   
   return (
-    <div className="w-[280px] ">
-      {/* <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" /> */}
+    <div  className="pb-2  relateive shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
+    {/* image with heart icon view icon */}
+    <div className="relative">
         {/* image */}
-        <div className="relative">
-            <img className=" w-full h-[150px] object-cover border rounded-lg" src={data.productImageUrl} alt="" />
-        </div>
-        {/* title  */}
-        <div className="flex justify-between pt-3 px-3">
-            <div className="flex justify-start items-center">
-                <CardRating  rating={data.rating}/>
+        <img className="w-full h-[250px] object-cover " src={data.productImageUrl} alt="" />
+        {/* sale tag */}
+        {data.productTag && 
+            <div  className="absolute top-3 left-3 bg-[#DB4444] text-white px-2 py-2 rounded-full flex justify-end items-center gap-2">                    
+                <p className="outfit text-[12px]">Flat {data.productTag}</p>
             </div>
-            {
-            data.rating &&
-            <div  className="flex justify-end items-center gap-2">
-              <img src={Union} alt="" />
-              <p className="outfit text-[12px]">Flat {data.productTag }</p>
-            </div> 
-            }
-        </div>
-        {/* rating & sale */}    
-        <div  className="relative flex flex-col gap-1 pt-3 px-3">
-            <h1 className="text-[16px] font-[600] outfit">{data.productName}</h1>
-        </div>
-        {/* price & button */}
-        <div className="flex justify-between  items-center px-3 py-3">
-          <h1 className="text-[16px] font-[600] outfit">$ {data.productPrice} </h1>
-          <span className="flex gap-2">
-            <button onClick={()=> handleView(data._id)}  className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">view</button>
-            {/* <button onClick={()=>CartClick(data)}  className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">
-                Add To Cart
-            </button> */}
-          </span>
-        </div>
+        }
+
     </div>
+
+
+    <h1 className="px-2 text-[20px] font-[400] outfit">{data.productName}</h1>
+
+    {/* title and price */}
+    <div className="flex justify-between items-end px-2">
+    <div  className=" flex flex-col  h-auto]">
+        <div className="flex flex-wrap justify-start gap-1 items-center">                
+            <CardRating rating={data?.rating}/>
+        </div>
+        <p className="outfit font-[600] text-[#DB4444] text-[18px]">${data.productPrice}</p>
+    </div>
+    <button onClick={()=> handleView(data._id)}  className=" bg-[black] py-1 px-3 rounded-full text-white outfit ">
+        view Product
+    </button> 
+    </div>
+
+<div >
+</div>
+</div>
   )
 }
 ProductCard.propTypes = {

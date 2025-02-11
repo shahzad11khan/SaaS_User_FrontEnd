@@ -29,7 +29,7 @@ export const ProductsByCategory = () => {
   return (
     <>
     <Header />
-    <div className=' flex justify-center bg-[#3b3b3b] py-20  '>
+    <div className=' flex justify-center  py-10  '>
       <div className='w-[1200px] flex gap-5'>
         <Sidebar lowToHigh ={sortLowToHigh} highToLow={sortHighToLow} viewByCtgry={showByCtgry} products={products} />
         <Main products={Products}/>
