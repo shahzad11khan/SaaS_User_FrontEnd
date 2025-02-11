@@ -16,7 +16,7 @@ export const Overview = () => {
             <div className='mx-5 md:w-[1200px] flex  flex-col md:flex-row gap-5  justify-between '>
         {cardArr.map((el ,idx)=>(
             <div className=' flex items-center gap-5 md:gap-3 md:w-[30%] '  key={idx}>
-                <img className='h-[50px] w-[50px]' src={el[0]} alt="" />
+                <img className='h-[50px] w-[50px] text-[#DB4444]' src={el[0]} alt="" />
                 <div className='w-[230px]'>
                     <h1  className='text-[20px] font-semibold md:text-[18px] outfit'>{el[1]}</h1>
                     <p className='text-[14px] outfit opacity-50 md:optacity-100'>{el[2]}</p>

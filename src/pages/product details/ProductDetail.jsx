@@ -35,7 +35,6 @@ export const ProductDetail = () => {
     let decrementCount = () => {
         setCount(preValue => preValue>1 ? preValue - 1 : 1)
     }
-    console.log(jwtDecode(token))
     let CartClick = async (card) => {
         if (!token) {
             return toast.error('You need to login first');

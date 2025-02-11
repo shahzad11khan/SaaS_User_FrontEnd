@@ -26,14 +26,14 @@ export const SubCategory = ({setProduct , setCategoryName}) => {
     }
   return (
     <>
-    <div className='relative top-[-20px] flex gap-10 flex-col items-center bg-[#F9F9F9]pt-[360px] md:pt-[100px]'>
+    <div className=' flex gap-10 flex-col items-center bg-[#F9F9F9]pt-[360px] md:pt-[50px]'>
         <div className='hidden md:block'>    
             <div className='w-[1200px] flex gap-5  justify-start '>
                 {products?.map((el,idx)=>(
                     <div className='cursor-pointer' onClick={() => handleCtgryClick(el.productSubCategory)} key={idx}>
                         {
                             el.productSubCategory&&
-                            <div  className={`w-[100px] h-[70px] flex justify-center items-center px-5 rounded-2xl ${ el.productSubCategory === clicked && 'underline underline-offset-8 font-bold decoration-[3px]'} `} >
+                            <div  className={`w-[100px] h-[60px] flex justify-center items-center px-5 rounded-2xl ${ el.productSubCategory === clicked && 'underline underline-offset-8 font-bold decoration-[3px]'} `} >
                                 <p className='text-center text-16px outfit'>{el.productSubCategory.toUpperCase()}</p>
                             </div>
                         }

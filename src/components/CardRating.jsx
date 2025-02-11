@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
     return(
         <>
             {arr.map((el ,index) =>(
-            <img className="h-[18px] w-[18px]" src={el.star} alt="star" key={index} />
+            <img className="h-[15px] w-[15px]" src={el.star} alt="star" key={index} />
             ))}
             {halfStar && <i className=" mt-[3px] text-[#FFC633] flex items-center fa-solid fa-star-half h-[18px] "></i> }
         </>

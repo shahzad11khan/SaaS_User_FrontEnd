@@ -102,12 +102,12 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
   };
 
   return (
-    <div className='mx-4 z-20 relative md:flex justify-center'>
+    <div className='mx-4 z-20 relative  md:flex justify-center'>
       <ToastContainer position='top-right' autoClose={2000} hideProgressBar={false} />
-      <div className='shadow-xl top-[-45px] w-full absolute md:w-[1200px] bg-white rounded-lg p-5'>
+      <div className='shadow-[#EDEDED] shadow-lg top-[-45px] w-full absolute md:w-[1200px] bg-white rounded-lg p-5'>
         <form onSubmit={handleSearchSubmit} className='flex flex-col md:flex-row md:flex-wrap gap-3 justify-center items-center'>
           {/* Category */}
-          <select onChange={handleCategory} name='SelectedCategory' value={form.SelectedCategory} className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
+          <select onChange={handleCategory} name='SelectedCategory' value={form.SelectedCategory} className=' cursor-pointer outline-none w-full md:w-[30%] rounded-lg h-[44px] px-4  bg-[#F5F5F5]' required>
             <option value=''>{t('hero.searchForm.selectCategory')}</option>
             {categories.map((cat, index) => (
               <option key={index} value={cat}>
@@ -116,7 +116,7 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
             ))}
           </select>
             {/* subCategory */}
-          <select onChange={handleSubCategory} name='selectedSubCategory' value={form.selectedSubCategory} className='w-full md:w-[30%] rounded-lg h-[44px] px-4 border bg-[#F9F9F9]' required>
+          <select onChange={handleSubCategory} name='selectedSubCategory' value={form.selectedSubCategory} className='w-full md:w-[30%] rounded-lg h-[44px] px-4 cursor-pointer bg-[#F5F5F5]' required>
             <option value=''>{t('hero.searchForm.selectSubCtgry')}</option>
             {subCategories.map((sub, index) => (
               <option key={index} value={sub}>
@@ -127,11 +127,11 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
             {/* search Input */}
           <span className='w-full md:w-[25%] relative'>
             <img className='absolute top-3 left-3' src={VectorIcon} alt='search' />
-            <input onChange={handleSearachInput} value={form.search} placeholder={t('hero.searchForm.placeHolder')} className='w-full h-[44px] px-9 rounded-lg border' type='text' name='search' required />
+            <input onChange={handleSearachInput} value={form.search} placeholder={t('hero.searchForm.placeHolder')} className='w-full h-[44px] px-9 rounded-lg bg-[#F5F5F5]' type='text' name='search' required />
           </span>
             {/* button */}
           <span className='w-full md:w-[10%] flex items-center justify-center'>
-            <button type='submit' className='bg-[#013D29] w-full rounded-full text-white py-1 px-5'>
+            <button type='submit' className='bg-[#DB4444] w-full rounded-full text-white py-1 px-5'>
               {t('hero.searchForm.button')}
             </button>
           </span>

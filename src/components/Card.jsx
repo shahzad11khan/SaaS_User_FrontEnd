@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import CardRating from "./CardRating"
-import Union from '../assets/Card/Union.svg'
+// import Union from '../assets/Card/Union.svg'
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import { setCartCount, resetCartCount, addCart } from "../slices/cartSlice";
@@ -9,8 +9,9 @@ import { removeFavourite ,setFavouriteCount,resetFavouriteCount, addFavourite,} 
 
 import { jwtDecode } from "jwt-decode"
 import { toast , ToastContainer } from "react-toastify";
-
+import { useNavigate } from "react-router-dom";
 function Card({data}){
+    const navigate = useNavigate()
     
     let token = useSelector(state => state.auth.token) 
     let dispatch = useDispatch();
@@ -47,11 +48,12 @@ function Card({data}){
             }
             const decodedToken = jwtDecode(token);
             console.log(card)
-            card.clintId =  decodedToken.userId
+            let newCard = { ...card, clintId: decodedToken.userId };
+
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
             if(heart === false){
-                favorites.push(card)
+                favorites.push(newCard)
                 localStorage.setItem('favorites', JSON.stringify(favorites))
                 dispatch(addFavourite())
             } else{
@@ -90,45 +92,57 @@ function Card({data}){
         localStorage.setItem('cart', JSON.stringify(carts));    
         dispatch(addCart());
     }
+    let handleView = (id) =>{
+        navigate(`/product/details/${id}`)
+      }
 
     return(
-        <div  className=" shadow-2xl bg-white shadow-gray-100 rounded-lg overflow-hidden ">
+        <div  className="pb-2  relateive shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
             <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
-            {/* image with heart icon */}
+            {/* image with heart icon view icon */}
             <div className="relative">
-                <img className="w-[330px] h-[200px] object-cover " src={data.productImageUrl} alt="" />
-                <div className="absolute top-4 right-4 w-[30px] h-[30px] bg-white rounded-full flex justify-center items-center">
-                    <svg onClick={()=> heartClick(data)} className={`w-6 h-6 cursor-pointer ${heart ? 'fill-[#ff0000] ' : ''}`} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* image */}
+                <img className="w-full h-[250px] object-cover " src={data.productImageUrl} alt="" />
+                <div className="absolute top-3 right-3 flex flex-col  gap-3 justify-center items-center">
+                    {/* heart icon */}
+                    <svg onClick={()=> heartClick(data)} className={` bg-white w-8 h-8 p-1 rounded-full cursor-pointer ${heart ? 'fill-[#ff0000] ' : ''}`} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path style={{stroke: heart ? "#ff0000" : ""}} d="M2.39192 10.1621C1.49775 7.37242 2.54275 4.18387 5.47359 3.24038C7.01525 2.74324 8.71692 3.03636 9.99859 3.99984C11.2111 3.06301 12.9753 2.74657 14.5153 3.24038C17.4461 4.18387 18.4978 7.37242 17.6044 10.1621C16.2128 14.5839 9.99859 17.9898 9.99859 17.9898C9.99859 17.9898 3.83025 14.6355 2.39192 10.1621Z" stroke="#130F26"/>
                         <path style={{stroke: heart ? "#ff0000" : ""}} d="M13.332 6.08398C14.2237 6.37232 14.8537 7.16815 14.9295 8.10232" stroke="#130F26" />
                     </svg>
+                    {/* eye icon */}
+                    <i onClick={()=> handleView(data._id)}  className=" bg-white flex justify-center items-center  w-8 h-8 p-1 rounded-full cursor-pointer fa-regular fa-eye"></i>
                 </div>
-            </div>
-
-            {/* rating & sale */}
-            <div className="flex justify-between pt-3 px-3">
-                <div className="flex justify-start items-center">
-                    <CardRating rating={data?.rating}/>
-                </div>
-                <div  className="flex justify-end items-center gap-2">
-                    <img src={Union} alt="" />
-                    <p className="outfit text-[12px]">Flat {data.productTag}</p>
-                </div>
-            </div>
-
-            {/* title & location */}
-            <div  className="relative flex flex-col gap-1 pt-3 px-3">
-                <h1 className="text-[24px] font-[600] outfit">{data.productName}</h1>
-                <p className="outfit font-bold text-[18px]">$ {data.productPrice}</p>
-            </div>
-            <hr className="mt-3 mx-3 "/> 
-            {/* button */}
-            <div className="flex justify-end px-3 py-3">
-                    <button onClick={()=>CartClick(data)} className="bg-[#219653] py-1 px-3 text-white outfit rounded-full">
+                {/* sale tag */}
+                {data.productTag && 
+                    <div  className="absolute top-3 left-3 bg-[#DB4444] text-white px-2 py-2 rounded-full flex justify-end items-center gap-2">                    
+                        <p className="outfit text-[12px]">Flat {data.productTag}</p>
+                    </div>
+                }
+                {/* add to cart Button */}
+                <button onClick={()=>CartClick(data)} className="absolute bottom-0 w-full bg-[black] py-2 px-3 text-white outfit ">
                     Add To Cart
                 </button>
             </div>
-        </div>
+
+
+            <h1 className="px-2 text-[20px] font-[400] outfit">{data.productName}</h1>
+
+            {/* title and price */}
+            <div className="flex justify-between items-end px-2">
+            <div  className=" flex flex-col  h-auto]">
+                <div className="flex flex-wrap justify-start gap-1 items-center">                
+                    <CardRating rating={data?.rating}/>
+                </div>
+                <p className="outfit font-[600] text-[#DB4444] text-[18px]">${data.productPrice}</p>
+            </div>
+            <button onClick={()=> handleView(data._id)}  className=" bg-[black] py-1 px-3 rounded-full text-white outfit ">
+                view Product
+            </button> 
+            </div>
+       
+        <div >
+    </div>
+</div>
     )
 }
 

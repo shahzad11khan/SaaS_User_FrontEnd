@@ -8,14 +8,14 @@ export const AppBanner = () => {
     <>
     {/* mobil app banner */}
     <div className="px-4  flex w-full justify-center    rounded-lg ">
-        <div className=" mx-4  pt-10 md:pt-0  md:h-[600px] flex flex-col md:flex-row items-center justify-center w-[1200px] h-[550px] bg-[#F0FFF8] rounded-xl ">
+        <div className=" mx-4  pt-10 md:pt-0  md:h-[600px] flex flex-col md:flex-row items-center justify-center w-[1200px] h-[550px] bg-[black] text-white rounded-xl ">
             <div className='full md:w-[40%]'>
-                <div className="w-[200px] h-[200px] md:w-[386px] md:h-[386px] rounded-full flex items-center bg-[#B6E0CA]">
+                <div className="w-[200px] h-[200px] md:w-[386px] md:h-[386px] rounded-full flex items-center bg-[#3b3b3b]">
                     <img src={mobile} alt="app" />
                 </div>
             </div>
             <div className='flex px-5 md:px-0  flex-col gap-5 md:w-[50%]'>
-                <h1 className="text-[34px] outfit md:text-[54px] font-semibold leading-[40px] md:leading-[60px]">{t('appBanner.mobile.heading.0')}<span className="text-[#219653]">{t('appBanner.mobile.heading.1')}</span></h1>
+                <h1 className="text-[34px] outfit md:text-[40px] font-semibold leading-[40px] md:leading-[60px]">{t('appBanner.mobile.heading.0')} <span className="text-[#DB4444]">{t('appBanner.mobile.heading.1')}</span></h1>
                 <p className=' text-[14px] outfit'>{t('appBanner.mobile.paragraph')}</p>
                 {/* <div className='flex flex-col items-center md:flex-row gap-5'>
                     <img className='h-[50px] w-[160px]' src="https://s3-alpha-sig.figma.com/img/054d/6736/31fd8c66307e5a0eb0a2a8e6810ee27d?Expires=1736121600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=STo5aWvTlTiwKObsrQ-Sidw0HHO2SA8K1dsaXSbl3K3d9AdfN~H8-vznMkkOhID8cKFhcD-TpCjcH13XtdZMirT8pK3qhgpTBh~GKJYi9Smst8dvFdd~eRKexXOi0U0KZwwVqBuUolu333TnItDrMqOnBPP40lhMEpmoi4Nv-biELAqLUSIjCwhGgez5OAiF6wvjoWYutbGB3D7T5k8gEKwec9iQX-pqyyvauFeAzYRIPixfFgttf6mqF5POQZiEU38gw3EO5CNXMfQYqn1DijklCkzUHvuGKKa3n5Bbc0cMiFD7qdNfLac4F2-9PPhAYyeI7FraZOTLhocZ0hRm3g__" alt="" />
@@ -36,11 +36,11 @@ export const AppBanner = () => {
         </div>
     </div>
     {/* inquiries with button */}
-    <div className={`relative flex justify-center bg-[#F0FFF8] `} >
+    <div className={`relative flex justify-center bg-[#3b3b3b] text-white`} >
         {/* <img className='absolute right-0 z-0 color-[#F0FFF8] ' src={inquiriBg} alt="" /> */}
         <div className='z-10 flex flex-col md:flex-row gap-5 md:gap-10  items-center py-20'>
             <p className='text-center  w-[70%] md:w-auto text-[24px] outfit font-600'>{t('appBanner.inquiries.paragraph')}</p>
-            <button className="outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('appBanner.inquiries.bText')}</button>
+            <button className="outfit text-[16px] rounded-full py-3 px-5 bg-[#DB4444]  ">{t('appBanner.inquiries.bText')}</button>
         </div>
     </div> 
     </>

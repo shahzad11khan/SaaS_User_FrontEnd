@@ -19,28 +19,28 @@ export const Home = () => {
 
   let [searchProducts , setProduct] = useState(null)
   let [categoryName , setCategoryName] = useState(null)
-  let icons= [
-    {id:'header', icon : 'fa-arrow-up'},
-    {id:'hero', icon: 'fa-magnifying-glass'},
-    {id:'deals', icon:'fa-square'},
-    {id:'dealsOfDay',icon:'fa-table'},
-    {id:'app',icon:'fa-gamepad'},
-    {id:'footer',icon:'fa-arrow-down'}
-  ]
+  // let icons= [
+  //   {id:'header', icon : 'fa-arrow-up'},
+  //   {id:'hero', icon: 'fa-magnifying-glass'},
+  //   {id:'deals', icon:'fa-square'},
+  //   {id:'dealsOfDay',icon:'fa-table'},
+  //   {id:'app',icon:'fa-gamepad'},
+  //   {id:'footer',icon:'fa-arrow-down'}
+  // ]
 
-  const scrollToSection = (id) => {
-    console.log(id)
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToSection = (id) => {
+  //   console.log(id)
+  //   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  // };
   return (
     <>
-    <div className='fixed  z-50 top-[200px] bg-white w-[50px] rounded-lg'>
+    {/* <div className='fixed  z-50 top-[200px] bg-white w-[50px] rounded-lg'>
       {icons.map((el ,idx)=>(
       <div key={idx} onClick={() => scrollToSection(el.id)} className='h-[50px] w-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer'>
         <i className={`text-[20px] fa-solid ${el.icon} `}></i>
       </div>
       ))}
-    </div>
+    </div> */}
     <div id="header">
       <Header />
     </div>

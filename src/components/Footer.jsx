@@ -13,7 +13,7 @@ export default function Footer(){
     let payment =[Visa , Mastercard , Paypal , Pay ];
     return( 
     
-        <div className=" ">
+        <div className="bg-black text-white ">
             <div className=" px-5 flex  justify-center py-10 md:py-20">
                 <div className='flex flex-col md:flex-row gap-10 justify-between w-[1200px]'>
                     <div className=' w-[60px] h-[60px]' ><img className='h-full w-full' src={Logo} alt="logo" /></div>
@@ -36,7 +36,7 @@ export default function Footer(){
                         <h1 className='text-[18px] oufit font-semibold'>{t('footer.top.payment')}</h1>
                             <div className='flex gap-2 pt-3'>
                                 {payment.map((el,idx) =>(
-                                    <div className='border py-2 px-1' key={idx}>
+                                    <div className='border  bg-white rounded-lg py-2 px-1' key={idx}>
                                         <img className='h-[16px] w-[50px] object-contain' src={el} alt="payment" />
                                     </div>
                                 ))}

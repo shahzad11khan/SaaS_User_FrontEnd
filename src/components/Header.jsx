@@ -1,8 +1,8 @@
 
 import NotificationIcon from '../assets/icons/Notification.svg';
-import Logo from '../assets/icons/Deelly Logo.svg';
-import VectorIcon from '../assets/icons/Vector.svg';
-import GroupIcon from '../assets/icons/Group 1000001661.svg';
+// import Logo from '../assets/icons/Deelly Logo.svg';
+// import VectorIcon from '../assets/icons/Vector.svg';
+// import GroupIcon from '../assets/icons/Group 1000001661.svg';
 // import BuyIcon from '../assets/icons/Buy.svg';
 import Heart from '../assets/Card/Heart.svg'
 import ProfileIcon from '../assets/icons/Profile.svg';
@@ -92,9 +92,9 @@ useEffect(()=>{
 
   return (
     <>
-    < div className=''>
+    < div className=' bg-white'>
     {/* upper header  */}
-    <div className="h-[44px] bg-[#013D29] hidden md:flex justify-between items-center px-6  ">
+    <div className="h-[44px] bg-black hidden md:flex justify-between items-center px-6  ">
     <div className="flex gap-3 ">
       <img src={NotificationIcon} alt="icon" />
       <p className="text-[14px] text-white outfit">
@@ -118,53 +118,54 @@ useEffect(()=>{
       <div onClick={()=> setNavbar(!navbar)} className="cursor-pointer md:hidden" >
         {navbar? <i className="h-[24px] w-[24px] text-[24px] fa-solid fa-xmark"></i> : <img src={Menu} className="h-[24px] w-[24px] "/>}
       </div>
-      <Link to={'/'}>      
-        <img src={Logo} alt="logo" />
+      <Link to={'/'} className='text-[40px] font-600'>      
+      Deelly
+        {/* <img src={Logo} alt="logo" /> */}
       </Link>
-      <select className='cursor-pointer h-[40px] outfit  px-5 border border-[#219653] rounded-full hidden md:flex ' name="country" id="country">
+      {/* <select className='cursor-pointer h-[40px] outfit  px-5 border border-[#219653] rounded-full hidden md:flex ' name="country" id="country">
         <option value=""> {t('header.middle.select.pak')}</option>
         <option value="">{t('header.middle.select.cad')}</option>
         <option value="uk">{t('header.middle.select.uk')}</option>
-      </select>
+      </select> */}
     </div>
     <div>
       <div className='flex  gap-7 relative px-6  '>
         <div className=' gap-3 hidden md:flex '>
-          <form  onSubmit={searchSubmit} >
-            <button type="submit" className="cursor-pointer absolute top-3 left-8">
-              <img src={VectorIcon} alt="search" />
+          <form   onSubmit={searchSubmit} >
+            <input  value={search} onChange={SearchChange} placeholder='what are you looking for?' className='bg-[#F5F5F5] outline-none h-[44px]  pl-3 w-[300px] rounded-full border border-solid border-[#F5F5F5]' type="text" name="search" id="search" />
+            <button type="submit" className="cursor-pointer relative  top- right-9">
+            <i className=" text-[20px] text-[gray] fa-solid fa-magnifying-glass"></i>            
             </button>
-            <input  value={search} onChange={SearchChange} className=' outline-none h-[44px]  px-9 rounded-full border border-solid border-grey' type="text" name="search" id="search" />
           </form>
-          <img src={GroupIcon} alt="group" />
+          {/* <img src={GroupIcon} alt="group" /> */}
         </div>
         <div className=' flex  gap-2 h-[40px] pl-3'>
           {/* favorite & cart  icons */}
           {token?
           <>
-            <Link to="/favorite" className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+            <Link to="/favorite" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
-              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
             </Link>
-            <Link to={'/cart'} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+            <Link to={'/cart'} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
-            <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
+            <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </Link>
           </>
           :
           <>
-            <div onClick={() => setLoginView(true)}  className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+            <div onClick={() => setLoginView(true)}  className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
-              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] text-white w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
             </div>
-            <div onClick={() => setLoginView(true)} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#E9E9E9] flex justify-center items-center'>
+            <div onClick={() => setLoginView(true)} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
-            <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#fcefc0] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
+            <div className=' absolute top-[-5px] right-[-5px] rounded-full ] bg-[#DB4444] text-[white] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </div>
           </>
           }
           
-            <span onClick={()=> setProfile(!profile)} className='cursor-pointer w-[40px] rounded-full h-[40px] bg-[#E9E9E9]  items-center hidden md:flex  justify-center'>
+            <span onClick={()=> setProfile(!profile)} className='cursor-pointer w-[40px] rounded-full h-[40px] bg-[#F5F5F5]  items-center hidden md:flex  justify-center'>
                 <img src={ProfileIcon} alt="profile" />
             </span>
             {/* login signup and profile log oout  routes button*/}
@@ -190,10 +191,10 @@ useEffect(()=>{
   <div  className='bg-[#EDEDED] h-[1px]'><br /></div>
   
   {/* bottom header */}
-  <div className='  gap-20 h-[60px] pl-[60px] px-6 hidden md:flex '>
+  <div className='    gap-20 h-[60px] pl-[60px] px-6 hidden md:flex '>
   {categories?.map((el,idx) =>(
     <div className={`flex ${category && category === el && 'underline underline-offset-8 font-bold decoration-[3px]'}`} key={idx}>
-        <Link to={`/${el}`} className={` cursor-pointer flex items-center gap-2 outfit text-[14px] `}>{el.toUpperCase()}</Link>
+        <Link to={`/${el}`} className={`  cursor-pointer flex items-center gap-2 outfit text-[18px]   `}>{el.toUpperCase()}</Link>
     </div>
   ))}
   </div>
