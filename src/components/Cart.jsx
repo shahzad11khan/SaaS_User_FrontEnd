@@ -113,7 +113,7 @@ import { toast , ToastContainer} from "react-toastify";
       <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
 
       <Header />
-      <div className=" flex justify-center bg-[#FCF5DC]">
+      <div className=" flex justify-center bg-[#3b3b3b]">
       <div className="flex gap-5 w-[1200px]   ">
         
         {next === 0  ?
@@ -171,7 +171,7 @@ import { toast , ToastContainer} from "react-toastify";
         }
 
         {/* Order Summary */}
-        <div className="w-[40%] py-5">
+        <div className="w-[40%] py-5 ">
           <div className="outfit text-[16px] bg-white h-full w-full rounded-lg p-5 flex flex-col gap-3  ">
             <p className="text-[20px]">Order Summary</p>
             <div className="flex flex-col ">

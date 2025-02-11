@@ -145,22 +145,22 @@ useEffect(()=>{
           <>
             <Link to="/favorite" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
-              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full text-white text-[12px] bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
             </Link>
             <Link to={'/cart'} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
-            <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
+            <div className=' absolute top-[-5px] right-[-5px] rounded-full text-white text-[12px]  bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </Link>
           </>
           :
           <>
             <div onClick={() => setLoginView(true)}  className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
-              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] text-white w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
+              <div className=' absolute top-[-5px] right-[-5px] rounded-full bg-[#DB4444] text-[12px] text-white w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
             </div>
             <div onClick={() => setLoginView(true)} className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
               <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
-            <div className=' absolute top-[-5px] right-[-5px] rounded-full ] bg-[#DB4444] text-[white] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
+            <div className=' absolute top-[-5px] right-[-5px] rounded-full ] bg-[#DB4444] text-[12px]  text-[white] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </div>
           </>
           }
