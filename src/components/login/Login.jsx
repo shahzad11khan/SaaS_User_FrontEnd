@@ -73,12 +73,12 @@ function Login({setSignUpView , setLoginView}) {
   return (
     <div className={`flex flex-col justify-center items-center  h-[100vh]`}>  
     <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
-    <div className= " relative w-[400px] h-[80vh] flex flex-col justify-center items-center rounded-xl bg-white">
+    <div className= " relative w-[400px] h-[75vh] flex flex-col justify-center items-center rounded-xl bg-white">
     {!reset?
       <>
-      <h1 className="text-[24px] text-[#219653] outfit md:text-[40px] font-bold">Login</h1>
+      <h1 className="text-[24px] text-[#DB4444] outfit md:text-[36px] font-bold">Login</h1>
       <form onSubmit={handleLogin} className="w-[300px]">
-        <div className="flex gap-1 outfit flex-col mt-4">
+        <div className="flex gap-1 text-[16px] outfit flex-col mt-4">
           <label htmlFor="emails">
             <b>Email</b>
           </label>
@@ -112,12 +112,12 @@ function Login({setSignUpView , setLoginView}) {
         </div>
 
         {/* {error ? ( */}
-        <p onClick={() => setReset(!reset)} className="pt-2 cursor-pointer text-[#219653] font-bold h-[40px]">
-          Reset Password
+        <p onClick={() => setReset(!reset)} className="pt-2 cursor-pointer text-[#DB4444] text-[16px] font-bold h-[40px]">
+          Forgot Password
         </p>
         {/* ) : null} */}
 
-        <button type="submit" className=" bg-[#013D29] outfit text-white py-2 px-4 rounded-full">
+        <button type="submit" className=" bg-[black] outfit text-white text-[16px] py-2 px-4 rounded-full">
           {loading ? 'Logging in...' : 'Log In'}
         </button>
       </form>

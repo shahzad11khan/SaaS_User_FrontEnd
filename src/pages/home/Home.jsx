@@ -41,10 +41,10 @@ export const Home = () => {
       </div>
       ))}
     </div> */}
-    <div id="header">
+    <div id="header"className='relative h-[185px] w-full'>
       <Header />
     </div>
-    <div id="hero">
+    <div id="hero static">
       <Hero setProduct={setProduct} setCategoryName={setCategoryName} />
     </div>
     <div id="deals">

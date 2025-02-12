@@ -94,16 +94,16 @@ function SignUp({ setSignUpView, setLoginView }) {
     <div className="flex flex-col justify-center items-center">
       <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} closeOnClick={false} />
 
-      <div className="flex flex-col justify-center items-center bg-white w-[500px] rounded-lg">
-        <h1 className="text-[24px] text-[#219653] outfit md:text-[40px] font-bold">Sign Up</h1>
+      <div className="flex flex-col h-[95vh] justify-center items-center bg-white w-[500px] rounded-lg">
+        <h1 className="text-[24px] text-[#DB4444] outfit md:text-[36px] font-bold">Sign Up</h1>
 
-        <form onSubmit={handleSignup} className="w-full px-[60px] ">
+        <form onSubmit={handleSignup} className="w-full px-[40px] ">
             {/* User logo */}
           <div  className="relative flex justify-center">
             <img className="h-[120px] w-[120px] rounded-full object-cover" src={ previewUrl} alt="user" />
             <label
               htmlFor="file-input"
-              className="absolute right-[250px] bottom-[2px] hover:bg-[#013D29] text-[#219653] bg-white h-[30px] w-[30px] border rounded-full cursor-pointer flex justify-center items-center"
+              className="absolute right-[37%] bottom-[2px] hover:bg-[#DB4444] hover:text-white text-[#DB4444] bg-white h-[30px] w-[30px] border rounded-full cursor-pointer flex justify-center items-center"
             >
               <i className="fa-regular fa-pen-to-square"></i>
             </label>
@@ -117,9 +117,9 @@ function SignUp({ setSignUpView, setLoginView }) {
             />
           </div>
 
-          <div className="w-full flex gap-2 ">
+          <div className="w-full flex gap-2  ">
             {/* Full Name */}
-            <div className="flex gap-1 outfit flex-col mt-4 w-[50%]">
+            <div className="flex gap-1 outfit flex-col mt-4 w-[50%] ">
               <label htmlFor="fullname"><b>Fullname</b></label>
               <input className="border border-solid border-grey focus:outline-none py-2 pl-2 rounded-lg"
                 id="fullname"
@@ -206,7 +206,7 @@ function SignUp({ setSignUpView, setLoginView }) {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="mt-4 text-white bg-[#013D29] outfit py-2 px-4 rounded-full">
+          <button type="submit" className="mt-4 text-white bg-[black] outfit text-[16px] py-2 px-4 rounded-full">
             {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>

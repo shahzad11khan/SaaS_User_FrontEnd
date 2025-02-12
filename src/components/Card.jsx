@@ -96,7 +96,7 @@ function Card({data}){
       }
 
     return(
-        <div  className="pb-2  relateive shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
+        <div  className="pb-2 relative shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
             <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
             {/* image with heart icon view icon */}
             <div className="relative">

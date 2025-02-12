@@ -92,7 +92,7 @@ useEffect(()=>{
 
   return (
     <>
-    < div className=' bg-white'>
+    < div className='fixed z-50 bg-white w-full'>
     {/* upper header  */}
     <div className="h-[44px] bg-black hidden md:flex justify-between items-center px-6  ">
     <div className="flex gap-3 ">
@@ -113,7 +113,7 @@ useEffect(()=>{
   </div>
     
     {/* middle header */}
-  <div className="h-[80px] flex justify-between items-center px-[30px] md:px-[60px]">
+  <div className=" h-[80px] flex justify-between items-center px-[30px] md:px-[60px]">
     <div className='flex gap-10 items-center md:gap-3'>
       <div onClick={()=> setNavbar(!navbar)} className="cursor-pointer md:hidden" >
         {navbar? <i className="h-[24px] w-[24px] text-[24px] fa-solid fa-xmark"></i> : <img src={Menu} className="h-[24px] w-[24px] "/>}
@@ -163,7 +163,7 @@ useEffect(()=>{
             <div className=' absolute top-[-5px] right-[-5px] rounded-full ] bg-[#DB4444] text-[12px]  text-[white] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </div>
           </>
-          }
+          } 
           
             <span onClick={()=> setProfile(!profile)} className='cursor-pointer w-[40px] rounded-full h-[40px] bg-[#F5F5F5]  items-center hidden md:flex  justify-center'>
                 <img src={ProfileIcon} alt="profile" />
@@ -202,16 +202,16 @@ useEffect(()=>{
 
   </div>
   {loginView ?
-    <div className='absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>     
+    <div className=' fixed  top-0 left-0 flex  items-center justify-center  z-50  bg-[black] w-full h-full  bg-opacity-35 '>     
       <Login setSignUpView={setSignUpView}  setLoginView={setLoginView} />        
-      <i onClick={() => setLoginView(false)} className="relative right-[3%] top-[-35%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
+      <i onClick={() => setLoginView(false)} className="relative right-[3%] top-[-33%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
     </div>
     : null}
 
       {signUpView ?
-    <div className=' absolute top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>
+    <div className=' fixed top-0 left-0 flex  items-center justify-center  z-50  bg-black w-full h-full  bg-opacity-35 '>
         <SignUp  setSignUpView={setSignUpView}  setLoginView={setLoginView} />
-        <i onClick={() => setSignUpView(false)} className="relative right-[3%] top-[-42%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
+        <i onClick={() => setSignUpView(false)} className="relative right-[3%] top-[-43%] cursor-pointer fa-solid fa-xmark  text-[24px]"></i>
     </div>
     : null}
   </>
