@@ -57,9 +57,9 @@ function Login({setSignUpView , setLoginView}) {
 
   useEffect(()=>{
     if (isAuthenticated) {
-      setLoginView(false)    
+      navigate('/home')    
     }
-  },[isAuthenticated ,setLoginView])
+  },[isAuthenticated ])
 
   const handleLoginSuccess =(response) => {
     console.log("Login Success:");

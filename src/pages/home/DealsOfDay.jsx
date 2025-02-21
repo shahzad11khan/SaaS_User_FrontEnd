@@ -14,7 +14,7 @@ export const DealsOfDay = () => {
   // const secondThreeDeals = products?.length>5 && products.slice(3, 6);
 
   const firstThreeDeals = products?.slice(0, 4);
-  const secondThreeDeals = products?.length>5 && products.slice(6, 9);
+  const secondThreeDeals = products?.length>4 && products.slice(4,8);
 
   let showMore=()=>{
     setMore(true)
@@ -54,8 +54,8 @@ export const DealsOfDay = () => {
             {products?.length > 4 &&
             <div className={`text-center outfit font-bold `}>
             {!more
-            ?<button onClick={showMore} className='bg-[#DB4444] py-2 px-5 rounded-full'>show more</button>
-            :<button onClick={showLess} className='bg-[#DB4444] py-2 px-5 rounded-full'>show less</button>
+            ?<button onClick={showMore} className='bg-[#DB4444] text-white py-2 px-5 rounded-full'>show more</button>
+            :<button onClick={showLess} className='bg-[#DB4444] text-white py-2 px-5 rounded-full'>show less</button>
             }
             </div>
             }

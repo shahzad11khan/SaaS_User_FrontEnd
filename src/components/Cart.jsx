@@ -28,8 +28,8 @@ import { toast , ToastContainer} from "react-toastify";
       if(token) {
         setId(jwtDecode(token).userId);  
       }    
-      console.log(jwtDecode(token))
       const storedCart = JSON.parse(localStorage.getItem('cart'));
+      console.log(storedCart)
       setCartData(storedCart);
     }, [token ]);
 
@@ -44,12 +44,12 @@ import { toast , ToastContainer} from "react-toastify";
     let countIncrement=(card)=>{
       console.log(card , CartData)
       let updatedCart = CartData.map((item) =>
-        item._id === card._id && item.clintId === id
+        item._id === card._id 
           ? { ...item, count: item.count + 1 }
           : item
       ); 
       let updatedCheck = checkedArr.map((item) =>
-        item._id === card._id && item.clintId === id
+        item._id === card._id 
           ? { ...item, count: item.count + 1 }
           : item
       ); 
@@ -64,12 +64,12 @@ import { toast , ToastContainer} from "react-toastify";
         return;
       }
       let updatedCart = CartData.map((item) =>
-        item._id === card._id && item.clintId === id && item.count >1
+        item._id === card._id && item.count >1
           ? { ...item, count: item.count - 1 }
           : item
       );
       let updatedCheck = checkedArr.map((item) =>
-        item._id === card._id && item.clintId === id && item.count >1
+        item._id === card._id && item.count >1
           ? { ...item, count: item.count - 1 }
           : item
       ); 
@@ -82,7 +82,7 @@ import { toast , ToastContainer} from "react-toastify";
     
     let handlRemove = (card) => {
       let deletes = CartData.filter((item) =>
-          item._id !== card._id && item.clintId === id
+          item._id !== card._id 
           ?item
           :null
       )
@@ -107,7 +107,18 @@ import { toast , ToastContainer} from "react-toastify";
       console.log(checkedArr)
     } 
   
-
+    const handleCheckout = () => {
+      if(itemCount>0 && address.length >0)  {  
+        if(token){
+          setNext(1)
+        }else{
+          toast.error("you need to login first")
+        }
+      }else{
+        toast.error("you did not mention the delivery address or not selected products")
+      }
+    }
+      
     return (
       <>
       <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
@@ -124,10 +135,10 @@ import { toast , ToastContainer} from "react-toastify";
             <h6>Price</h6>
             <h6>Quantity</h6>
             <h6>Delete</h6>
-            <h6>Selecked</h6>
+            <h6>Selected</h6>
           </div>}
           {CartData?.length>0 ? CartData.map((card,idx)=>{
-            if(card.clintId == id){
+            // if(card.clintId == id){
               return (
               <div className="relative flex justify-between  gap-5 w-full items-center  h-[100px]  bg-white rounded-lg " key={idx}>
                 {/* image  + title*/}
@@ -147,7 +158,7 @@ import { toast , ToastContainer} from "react-toastify";
                   </div>
                 {/* delete icon */}
                 <div className="w-[45px] flex justify-center">
-                  <button onClick={()=> handlRemove(card)} className="cursor-pointer  text-[#DB4444] ">Delete</button>
+                  <i onClick={()=> handlRemove(card)} className="cursor-pointer  text-[#DB4444]  fa-solid fa-trash"></i>
                 </div>
                 
               {/* check icon */}
@@ -158,7 +169,8 @@ import { toast , ToastContainer} from "react-toastify";
             </div>
 
               </div>
-            )} return null;
+            )
+            // } return null;
           })
           :<p className="py-5  w-full rounded-none-lg text-center bg-white "> cart is empty</p>
         }
@@ -198,7 +210,7 @@ import { toast , ToastContainer} from "react-toastify";
               <span>Total</span>
               <span>USD.{price}</span>
             </div>
-            {next<1 && <button onClick={()=> itemCount>0 && address.length >0  ?  setNext(1):toast.error("you did not mention the delivery address or not selected products")} className={` ${itemCount>0 && address.length > 0 ?'curser-pointer': 'cursor-not-allowed'} w-full bg-[#DB4444] text-white py-2 rounded-lg`}>PROCEED TO CHECKOUT ({itemCount})</button>
+            {next<1 && <button onClick={()=> handleCheckout()} className={` ${itemCount>0 && address.length > 0 ?'curser-pointer': 'cursor-not-allowed'} w-full bg-[#DB4444] text-white py-2 rounded-lg`}>PROCEED TO CHECKOUT ({itemCount})</button>
           }
           </div>
         </div>}    

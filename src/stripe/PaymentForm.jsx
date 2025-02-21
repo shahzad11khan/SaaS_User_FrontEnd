@@ -2,11 +2,7 @@
 import { removeOneItemCount } from "../slices/cartSlice";
 import { useDispatch ,useSelector} from "react-redux";
 import  { useState } from "react";
-import {
-    PaymentElement,
-    useStripe,
-    useElements,
-} from "@stripe/react-stripe-js";
+import {    PaymentElement,    useStripe,    useElements,} from "@stripe/react-stripe-js";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../components/apis/BaseUrl";
@@ -19,7 +15,7 @@ import { toast } from "react-toastify";
     // const PAYMENT_SUCESS_URL = "http://localhost:5173/";
 
 const PaymentForm = ({selectedProducts , address}) => {
-    let URL_FOR_ORDER = BASE_URL+ORDERS_MIDDLE_POINT+ORDER_SUBMIT_END_POINT
+    let URL_FOR_ORDER = BASE_URL+ORDERS_MIDDLE_POINT+ORDER_SUBMIT_END_POINT;
     let order =  {
         products:selectedProducts.map(((el )=> {
             return {
@@ -62,17 +58,19 @@ const PaymentForm = ({selectedProducts , address}) => {
                 //     return_url: PAYMENT_SUCESS_URL,
                 // },
             });
-            await axios.post(URL_FOR_ORDER , order, {
+            
+             let response = await axios.post(URL_FOR_ORDER , order, {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
             })
+            toast.success(response.data.message)
             let item = JSON.parse(localStorage.getItem('cart'))
             let filterItem = item.filter((el) => !selectedProducts.some((product) => product.id === el.id))
             let count= item.reduce((accumulater , value)=> accumulater + value.count, 0)
             localStorage.setItem('cart', JSON.stringify(filterItem)); 
             dispatch(removeOneItemCount(count))
-            navigate('/')
+            navigate('/cart')
         }catch(error){
             toast.error(error.response.data.message)
             console.log(error)

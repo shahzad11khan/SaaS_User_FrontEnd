@@ -35,7 +35,6 @@ export const Header = () => {
   let favorite = useSelector(state => state.favorite);
   let cart = useSelector(state => state.cart);
   const {products}  = useSelector(state => state.product);
-
   useEffect(() => {
     // Extract unique categories from `products`
     const uniqueCategories = [...new Set(products?.map((el) => el.productCategory))];
@@ -92,7 +91,7 @@ useEffect(()=>{
 
   return (
     <>
-    < div className='fixed z-50 bg-white w-full'>
+    < div className='sticky top-0 z-50 bg-white w-full'>
     {/* upper header  */}
     <div className="h-[44px] bg-black hidden md:flex justify-between items-center px-6  ">
     <div className="flex gap-3 ">
@@ -120,13 +119,7 @@ useEffect(()=>{
       </div>
       <Link to={'/'} className='text-[40px] font-600'>      
       Deelly
-        {/* <img src={Logo} alt="logo" /> */}
       </Link>
-      {/* <select className='cursor-pointer h-[40px] outfit  px-5 border border-[#219653] rounded-full hidden md:flex ' name="country" id="country">
-        <option value=""> {t('header.middle.select.pak')}</option>
-        <option value="">{t('header.middle.select.cad')}</option>
-        <option value="uk">{t('header.middle.select.uk')}</option>
-      </select> */}
     </div>
     <div>
       <div className='flex gap-7 relative px-6'>
@@ -137,12 +130,11 @@ useEffect(()=>{
             <i className=" text-[20px] text-[gray] fa-solid fa-magnifying-glass"></i>            
             </button>
           </form>
-          {/* <img src={GroupIcon} alt="group" /> */}
         </div>
         <div className=' flex  gap-2 h-[40px] pl-3'>
           {/* favorite & cart  icons */}
-          {token?
-          <>
+          {/* {token?
+          <> */}
             <Link to="/favorite" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
               <div className=' absolute top-[-5px] right-[-5px] rounded-full text-white text-[12px] bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>
@@ -151,7 +143,7 @@ useEffect(()=>{
               <i className=" text-[20px] fa-solid fa-basket-shopping"></i>
             <div className=' absolute top-[-5px] right-[-5px] rounded-full text-white text-[12px]  bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </Link>
-          </>
+          {/* </>
           :
           <>
             <div onClick={() => setLoginView(true)}  className='cursor-pointer relative w-[40px] rounded-full h-[40px] bg-[#F5F5F5] flex justify-center items-center'>
@@ -163,7 +155,7 @@ useEffect(()=>{
             <div className=' absolute top-[-5px] right-[-5px] rounded-full ] bg-[#DB4444] text-[12px]  text-[white] w-5 h-5 outfit flex justify-center items-center'>{cart.count}</div>
             </div>
           </>
-          } 
+          }  */}
           
             <span onClick={()=> setProfile(!profile)} className='cursor-pointer w-[40px] rounded-full h-[40px] bg-[#F5F5F5]  items-center hidden md:flex  justify-center'>
                 <img src={ProfileIcon} alt="profile" />
@@ -198,8 +190,6 @@ useEffect(()=>{
     </div>
   ))}
   </div>
-
-
   </div>
   {loginView ?
     <div className=' fixed  top-0 left-0 flex  items-center justify-center  z-50  bg-[black] w-full h-full  bg-opacity-35 '>     

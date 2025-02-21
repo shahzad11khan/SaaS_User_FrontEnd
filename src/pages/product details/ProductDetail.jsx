@@ -7,11 +7,12 @@ import { Header } from "../../components/Header";
 import CardRating from "../../components/CardRating";
 // import Union from '../../assets/Card/Union.svg'
 import Footer from "../../components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { jwtDecode } from "jwt-decode"
+// import { jwtDecode } from "jwt-decode"
 import { addCart, addOneItemCount } from "../../slices/cartSlice";
+import { addFavourite, removeFavourite } from "../../slices/favoriteSlice";
     
 
 
@@ -20,7 +21,7 @@ export const ProductDetail = () => {
 
     let [count ,setCount] = useState(1);
     let {id} = useParams();
-    let token = useSelector(state => state.auth.token)
+    // let token = useSelector(state => state.auth.token)
     let dispatch = useDispatch();
     let [heart , setHeart] = useState(false);
 
@@ -38,22 +39,23 @@ export const ProductDetail = () => {
         setCount(preValue => preValue>1 ? preValue - 1 : 1)
     }
     let CartClick = async (card) => {
-        if (!token) {
-            return toast.error('You need to login first');
-        }
+        // if (!token) {
+        //     return toast.error('You need to login first');
+        // }
 
         let carts = JSON.parse(localStorage.getItem('cart')) || [];
-        let decodedToken = jwtDecode(token);
+        // let decodedToken = jwtDecode(token);
         console.log(carts)
-        let existingCartIndex = carts.findIndex(cart => cart._id === card._id && cart.clintId === decodedToken.userId);
+        let existingCartIndex = carts.findIndex(cart => cart._id === card._id );
+        console.log(existingCartIndex)
         
-        if (existingCartIndex !== -1 && decodedToken.userId === carts[existingCartIndex].clintId) {
+        if (existingCartIndex !== -1 ) {
             carts[existingCartIndex].count += count;
             toast.info(`${card.productName} count updated in cart`);
         } else {
-            card.userId = decodedToken.id;
-            card.count = count;
-            carts.push(card);
+            // card.userId = decodedToken.id;
+            let newCard = {...card , count : count};
+            carts.push(newCard);
             toast.success(`${card.productName} added to cart`);
         }
 
@@ -64,6 +66,42 @@ export const ProductDetail = () => {
             dispatch(addOneItemCount(count))
         )
     };
+
+    useEffect(()=>{
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        console.log(favorites)
+        const isLiked = favorites.some(fav => fav._id === details._id);
+        console.log(isLiked)
+        setHeart(isLiked);
+    }
+    ,[])
+
+        let heartClick = async() => {
+            try{
+                // if(!token) {
+                //     return toast.error(' you need to login first')
+                // }
+                // const decodedToken = jwtDecode(token);
+                // console.log(card)
+                // let newCard = { ...card, clintId: decodedToken.userId };
+    
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                console.log(favorites)
+                if(heart === false){
+                    favorites.push(details)
+                    localStorage.setItem('favorites', JSON.stringify(favorites))
+                    dispatch(addFavourite())
+                } else{
+                    let updatedArr=  favorites.filter(fav => fav.id != details.id);
+                    localStorage.setItem('favorites' , JSON.stringify(updatedArr))
+                    dispatch(removeFavourite())
+                 }
+    
+                setHeart(!heart)
+            }catch(err){
+                console.log(err)
+            }    
+        }
     
   return (
     <>
@@ -83,7 +121,11 @@ export const ProductDetail = () => {
                 <span className="flex gap-3 items-center">
                     <h2 className="w-20 flex items-center"><CardRating  rating={details?.rating} />({details?.rating})</h2>
                     <span className="w-[2px] h-5 bg-[#c4c2c2]"></span>
-                    <span className="text-[#00FF66]">{details?.productQuantity>5 && 'InStock'}</span>
+                    {details?.productQuantity>5?
+                    <span className="text-[#00FF66]">{ 'InStock'}</span>
+                    :
+                    <span className="text-[#ff0000]">{ 'Out Of Stock'}</span>
+                    }
                 </span> 
                 {/* product price */}
                 <h2  className="outfit text-[30px]">${details?.productPrice}</h2>
@@ -101,7 +143,7 @@ export const ProductDetail = () => {
                 <span className="flex justify-between gap-5 items-center ">
                     <button className=" bg-[#DB4444] py-[7px] px-5 text-[18px] text-white outfit rounded-full">Buy Now</button>
                     <span className="flex gap-5 justify-center items-center h-10">
-                    <button onClick={()=> setHeart(!heart)} className="bg-[#DB4444] flex items-center py-[7px] px-5 text-[18px] text-white outfit rounded-full">     
+                    <button onClick={()=> heartClick()} className="bg-[#DB4444] flex items-center py-[7px] px-5 text-[18px] text-white outfit rounded-full">     
                         <svg className={` rounded-full border-0 cursor-pointer ${heart ? 'fill-[#ff0000] ' : 'fill-white'}`} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path style={{stroke: heart ? "#ff0000" : ""}} d="M2.39192 10.1621C1.49775 7.37242 2.54275 4.18387 5.47359 3.24038C7.01525 2.74324 8.71692 3.03636 9.99859 3.99984C11.2111 3.06301 12.9753 2.74657 14.5153 3.24038C17.4461 4.18387 18.4978 7.37242 17.6044 10.1621C16.2128 14.5839 9.99859 17.9898 9.99859 17.9898C9.99859 17.9898 3.83025 14.6355 2.39192 10.1621Z" stroke="#130F26"/>
                             <path style={{stroke: heart ? "#ff0000" : ""}} d="M13.332 6.08398C14.2237 6.37232 14.8537 7.16815 14.9295 8.10232" stroke="#130F26" />

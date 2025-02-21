@@ -8,14 +8,19 @@ import {Header} from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useEffect, useState } from 'react'
 import {allProducts} from '../../slices/ProductsSlice.js'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { Overview } from './Overview.jsx'
-
+import { getAllCompanies } from '../../slices/companiesSlice.js'
+import ChatBox from '../../components/ChatBox.jsx'
 export const Home = () => {
+  let [ chatBox , setChatBox] = useState(false)
+  let {companyId} = useSelector(state=>state.company)
+  console.log(companyId)
   const dispatch = useDispatch()
-  useEffect(()=>{
+  useEffect(()=>{      
+    dispatch(getAllCompanies())
     dispatch(allProducts())
-  },[dispatch])
+  },[companyId , dispatch])
 
   let [searchProducts , setProduct] = useState(null)
   let [categoryName , setCategoryName] = useState(null)
@@ -41,9 +46,9 @@ export const Home = () => {
       </div>
       ))}
     </div> */}
-    <div id="header"className='relative h-[185px] w-full'>
+    {/* <div id="header"className='sticky top-0 w-full'> */}
       <Header />
-    </div>
+    {/* </div> */}
     <div id="hero static">
       <Hero setProduct={setProduct} setCategoryName={setCategoryName} />
     </div>
@@ -61,6 +66,11 @@ export const Home = () => {
     <div id="footer">
     <Footer />
     </div>
+    
+    <div onClick={() => setChatBox(!chatBox)} className='z-50 fixed bottom-5  right-5 cursor-pointer '>
+      <i className="bg-[#DB4444] p-3 rounded-full text-white fa-brands fa-rocketchat"></i>
+    </div>
+    {chatBox && <ChatBox />}
     </>
   )
 }

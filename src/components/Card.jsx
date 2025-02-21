@@ -3,57 +3,61 @@ import CardRating from "./CardRating"
 // import Union from '../assets/Card/Union.svg'
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
-import { setCartCount, resetCartCount, addCart } from "../slices/cartSlice";
-import { removeFavourite ,setFavouriteCount,resetFavouriteCount, addFavourite,} from "../slices/favoriteSlice";
+import { setCartCount, addCart } from "../slices/cartSlice";
+import { removeFavourite ,setFavouriteCount, addFavourite,} from "../slices/favoriteSlice";
 // import axios from "axios";
 
-import { jwtDecode } from "jwt-decode"
+// import { jwtDecode } from "jwt-decode"
 import { toast , ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { getProductsForCompany } from "../slices/ProductsSlice";
 function Card({data}){
     const navigate = useNavigate()
-    
-    let token = useSelector(state => state.auth.token) 
+    let token = useSelector(state => state.auth.token);
+    const{allCompanies} = useSelector(state => state.company);
+     let company = allCompanies?.filter(company => company._id === data?.userId?.companyId?._id )
+     let companyLogo = company[0]?.companyLogo
     let dispatch = useDispatch();
     let [heart , setHeart] = useState(false);
 
     useEffect(() => {
-        if(token){
-            const decodedToken = jwtDecode(token);
-            const userId = decodedToken.userId;
+        // if(token){
+            // const decodedToken = jwtDecode(token);
+            // const userId = decodedToken.userId;
 
             const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             const carts = JSON.parse(localStorage.getItem('cart')) || [];
 
-            const authFavorites= favorites.filter(el=> el.clintId === userId)
-            const authCarts= carts.filter(el=> el.clintId === userId)
+            // const authFavorites= favorites.filter(el=> el.clintId === userId)
+            // const authCarts= carts.filter(el=> el.clintId === userId)
 
-            const cartCount =  authCarts.reduce((total, item) => total + item.count, 0);
-            const isLiked = authFavorites.some(fav => fav._id === data._id);
+
+            const cartCount =  carts.reduce((total, item) => total + item.count, 0);
+            const isLiked = favorites.some(fav => fav._id === data._id);
             setHeart(isLiked);
 
-            dispatch(setFavouriteCount(authFavorites.length))
+            dispatch(setFavouriteCount(favorites.length))
             dispatch(setCartCount(cartCount))
 
-        }else{
-            dispatch(resetFavouriteCount()) 
-            dispatch(resetCartCount()) 
-        }
+        // }else{
+        //     dispatch(resetFavouriteCount()) 
+        //     dispatch(resetCartCount()) 
+        // }
       }, [data._id ,token ,dispatch , data]);
 
     let heartClick = async(card) => {
         try{
-            if(!token) {
-                return toast.error(' you need to login first')
-            }
-            const decodedToken = jwtDecode(token);
-            console.log(card)
-            let newCard = { ...card, clintId: decodedToken.userId };
+            // if(!token) {
+            //     return toast.error(' you need to login first')
+            // }
+            // const decodedToken = jwtDecode(token);
+            // console.log(card)
+            // let newCard = { ...card, clintId: decodedToken.userId };
 
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
             if(heart === false){
-                favorites.push(newCard)
+                favorites.push(card)
                 localStorage.setItem('favorites', JSON.stringify(favorites))
                 dispatch(addFavourite())
             } else{
@@ -70,21 +74,21 @@ function Card({data}){
 
     let CartClick = async (card) => {
         console.log(card)
-        if (!token) {
-            return toast.error('You need to login first');
-        }
+        // if (!token) {
+        //     return toast.error('You need to login first');
+        // }
 
         let carts = JSON.parse(localStorage.getItem('cart')) || [];
-        let decodedToken = jwtDecode(token)
-        console.log(decodedToken)
+        // let decodedToken = jwtDecode(token)
+        // console.log(decodedToken)
         console.log(carts)
-        let existingCartIndex = carts.findIndex(cart => cart._id === card._id && cart.clintId === decodedToken.userId);
+        let existingCartIndex = carts.findIndex(cart => cart._id === card._id);
         console.log(existingCartIndex)
-        if (existingCartIndex !== -1 && decodedToken.userId === carts[existingCartIndex].clintId) {
+        if (existingCartIndex !== -1) {
             carts[existingCartIndex].count += 1;
             toast.info(`${card.productName} count updated in cart`);
         } else {
-            let updatedCard ={...card,clintId:decodedToken.userId , count:1};
+            let updatedCard ={...card , count:1};
             carts.push(updatedCard);
             toast.success(`${card.productName} added to cart`);
         }
@@ -93,10 +97,20 @@ function Card({data}){
     }
     let handleView = (id) =>{
         navigate(`/product/details/${id}`)
-      }
+    }
 
+    let companyClick = (companyId)=>{
+        console.log(allCompanies)
+        dispatch(getProductsForCompany(companyId))
+        // let company = allCompanies.find(company => company._id === companyId);
+        // if (company) {
+        //     dispatch(selectedCompany(company));
+        // } else {
+        //     console.warn("Company not found!");
+        // }
+    }
     return(
-        <div  className="pb-2 relative shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
+        <div  className=" relative shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
             <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
             {/* image with heart icon view icon */}
             <div className="relative">
@@ -118,28 +132,49 @@ function Card({data}){
                     </div>
                 }
                 {/* add to cart Button */}
-                <button onClick={()=>CartClick(data)} className="absolute  bottom-0 w-full bg-[black] py-2 px-3 text-white outfit ">
+                <button onClick={()=>CartClick(data)} className="absolute  bottom-0 w-full bg-[black] py-1 px-3 text-white outfit ">
                     Add To Cart
                 </button>
             </div>
 
 
-            <h1 className="px-2 text-[20px] font-[400] outfit">{data.productName}</h1>
+            <h1 className="flex justify-between items-center  px-2  outfit">
+                <span className="text-[16px]  font-[600]">
+                    Product
+                </span>
+                <span >
+                {data.productName}    
+                </span>
+            </h1>
+            <h2 onClick={()=>companyClick(data?.userId?.companyId?._id && data?.userId?.companyId?._id)} className="h-5 flex items-center justify-between cursor-pointer hover:underline px-2  outfit">
+                {data?.userId?.companyId?._id&&
+                <>
+                <span className="text-[16px]  font-[600]"> 
+                    Company
+                </span>
+                <span className=" mt-1 flex ">
+                {data?.userId?.companyId?.companyName} 
+                <img src={companyLogo} className="rounded-full w-5 h-5" alt="" />   
+                </span>
+                </>
+                }
+            </h2>
 
-            {/* title and price */}
-            <div className="flex justify-between items-end px-2">
-            <div  className=" flex flex-col  h-auto]">
-                <div className="flex flex-wrap justify-start gap-1 items-center">                
+            {/* raitnh and price */}
+            <div  className="  flex justify-between px-2 items-center h-auto]">
+                <span className="text-[16px]  font-[600]">Rating</span>             
+                <div className="flex  justify-between gap-1 items-center">   
                     <CardRating rating={data?.rating}/>
                 </div>
-                <p className="outfit font-[600] text-[#DB4444] text-[18px]">${data.productPrice}</p>
             </div>
-            <button onClick={()=> handleView(data._id)}  className=" bg-[black] py-1 px-3 rounded-full text-white outfit ">
+            <p className="outfit px-2 flex justify-between font-[600] text-[#DB4444] text-[18px]"><span className="text-[16px]">Price</span> <span >${data.productPrice}</span></p>
+
+            <button onClick={()=> handleView(data._id)}  className="w-full   bg-[black] py-1 px-3  text-white outfit ">
                 view Product
             </button> 
-            </div>
+            {/* </div> */}
        
-        <div >
+         <div >
     </div>
 </div>
     )
@@ -156,6 +191,12 @@ Card.propTypes = {
     productTag: PropTypes.string,
     rating: PropTypes.number,
     productCategory: PropTypes.string.isRequired,
+    userId:PropTypes.shape({
+        companyId:PropTypes.shape({
+            companyName: PropTypes.string,
+            _id: PropTypes.string
+        })
+    })
   }).isRequired
 };
 

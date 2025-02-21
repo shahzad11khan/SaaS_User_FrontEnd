@@ -6,7 +6,8 @@ import profileReducer from '../slices/profileSlice';
 import productsSlice from '../slices/ProductsSlice';
 import { addStateToLocalStorage, loadStateFromLocalStorage } from '../utils/localStorage';
 import resetPasswordSlice from '../slices/resetPasswordSlice'
-
+import companiesReducer from '../slices/companiesSlice'
+import chatSliceReducer from '../slices/chatBoxsSlice.js'
 const persistedState = loadStateFromLocalStorage();
 
 const store = configureStore({
@@ -17,6 +18,8 @@ const store = configureStore({
     profile: profileReducer,
     product : productsSlice,
     resetPassword: resetPasswordSlice,
+    company: companiesReducer,
+    chat: chatSliceReducer
   },
   preloadedState: persistedState,
 });

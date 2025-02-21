@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux'
 export const SubCategory = ({setProduct , setCategoryName}) => {
     const [clicked , setClicked] = useState(null)
     const {products} = useSelector(state => state.product)
+    const subCategory = products?.map(product => product.productSubCategory)
+    const uniqueSubcategory = [...new Set(subCategory)]
     // let colors = ['#D5F4ED','#F5E3DB','#F5DCDC','#CFE9FE','#CFE9FE'];
     // const generateRandomIndex = () => {
     //     let idx = Math.floor(Math.random()*4);
@@ -29,12 +31,12 @@ export const SubCategory = ({setProduct , setCategoryName}) => {
     <div className=' flex gap-10 flex-col items-center bg-[#F9F9F9]pt-[360px] md:pt-[50px]'>
         <div className='hidden md:block'>    
             <div className='w-[1200px] flex gap-5  justify-start '>
-                {products?.map((el,idx)=>(
-                    <div className='cursor-pointer' onClick={() => handleCtgryClick(el.productSubCategory)} key={idx}>
+                {uniqueSubcategory?.map((el,idx)=>(
+                    <div className='cursor-pointer' onClick={() => handleCtgryClick(el)} key={idx}>
                         {
-                            el.productSubCategory&&
-                            <div  className={`w-[100px] h-[60px] flex justify-center items-center px-5 rounded-2xl ${ el.productSubCategory === clicked && 'underline underline-offset-8 font-bold decoration-[3px]'} `} >
-                                <p className='text-center text-16px outfit'>{el.productSubCategory.toUpperCase()}</p>
+                            el !== null && el !== undefined  &&
+                            <div  className={`w-[100px] h-[60px] flex justify-center items-center px-5 rounded-2xl ${ el === clicked && 'underline underline-offset-8 font-bold decoration-[3px]'} `} >
+                                <p className='text-center text-16px outfit'>{el.toUpperCase()}</p>
                             </div>
                         }
                     </div>

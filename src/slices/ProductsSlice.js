@@ -8,9 +8,13 @@ const PRODUCTS_URL = BASE_URL+ALL_PRODUCTS_MIDDLE_POINT;
 
 export const allProducts = createAsyncThunk(
     'product/allProducts',
-    async(thunkAPI) => {
+    async(thunkAPI,{ getState }) => {
+        let {companyId} = getState().company
         try{
             let response = await axios.get(PRODUCTS_URL)
+            if(companyId){
+                return response.data.filter(product => product.userId?.companyId?._id === companyId)
+            }
             return response.data
         }
         catch(error){
@@ -29,13 +33,19 @@ const initialState = {
 const productsSlice = createSlice({
     initialState,
     name: "product",
-    reducers:{},
+    reducers:{
+        getProductsForCompany: (state , action)=>{
+            let arr = state.products?.filter(product => product.userId?.companyId?._id === action.payload)
+            state.products = arr
+        }
+    },
     extraReducers: (builder) => {
         builder
         .addCase(allProducts.pending , (state) => {
             state.loading = true;
         })
         .addCase(allProducts.fulfilled , (state , action) =>{
+            console.log(action.payload)
             state.products = action.payload;
             state.loading = false;
         })
@@ -45,5 +55,5 @@ const productsSlice = createSlice({
     },
 
 }) 
-
+export  const {getProductsForCompany} = productsSlice.actions; 
 export default productsSlice.reducer

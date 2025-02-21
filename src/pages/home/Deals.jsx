@@ -4,20 +4,23 @@ import { useState,  } from 'react';
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux';
 
-export const Deals = ({searchProducts , categoryName }) => {
-  console.log(categoryName)
+//categoryName hide in props deconstuction
+export const Deals = ({searchProducts  }) => {
   let [more , setMore] = useState(false)
   let {t} = useTranslation();
-  const {products , loading } = useSelector(state => state.product)
+  const {products , loading } = useSelector(state => state.product);
+console.log(products)
   
   // const products =products  || t('deals.products', { returnObjects: true });
   const firstThreeDeals =searchProducts?.length>0
    ? searchProducts.slice(0, 4)
    : products?.slice(0, 4);
-  const secondThreeDeals = searchProducts?.length>5
-   ? searchProducts.slice(6, 9)
-   : products?.length>5 && products.slice(6, 9);
+   console.log('firstthree',firstThreeDeals)
 
+  const secondThreeDeals = searchProducts?.length>5
+   ? searchProducts.slice(4, 8)
+   : products?.length>4 && products.slice(4, 8) || [];
+  console.log('secondThreeDeals' , secondThreeDeals)
   let showMore=()=>{
     setMore(true)
   }
@@ -37,15 +40,8 @@ export const Deals = ({searchProducts , categoryName }) => {
                 <h1 className="text-[34px] md:text-[40px] font-semibold ">{t('deals.heading.0')} <span className="text-[#DB4444]">{t('deals.heading.1')}</span></h1>
                 <p className='text-[14px] outfit'>{t('deals.paragraph')}</p>
               </div>                
-              {/* <button className="hidden md:block outfit text-[16px] rounded-full py-3 px-5 bg-[#013D29]  text-white">{t('deals.bText')}</button> */}
               </>
               :
-            //   <div className='' >
-            //   <h1 className="text-[34px] md:text-[36px] font-semibold "> 
-            //     {categoryName.SelectedCategory && categoryName.SelectedCategory}/ 
-            //     <span className="text-[#013D29]">{categoryName.selectedSubCategory && categoryName.selectedSubCategory}</span>
-            //   </h1>
-            // </div>
             null
               }
             </div>
