@@ -12,12 +12,12 @@ export const PaymentsMehtod = ({setNext}) => {
         setNext(link)
     }
   return (
-    <div className="flex flex-col items-center gap-5 py-5  w-full ">
+    <div className="flex flex-col  items-center gap-5 py-5  w-full">
         <div className="p-5  flex justify-start gap-5 flex-wrap rounded-lg">
             <h1 className="bg-white w-full px-5 text-[30px] font-semibold rounded-lg">Select Payment Method</h1>
             {
                 acounts.map((el , idx)  => 
-                    <li onClick={()=>handleNavigate(el[1])} key={idx} className=" list-none flex justify-between bg-white items-center h-[85px]  w-[209px] rounded-lg px-5 cursor-pointer ">
+                    <li onClick={()=>handleNavigate(el[1])} key={idx} className="hover:bg-black hover:text-white list-none flex justify-between bg-white items-center h-[85px]  w-[209px] rounded-lg px-5 cursor-pointer ">
                         <b>{el[0]}</b>
                         <img src={el[2]} className="w-10 h-8 object-fit" alt="logo" />
                     </li>

@@ -19,13 +19,13 @@ const initialState = {
 
 export const signUpUser = createAsyncThunk(
   'auth/signupUser',
-  async(formData , thunkAPI )=>{ 
+  async(formData , thunkAPI  )=>{
     try{
       let response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_SIGNUP_POST_END_POINT , formData
     );
-        toast.success(response.data.message)
-        navigateToLogin()
-      return response.data
+    console.log(response)
+    toast.success(response.data.message)
+    return response.data
     }catch(error){
       console.log(error)
       toast.error(error.response?.data?.error || "signUp failed")
@@ -40,9 +40,10 @@ export const  loginUser =  createAsyncThunk(
     try {
       console.log(formData)
       const response = await axios.post(BASE_URL+USER_MIDDLE_POINT+USER_LOGIN_POST_END_POINT, formData);
+      console.log(response)
       return response.data; // Return user data with fulfilled state
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Something went wrong'); // return rejected state
     }
   }

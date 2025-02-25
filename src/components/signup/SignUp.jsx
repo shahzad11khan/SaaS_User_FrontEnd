@@ -9,7 +9,7 @@ import defaultPic  from '../../assets/default user/defaultUser.png';
 
 function SignUp({ setSignUpView, setLoginView }) {
   const dispatch = useDispatch();
-  const { isAuthenticated, loading } = useSelector((state) => state.auth);
+  const { isAuthenticated, loading , signUp} = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [view, setView] = useState(false);
   const [form, setForm] = useState({
@@ -79,7 +79,9 @@ function SignUp({ setSignUpView, setLoginView }) {
     });
     dispatch(signUpUser(formData));
   };
-
+ if(signUp){
+  navigate('/login')
+ }
   //  Navigate to Login
   const navigateToLogin = () => {
     // if (location.pathname === "/signup") {

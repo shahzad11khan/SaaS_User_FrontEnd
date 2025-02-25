@@ -59,10 +59,9 @@ function Login({setSignUpView , setLoginView}) {
     if (isAuthenticated) {
       navigate('/home')    
     }
-  },[isAuthenticated ])
+  },[isAuthenticated])
 
   const handleLoginSuccess =(response) => {
-    console.log("Login Success:");
     dispatch(loginWithGoogle(response));
   }
 

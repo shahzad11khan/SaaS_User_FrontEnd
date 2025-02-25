@@ -12,7 +12,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 
-    // const PAYMENT_SUCESS_URL = "http://localhost:5173/";
+// const PAYMENT_SUCESS_URL = "http://localhost:5173/";
 
 const PaymentForm = ({selectedProducts , address}) => {
     let URL_FOR_ORDER = BASE_URL+ORDERS_MIDDLE_POINT+ORDER_SUBMIT_END_POINT;
@@ -49,33 +49,40 @@ const PaymentForm = ({selectedProducts , address}) => {
 
         setIsLoading(true);
         setMessage("Payment in Progress");
-
-        try{
-            await stripe.confirmPayment({
+        try {
+            const result = await stripe.confirmPayment({
                 elements,
-                 redirect: "if_required"
-                // confirmParams: {
-                //     return_url: PAYMENT_SUCESS_URL,
-                // },
+                redirect: "if_required"
             });
-            
-             let response = await axios.post(URL_FOR_ORDER , order, {
-                headers:{
+        
+            if (result.error) {
+                console.error("Stripe Error:", result.error.message);
+                toast.error(result.error.message);
+                setMessage(result.error.message);
+                return; 
+            }
+        
+            let response = await axios.post(URL_FOR_ORDER, order, {
+                headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
-            toast.success(response.data.message)
-            let item = JSON.parse(localStorage.getItem('cart'))
-            let filterItem = item.filter((el) => !selectedProducts.some((product) => product.id === el.id))
-            let count= item.reduce((accumulater , value)=> accumulater + value.count, 0)
-            localStorage.setItem('cart', JSON.stringify(filterItem)); 
-            dispatch(removeOneItemCount(count))
-            navigate('/cart')
-        }catch(error){
-            toast.error(error.response.data.message)
-            console.log(error)
-            setMessage("Some Error Occurred !!")
+            });
+        
+            toast.success(response.data.message);
+            
+            let item = JSON.parse(localStorage.getItem('cart'));
+            let filterItem = item.filter(el => !selectedProducts.some(product => product._id === el._id));
+            let count = item.reduce((accumulator, value) => accumulator + value.count, 0);
+            
+            localStorage.setItem('cart', JSON.stringify(filterItem));
+            dispatch(removeOneItemCount(count));
+            navigate('/home');
+        } catch (error) {
+            console.error("Request Error:", error);
+            toast.error(error.response?.data?.message || 'Something went wrong, please try again');
+            setMessage("Some Error Occurred !!");
         }
+        
         setIsLoading(false);
     };
 

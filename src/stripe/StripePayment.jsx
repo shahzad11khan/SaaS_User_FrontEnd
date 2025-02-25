@@ -14,6 +14,7 @@ import { PAYMENT_INTENT_MIDDLE_POINT } from "../components/apis/MiddlePoint";
 const stripe = loadStripe('pk_test_51QtXYJRv9u3xa58sbyLDr9Ys2AswGO7bF5z4j5MeUpnwcwneqnyIHCmNT03J4L7jD774PRvursj3ZBhX4OXuEhda00wJtQ3Vd9');
 
 const StripePayment = ({selectedProducts , address}) => {
+    console.log(selectedProducts)
 
     const [clientSecret, setClientSecret] = useState(null);
 

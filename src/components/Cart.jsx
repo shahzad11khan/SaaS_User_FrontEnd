@@ -191,7 +191,7 @@ import { toast , ToastContainer} from "react-toastify";
         }
 
         {/* Order Summary */}
-        {CartData?.length>0 && <div className="flex  justify-end w-full py-5 ">
+        {CartData?.length>0 && next!=1 && <div className="flex  justify-end w-full py-5 ">
           <div className="outfit text-[16px] w-[40%] border-black border-[2px] bg-white h-full  rounded-lg p-5 flex flex-col gap-3  ">
             <p className="text-[20px]">Order Summary</p>
             <div className="flex flex-col ">

@@ -45,7 +45,7 @@ export const CompanyDashboard = () => {
   return (
     <div className='flex flex-col h-[100vh] items-center bg-black'> 
         {/* upper header  */}
-        <div className="h-[44px] w-full bg-black hidden md:flex justify-between items-center px-6  ">
+        <div className="h-[44px] w-full bg-black hidden md:flex  justify-between items-center px-6  ">
             <div className="flex gap-3 ">
                 <img src={NotificationIcon} alt="icon" />
                 <p className="text-[14px] text-white outfit">
@@ -86,7 +86,7 @@ export const CompanyDashboard = () => {
         {/* conmapnies  */}
         <div className=' flex flex-col gap-5 items-start py-5 justify-start h-full w-[1200px] text-white'>
             <h1 className="text-[30px] outfit" >ALL COMPANIES</h1>
-            <div className='flex flex-wrap gpa-5 '>
+            <div className='flex flex-wrap gap-5 '>
                 {allCompanies?.map((el, idx)=>
                     <div onClick={()=> companyClick(el)} className=' cursor-pointer flex flex-col items-center justify-center  py-3 bg-[#3b3b3b] rounded-lg w-[200px] h-[200px] ' key={idx}>
                         <img className='h-[120px] w-[120px] rounded-full' src={el.companyLogo} alt="comapnylogo" />
