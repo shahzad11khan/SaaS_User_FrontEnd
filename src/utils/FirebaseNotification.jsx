@@ -91,12 +91,12 @@ const FirebaseNotification = () => {
       >
         Get FCM Token
       </button>
-      <button
+      {/* <button
         onClick={sendTokenToBackend}
         className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition"
       >
         Send token to backend
-      </button>
+      </button> */}
 
       {/* 🔥 Display FCM Token */}
       {fcmToken && (
