@@ -46,7 +46,6 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
 
   const handleSubCategory = (e) => {
     const { name, value } = e.target;
-    console.log( 'name' , name ,'value', value)
     setForm((prevForm) => ({ ...prevForm, [name]: value }));
     let filteredProducts  = products.filter(el => el.productSubCategory === value)
     if (filteredProducts .length !== 0) {

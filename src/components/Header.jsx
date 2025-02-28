@@ -135,6 +135,9 @@ useEffect(()=>{
           {/* favorite & cart  icons */}
           {/* {token?
           <> */}
+            <Link to="/companies" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
+              <i className="fa-solid fa-building"></i>            
+            </Link>
             <Link to="/favorite" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
               <img className='  w-[20px] h-[20px]  ' src={Heart} alt="buy" />
               <div className=' absolute top-[-5px] right-[-5px] rounded-full text-white text-[12px] bg-[#DB4444] w-5 h-5 outfit flex justify-center items-center'> {favorite.count}</div>

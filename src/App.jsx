@@ -7,7 +7,7 @@ import './i18n'
 import { ProductDetail } from "./pages/product details/ProductDetail";
 import StripePayment from "./stripe/StripePayment";
 import { ProductsByCategory } from "./pages/products by category/ProductsByCategory";
-// import { CompanyDashboard } from "./pages/copmapny dashboard/CompanyDashboard";
+import { CompanyDashboard } from "./pages/copmapny dashboard/CompanyDashboard";
 // import Login from "./components/login/Login";
 // import SignUp from "./components/signup/SignUp";
 // import FirebaseNotification from "./utils/FirebaseNotification";
@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<CompanyDashboard />} /> */}
+        <Route path="/companies" element={<CompanyDashboard />} />
         {/* <Route path="/" element={<FirebaseNotification />} /> */}
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
