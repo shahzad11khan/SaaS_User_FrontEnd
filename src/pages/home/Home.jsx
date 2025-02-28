@@ -12,6 +12,9 @@ import { useDispatch, useSelector} from 'react-redux'
 import { Overview } from './Overview.jsx'
 import { getAllCompanies } from '../../slices/companiesSlice.js'
 import ChatBox from '../../components/ChatBox.jsx'
+import FirebaseNotification from '../../utils/FirebaseNotification.jsx'
+
+
 export const Home = () => {
   let [ chatBox , setChatBox] = useState(false)
   let {companyId} = useSelector(state=>state.company)
@@ -21,7 +24,7 @@ export const Home = () => {
     dispatch(getAllCompanies())
     dispatch(allProducts())
   },[companyId , dispatch])
-
+  const { isAuthenticated } = useSelector((state) => state.auth);
   let [searchProducts , setProduct] = useState(null)
   let [categoryName , setCategoryName] = useState(null)
   // let icons= [
@@ -71,6 +74,7 @@ export const Home = () => {
       <i className="bg-[#DB4444] p-3 rounded-full text-white fa-brands fa-rocketchat"></i>
     </div>
     {chatBox && <ChatBox />}
+    {isAuthenticated && <FirebaseNotification />}
     </>
   )
 }
