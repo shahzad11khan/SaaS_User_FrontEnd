@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
+import { BASE_URL } from "../components/apis/BaseUrl";
 
 
 
@@ -66,25 +68,25 @@ const FirebaseNotification = () => {
       console.log("📲 FCM Token:", token);
       setFcmToken(token);
        // 🔥 Send FCM Token to Backend API
-      //  await sendTokenToBackend(token);
+       await sendTokenToBackend(token,userId);
     } catch (error) {
       console.error("❌ Error getting FCM token:", error);
     }
   }
 
-  // async function sendTokenToBackend() {
-  //   try {
-  //     const response = await axios.post("http://localhost:5000/v1/api/notification/send-notification", {
-  //       fcmToken: fcmToken,
-  //       title: "Order Accepted",
-  //       body: "Your order has been accepted!",
-  //     });
+  async function sendTokenToBackend(fcmToken,userId) {
+    try {
+      // const response = await axios.post("http://localhost:5000/v1/api/notification/store-user-fcmToken-&-userId", {
+      const response = await axios.post(`${BASE_URL}/v1/api/notification/store-user-fcmToken-&-userId`, {
+        fcmToken: fcmToken,
+        userId:userId
+      });
   
-  //     console.log("✅ FCM Token stored successfully:", response.data);
-  //   } catch (error) {
-  //     console.error("❌ Error sending FCM token to backend:", error.response ? error.response.data : error.message);
-  //   }
-  // }
+      console.log("✅ FCM Token stored successfully:", response.data);
+    } catch (error) {
+      console.error("❌ Error sending FCM token to backend:", error.response ? error.response.data : error.message);
+    }
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
