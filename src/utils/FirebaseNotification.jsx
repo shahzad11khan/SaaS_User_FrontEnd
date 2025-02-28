@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
-import axios from "axios";
+
 
 // 🔥 Firebase Configuration
 const firebaseConfig = {
@@ -21,6 +23,7 @@ const messaging = getMessaging(app);
 const FirebaseNotification = () => {
   const [fcmToken, setFcmToken] = useState("");
   const [notification, setNotification] = useState(null);
+  const {token:userToken} = useSelector(state => state.auth)
 
   useEffect(() => {
     registerServiceWorker();
@@ -58,7 +61,8 @@ const FirebaseNotification = () => {
         vapidKey: "BOXKKIurvZdRzxPnSik7saJXYY1q1vzpVrfQiW0g8FM2QwBula2y0WGNtsttbZ0Guv8lfoQeWZAu1InVIO5HbLw",
         serviceWorkerRegistration: await navigator.serviceWorker.ready, // Ensure Service Worker is Ready
       });
-
+      let {userId} = jwtDecode(userToken)
+      console.log(userId)
       console.log("📲 FCM Token:", token);
       setFcmToken(token);
        // 🔥 Send FCM Token to Backend API

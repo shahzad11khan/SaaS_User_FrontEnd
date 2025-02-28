@@ -57,7 +57,7 @@ function Login({setSignUpView , setLoginView}) {
 
   useEffect(()=>{
     if (isAuthenticated) {
-      navigate('/home')    
+      setLoginView(false)    
     }
   },[isAuthenticated])
 
