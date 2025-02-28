@@ -10,15 +10,15 @@ import { ProductsByCategory } from "./pages/products by category/ProductsByCateg
 import { CompanyDashboard } from "./pages/copmapny dashboard/CompanyDashboard";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
-import FirebaseNotification from "./utils/FirebaseNotification";
+// import FirebaseNotification from "./utils/FirebaseNotification";
 
 function App() {
 
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<CompanyDashboard />} /> */}
-        <Route path="/" element={<FirebaseNotification />} />
+        <Route path="/" element={<CompanyDashboard />} />
+        {/* <Route path="/" element={<FirebaseNotification />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/favorite" element={<Favorite />} />
