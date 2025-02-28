@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { useSelector } from "react-redux";
@@ -23,8 +23,8 @@ const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 
 const FirebaseNotification = () => {
-  const [fcmToken, setFcmToken] = useState("");
-  const [notification, setNotification] = useState(null);
+  // const [fcmToken, setFcmToken] = useState("");
+  // const [notification, setNotification] = useState(null);
   const {token:userToken} = useSelector(state => state.auth)
 
   useEffect(() => {
@@ -34,10 +34,10 @@ const FirebaseNotification = () => {
     // 🎯 Handle Foreground Notifications
     onMessage(messaging, (payload) => {
       console.log("📩 Foreground Message received:", payload);
-      setNotification({
-        title: payload.notification?.title || "Notification",
-        body: payload.notification?.body || "You have a new message.",
-      });
+      // setNotification({
+      //   title: payload.notification?.title || "Notification",
+      //   body: payload.notification?.body || "You have a new message.",
+      // });
     });
   }, []);
 
@@ -66,7 +66,7 @@ const FirebaseNotification = () => {
       let {userId} = jwtDecode(userToken)
       console.log(userId)
       console.log("📲 FCM Token:", token);
-      setFcmToken(token);
+      // setFcmToken(token);
        // 🔥 Send FCM Token to Backend API
        await sendTokenToBackend(token,userId);
     } catch (error) {
@@ -89,48 +89,49 @@ const FirebaseNotification = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-gray-900 mb-4">Firebase Cloud Messaging</h1>
-      <button
-        onClick={requestPermission}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition"
-      >
-        Get FCM Token
-      </button>
-      {/* <button
-        onClick={sendTokenToBackend}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition"
-      >
-        Send token to backend
-      </button> */}
+    null
+    // <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    //   <h1 className="text-3xl font-bold text-gray-900 mb-4">Firebase Cloud Messaging</h1>
+    //   <button
+    //     onClick={requestPermission}
+    //     className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition"
+    //   >
+    //     Get FCM Token
+    //   </button>
+    //   {/* <button
+    //     onClick={sendTokenToBackend}
+    //     className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow-md transition"
+    //   >
+    //     Send token to backend
+    //   </button> */}
 
-      {/* 🔥 Display FCM Token */}
-      {fcmToken && (
-        <p className="mt-4 p-3 bg-white shadow-md rounded-md text-gray-700 text-sm max-w-md break-all">
-          <strong>FCM Token:</strong> {fcmToken}
-        </p>
-      )}
+    //   {/* 🔥 Display FCM Token */}
+    //   {fcmToken && (
+    //     <p className="mt-4 p-3 bg-white shadow-md rounded-md text-gray-700 text-sm max-w-md break-all">
+    //       <strong>FCM Token:</strong> {fcmToken}
+    //     </p>
+    //   )}
 
-      {/* 🔥 Popup Notification */}
-      {notification && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center w-80">
-            <h2 className="text-lg font-semibold text-gray-900">{notification.title}</h2>
-            <p className="text-gray-700 mt-2">{notification.body}</p>
-            <button
-              onClick={() => setNotification(null)}
-              className="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded shadow-md transition-all"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+    //   {/* 🔥 Popup Notification */}
+    //   {notification && (
+    //     <div
+    //       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+    //       role="dialog"
+    //       aria-modal="true"
+    //     >
+    //       <div className="bg-white p-6 rounded-lg shadow-lg text-center w-80">
+    //         <h2 className="text-lg font-semibold text-gray-900">{notification.title}</h2>
+    //         <p className="text-gray-700 mt-2">{notification.body}</p>
+    //         <button
+    //           onClick={() => setNotification(null)}
+    //           className="mt-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded shadow-md transition-all"
+    //         >
+    //           Close
+    //         </button>
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 
