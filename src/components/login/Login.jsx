@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ResetPassword } from "./ResetPassword";
 import { loginUser ,loginWithGoogle , resetError , resetSuccess} from '../../slices/authSlice';
 import GoogleLoginButton from "./GoogleLoginButton";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import PropTypes from "prop-types";
 
@@ -71,7 +71,6 @@ function Login({setSignUpView , setLoginView}) {
 
   return (
     <div className={`flex flex-col justify-center items-center  h-[100vh]`}>  
-    <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
     <div className= " relative w-[400px] h-[75vh] flex flex-col justify-center items-center rounded-xl bg-white">
     {!reset?
       <>

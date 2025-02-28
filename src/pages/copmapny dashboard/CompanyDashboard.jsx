@@ -8,6 +8,8 @@ import { getAllCompanies, selectedCompany } from '../../slices/companiesSlice';
 
 export const CompanyDashboard = () => {
     const navigate = useNavigate()
+    const [searchedCompanies , setSearchedComapnies]  = useState([])
+    const [viewSearch , setViewSearch] = useState(false)
     const{allCompanies} = useSelector(state => state.company)
     const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
@@ -31,14 +33,15 @@ export const CompanyDashboard = () => {
         setSearch(e.target.value)
     }
 
-    let searchSubmit = (e) =>{
+    let searchSubmit = (e) =>{        
+        setViewSearch(true)
+        let companies= allCompanies.filter(company=> company.companyName.toLowerCase().includes(search.toLowerCase()));
+        setSearchedComapnies(companies)
         e.preventDefault();
-        console.log(search);
         setSearch('')
     }
 
     let companyClick = (company)=>{
-        console.log(company)
         dispatch(selectedCompany(company))
         navigate('/home')
     }
@@ -86,13 +89,55 @@ export const CompanyDashboard = () => {
         {/* conmapnies  */}
         <div className=' flex flex-col gap-5 items-start py-5 justify-start h-full w-[1200px] text-white'>
             <h1 className="text-[30px] outfit" >ALL COMPANIES</h1>
-            <div className='flex flex-wrap gap-5 '>
-                {allCompanies?.map((el, idx)=>
-                    <div onClick={()=> companyClick(el)} className=' cursor-pointer flex flex-col items-center justify-center  py-3 bg-[#3b3b3b] rounded-lg w-[200px] h-[200px] ' key={idx}>
-                        <img className='h-[120px] w-[120px] rounded-full' src={el.companyLogo} alt="comapnylogo" />
-                        <p><span>Company :</span><span className='pl-2'>{el.companyName}</span></p>
-                        <p><span>Business :</span><span className='pl-2'>{el.businessType}</span></p>
+            <div className="flex flex-wrap gap-5">
+                {viewSearch ? (
+                    searchedCompanies.length > 0 ? (
+                    searchedCompanies.map((el, idx) => (
+                        <div
+                        onClick={() => companyClick(el)}
+                        className="cursor-pointer flex flex-col items-center justify-center py-3 bg-[#3b3b3b] rounded-lg w-[200px] h-[200px]"
+                        key={idx}
+                        >
+                        <img
+                            className="h-[120px] w-[120px] rounded-full"
+                            src={el.companyLogo}
+                            alt="companylogo"
+                        />
+                        <p>
+                            <span>Company :</span>
+                            <span className="pl-2">{el.companyName}</span>
+                        </p>
+                        <p>
+                            <span>Business :</span>
+                            <span className="pl-2">{el.businessType}</span>
+                        </p>
+                        </div>
+                    ))
+                    ) : (
+                    <p>No comapany found</p> // Optional: Display message if no results found
+                    )
+                ) : (
+                    allCompanies?.map((el, idx) => (
+                    <div
+                        onClick={() => companyClick(el)}
+                        className="cursor-pointer flex flex-col items-center justify-center py-3 bg-[#3b3b3b] rounded-lg w-[200px] h-[200px]"
+                        key={idx}
+                    >
+                        <img
+                        className="h-[120px] w-[120px] rounded-full"
+                        src={el.companyLogo}
+                        alt="companylogo"
+                        />
+                        <p>
+                        <span>Company :</span>
+                        <span className="pl-2">{el.companyName}</span>
+                        </p>
+                        <p>
+                        <span>Business :</span>
+                        <span className="pl-2">{el.businessType}</span>
+                        </p>
                     </div>
+                    ))
                 )}
             </div>
         </div>

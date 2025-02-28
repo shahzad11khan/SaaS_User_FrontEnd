@@ -8,7 +8,7 @@ import { removeFavourite ,setFavouriteCount, addFavourite,} from "../slices/favo
 // import axios from "axios";
 
 // import { jwtDecode } from "jwt-decode"
-import { toast , ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { getProductsForCompany } from "../slices/ProductsSlice";
 function Card({data}){
@@ -111,7 +111,6 @@ function Card({data}){
     }
     return(
         <div  className=" relative shadow-2xl bg-white shadow-gray-300 rounded-lg overflow-hidden w-[276px] ">
-            <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
             {/* image with heart icon view icon */}
             <div className="relative">
                 {/* image */}

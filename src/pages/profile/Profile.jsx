@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 // import axios  from "axios"
 import {useNavigate} from 'react-router-dom'
-import { ToastContainer} from 'react-toastify'
 import { EditForm } from "./EditForm"
 // import { UserDetails } from "./UserDetails"
 import { FileUpload } from "./FileUpload"
@@ -53,7 +52,6 @@ export const Profile = () => {
     <>
     <Header />
     <div className="    flex justify-center  pt-[35px]  bg-[#8bfabb] h-[570px]">
-      <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
       <div className=" bg-white relative w-[450px] h-[500px] flex flex-col justify-between pb-5  rounded-lg  overflow-hidden ">
       <div>
       <div className="px-5 flex justify-between items-end  outfit ">

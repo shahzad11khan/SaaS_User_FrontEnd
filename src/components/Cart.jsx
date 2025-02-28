@@ -9,7 +9,7 @@ import Footer from "./Footer";
 import { addCart, removeCart, removeOneItemCount } from "../slices/cartSlice";
 import { PaymentsMehtod } from "./PaymentsMehtod";
 import StripePayment from "../stripe/StripePayment";
-import { toast , ToastContainer} from "react-toastify";
+import { toast } from "react-toastify";
     
   
   export const Cart = () => {
@@ -121,7 +121,6 @@ import { toast , ToastContainer} from "react-toastify";
       
     return (
       <>
-      <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
       <Header />
       <div className=" flex justify-center  ">
       <div className="flex flex-col gap-5 w-[1200px]   ">
