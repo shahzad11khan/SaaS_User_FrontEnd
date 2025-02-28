@@ -24,6 +24,7 @@ import { logout } from '../slices/authSlice';
 import Login from './login/Login'
 import SignUp from './signup/SignUp'
 import { googleLogout } from "@react-oauth/google"
+import { removeCompany } from '../slices/companiesSlice';
 
 
 export const Header = () => {
@@ -46,8 +47,7 @@ export const Header = () => {
   let [search , setSearch] = useState('')
   // let navArr = [[Home,t('header.bottom.1'),'/home'],[Dining,t('header.bottom.2'),'/dinning'],[Salon,t('header.bottom.3'),'/salon'],[Group,t('header.bottom.4'),'/entertainment'],[Entertain,t('header.bottom.5') ,'/home services'],]
   let token = useSelector(state => state.auth.token)     ;
-
-
+  let {companyId} = useSelector(state => state.company)
   let [loginView , setLoginView] = useState(false)
   let [signUpView , setSignUpView] = useState(false)
 
@@ -72,7 +72,7 @@ useEffect(()=>{
   }
 
   let handleLogout = ()=>{
-    localStorage.removeItem('appState')
+    localStorage.clear()
     googleLogout()
     dispatch(logout());
     navigate('/');
@@ -135,6 +135,11 @@ useEffect(()=>{
           {/* favorite & cart  icons */}
           {/* {token?
           <> */}
+          {companyId &&
+            <div onClick={() => dispatch(removeCompany())} className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
+            <i className="fa-solid fa-arrow-left"></i>
+            </div>
+          }
             <Link to="/companies" className='cursor-pointer relative w-[40px] bg-[#F5F5F5] rounded-full h-[40px]  flex justify-center items-center'>
               <i className="fa-solid fa-building"></i>            
             </Link>

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import CardRating from "./CardRating"
 // import Union from '../assets/Card/Union.svg'
 import { useNavigate } from "react-router-dom";
-// import { toast ,ToastContainer} from "react-toastify";
+// import { toast } from "react-toastify";
 // import { jwtDecode } from "jwt-decode";
 // import { useDispatch } from "react-redux";
 

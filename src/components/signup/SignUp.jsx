@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { signUpUser } from "../../slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { ToastContainer } from "react-toastify";
 import defaultPic  from '../../assets/default user/defaultUser.png';
 
 
@@ -94,7 +93,6 @@ function SignUp({ setSignUpView, setLoginView }) {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} closeOnClick={false} />
 
       <div className="flex flex-col h-[95vh] justify-center items-center bg-white w-[500px] rounded-lg">
         <h1 className="text-[24px] text-[#DB4444] outfit md:text-[36px] font-bold">Sign Up</h1>

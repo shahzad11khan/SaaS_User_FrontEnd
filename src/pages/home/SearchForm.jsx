@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import VectorIcon from '../../assets/icons/Vector.svg';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
 
@@ -102,7 +102,6 @@ export const SearchForm = ({ setProduct, setCategoryName}) => {
 
   return (
     <div className='mx-4 z-20 relative  md:flex justify-center'>
-      <ToastContainer position='top-right' autoClose={2000} hideProgressBar={false} />
       <div className='shadow-[#EDEDED] shadow-lg top-[-45px] w-full absolute md:w-[1200px] bg-white rounded-lg p-5'>
         <form onSubmit={handleSearchSubmit} className='flex flex-col md:flex-row md:flex-wrap gap-3 justify-center items-center'>
           {/* Category */}

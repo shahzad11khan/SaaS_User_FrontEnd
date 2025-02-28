@@ -31,8 +31,10 @@ const companiesSlice = createSlice({
   initialState,
   reducers: {
     selectedCompany: (state , action)=>{
-      console.log(action.payload)
         state.companyId = action.payload._id;
+    },
+    removeCompany: (state , )=>{
+        state.companyId = null;
     }
   },
   extraReducers:(builder) =>{
@@ -51,6 +53,6 @@ const companiesSlice = createSlice({
   },
 });
 
-export const {selectedCompany} = companiesSlice.actions;
+export const {selectedCompany , removeCompany} = companiesSlice.actions;
 
 export default companiesSlice.reducer;

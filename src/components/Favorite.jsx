@@ -1,7 +1,7 @@
 // import CardRating from "./CardRating"
 // import Union from '../assets/Card/Union.svg'
 import { useEffect, useState } from "react"
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode"
 import { useDispatch, useSelector } from "react-redux";
 import {  addCart } from "../slices/cartSlice";
@@ -89,7 +89,6 @@ export const Favorite = () => {
       }
   return (
     <>            
-    <ToastContainer  position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick={false} rtl={false} pauseOnFocusLoss={false} draggable pauseOnHover={false} theme="light" />
     <Header />
     <div className=" flex justify-center bg-[white]">
     <div className="w-[1200px] h-full  ">
