@@ -13,9 +13,31 @@ import { Overview } from './Overview.jsx'
 import { getAllCompanies } from '../../slices/companiesSlice.js'
 import ChatBox from '../../components/ChatBox.jsx'
 import FirebaseNotification from '../../utils/FirebaseNotification.jsx'
-
+import { io } from "socket.io-client";
+import { jwtDecode } from 'jwt-decode'
 
 export const Home = () => {
+  const{token} = useSelector(state => state.auth)
+  const socket = io("https://saasserversidescript-production-befa.up.railway.app/");
+  useEffect(() => {
+    if (!token) return;
+
+    let { userId } = jwtDecode(token);
+    console.log("👤 User ID:", userId);
+  
+    // ✅ User joins their own room
+    socket.emit("joinUser", userId);
+
+    // ✅ Listen for order status updates
+    socket.on("orderStatus", (orderUpdate) => {
+      console.log("🔔 Order status updated:", orderUpdate);
+    });
+
+    return () => {
+      socket.off("orderStatusUpdate");
+    };
+  }, []);
+
   let [ chatBox , setChatBox] = useState(false)
   let {companyId} = useSelector(state=>state.company)
   console.log(companyId)
